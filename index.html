@@ -218,6 +218,7 @@
       pointer-events: none;
 
       transition: transform 250ms ease;
+      filter 250ms ease;
     }
 
     .seed:focus-visible {
@@ -227,6 +228,12 @@
 
     .seed:active img {
       transform: scale(.9);
+    }
+
+    /* GLOW ON THE SELECTED SEED */
+
+    .seed[aria-pressed="true"] img {
+      filter: drop-shadow(0 0 8px rgba(160, 0, 45, 0.45));
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -357,12 +364,12 @@
     @keyframes detail-enter {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(12px) scale(0.985);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
