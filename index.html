@@ -552,6 +552,60 @@
         scroll-behavior: auto !important;
       }
     }
+
+    /* Custom cursor trail */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9f1239;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 180ms ease;
+}
+
+.cursor-trail.visible {
+  opacity: 0.8;
+}
+
+.cursor-particle {
+  position: fixed;
+  width: 5px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9f1239;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.65;
+  transform: translate(-50%, -50%) rotate(25deg);
+  animation: seed-fade 550ms ease-out forwards;
+}
+
+@keyframes seed-fade {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(25deg) scale(0.2);
+  }
+}
+
+/* Keep the effect off touchscreens and for reduced-motion preferences */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-trail {
+    display: block;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-trail,
+  .cursor-particle {
+    display: none !important;
+  }
+}
   </style>
 </head>
 
@@ -895,6 +949,49 @@ function openArchive() {
         }
       }
     });
+
+    // Subtle pomegranate-seed cursor trail
+if (
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const trail = document.createElement("div");
+  trail.className = "cursor-trail";
+  document.body.appendChild(trail);
+
+  let lastParticleTime = 0;
+
+  window.addEventListener("mousemove", (event) => {
+    trail.style.left = `${event.clientX}px`;
+    trail.style.top = `${event.clientY}px`;
+    trail.classList.add("visible");
+
+    const now = performance.now();
+
+    // Leave a small particle occasionally, not on every mouse movement
+    if (now - lastParticleTime > 55) {
+      lastParticleTime = now;
+
+      const particle = document.createElement("div");
+      particle.className = "cursor-particle";
+      particle.style.left = `${event.clientX}px`;
+      particle.style.top = `${event.clientY}px`;
+
+      document.body.appendChild(particle);
+      particle.addEventListener("animationend", () => particle.remove(), {
+        once: true
+      });
+    }
+  });
+
+  window.addEventListener("mouseleave", () => {
+    trail.classList.remove("visible");
+  });
+
+  window.addEventListener("mouseenter", () => {
+    trail.classList.add("visible");
+  });
+}
   </script>
 
 </body>
