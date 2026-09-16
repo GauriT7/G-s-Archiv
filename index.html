@@ -2,655 +2,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Gauri Archive</title>
-
-<style>
-:root {
-  --cream: #f8f4e9;
-  --cream-light: #fffaf0;
-  --red: #a9002d;
-  --red-dark: #6e1027;
-  --text: #352522;
-  --muted: #82736b;
-  --line: #e4d5c9;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--cream);
-  color: var(--text);
-  font-family: Georgia, "Times New Roman", serif;
-  overflow-x: hidden;
-}
-
-button {
-  font: inherit;
-}
-
-button:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 5px;
-}
-
-/* Custom cursor */
-
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: url("images/pomegranate-whole.png") 16 16, auto;
-  }
-
-  button,
-  a {
-    cursor: url("images/seed1.png") 8 8, pointer;
-  }
-}
-
-/* Header */
-
-header {
-  height: 80px;
-  padding: 0 6%;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
-}
-
-.brand {
-  color: var(--red);
-  font-size: 19px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-/* Main archive */
-
-main {
-  width: 100%;
-}
-
-.world {
-  min-height: calc(100svh - 80px);
-  min-height: calc(100vh - 80px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 20px 55px;
-}
-
-.fruit-stage {
-  width: min(540px, 88vw);
-  height: min(540px, 88vw);
-  position: relative;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
-}
-
-/* Fruit images */
-
-.fruit {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  inset: 0;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition:
-    opacity 900ms ease,
-    transform 1100ms cubic-bezier(.2,.75,.2,1);
-}
-
-.whole-fruit {
-  z-index: 2;
-  opacity: 1;
-  transform: scale(1);
-  animation: sway 5s ease-in-out infinite;
-  transform-origin: 50% 58%;
-}
-
-.cross-fruit {
-  z-index: 1;
-  opacity: 0;
-  transform: scale(.88) rotate(-8deg);
-  pointer-events: none;
-}
-
-/* Accessible click target */
-
-.fruit-trigger {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  border-radius: 50%;
-}
-
-.fruit-trigger:focus-visible {
-  outline-offset: 8px;
-}
-
-/* Gentle movement */
-
-@keyframes sway {
-  0%, 100% {
-    transform: rotate(-2deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(2deg) translateY(-9px);
-  }
-}
-
-/* Seeds */
-
-.seed-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.seed {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  left: 50%;
-  top: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(.1);
-  border: 0;
-  padding: 0;
-  background: transparent;
-  pointer-events: none;
-  transition:
-    left 1050ms cubic-bezier(.16,1,.3,1),
-    top 1050ms cubic-bezier(.16,1,.3,1),
-    opacity 500ms ease,
-    transform 900ms cubic-bezier(.16,1,.3,1);
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.seed img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* The seeds settle in a balanced pattern */
-
-.world.open .whole-fruit {
-  opacity: 0;
-  animation: none;
-  transform: scale(.78) rotate(18deg);
-  pointer-events: none;
-}
-
-.world.open .cross-fruit {
-  opacity: 1;
-  transform: scale(1) rotate(0);
-  z-index: 3;
-}
-
-.world.open .fruit-trigger {
-  pointer-events: none;
-}
-
-.world.open .seed-layer {
-  pointer-events: auto;
-}
-
-.world.open .seed {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Deliberate positions, not random placement */
-
-.world.open .seed:nth-child(1) {
-  left: 24%;
-  top: 23%;
-}
-
-.world.open .seed:nth-child(2) {
-  left: 50%;
-  top: 15%;
-}
-
-.world.open .seed:nth-child(3) {
-  left: 76%;
-  top: 23%;
-}
-
-.world.open .seed:nth-child(4) {
-  left: 24%;
-  top: 77%;
-}
-
-.world.open .seed:nth-child(5) {
-  left: 50%;
-  top: 85%;
-}
-
-.world.open .seed:nth-child(6) {
-  left: 76%;
-  top: 77%;
-}
-
-/* Seed selection */
-
-.seed.selected {
-  z-index: 20;
-  transform: translate(-50%, -50%) scale(1.22) rotate(-8deg);
-  filter: drop-shadow(0 5px 10px rgba(100, 0, 25, .18));
-}
-
-/* Text below the fruit */
-
-.instruction {
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 18px;
-  font-style: italic;
-  text-align: center;
-  min-height: 26px;
-}
-
-.close-button {
-  margin-top: 24px;
-  border: 1px solid var(--line);
-  background: var(--cream-light);
-  color: var(--muted);
-  padding: 12px 25px;
-  border-radius: 40px;
-  font-size: 16px;
-  transition: border-color .2s, color .2s;
-}
-
-.close-button:hover {
-  border-color: var(--red);
-  color: var(--red);
-}
-
-.close-button[hidden] {
-  display: none;
-}
-
-/* Archive section */
-
-.archive-section {
-  width: min(900px, 88%);
-  margin: 0 auto 100px;
-  padding: 65px 0 75px;
-  border-top: 1px solid var(--line);
-  display: none;
-  animation: sectionIn 700ms ease both;
-}
-
-.archive-section.visible {
-  display: block;
-}
-
-@keyframes sectionIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.eyebrow {
-  font-size: 13px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 30px;
-}
-
-.archive-section h1 {
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: normal;
-  color: var(--red);
-  margin: 0 0 25px;
-  line-height: 1.1;
-}
-
-.archive-section p {
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.8;
-  color: var(--text);
-  max-width: 700px;
-}
-
-.back-button {
-  display: inline-block;
-  margin-top: 20px;
-  border: 1px solid var(--red);
-  color: var(--red);
-  background: transparent;
-  padding: 13px 25px;
-  border-radius: 40px;
-  font-size: 17px;
-  transition: background .2s, color .2s;
-}
-
-.back-button:hover {
-  background: var(--red);
-  color: white;
-}
-
-/* Mobile proportions */
-
-@media (max-width: 600px) {
-  header {
-    height: 65px;
-    padding: 0 6%;
-  }
-
-  .world {
-    min-height: calc(100vh - 65px);
-    padding: 25px 15px 40px;
-  }
-
-  .fruit-stage {
-    width: min(88vw, 430px);
-    height: min(88vw, 430px);
-  }
-
-  .seed {
-    width: 34px;
-    height: 34px;
-  }
-
-  .instruction {
-    font-size: 16px;
-    margin-top: 20px;
-  }
-
-  .archive-section {
-    padding: 45px 0 60px;
-    margin-bottom: 60px;
-  }
-}
-
-/* Reduced motion accessibility */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Gauri Archive</title>
+
+  <style>
+    :root {
+      --cream: #f8f4e9;
+      --burgundy: #a0002b;
+      --dark-burgundy: #69001d;
+      --text: #39272b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 80px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #e1d8cb;
+    }
+
+    .brand {
+      color: var(--burgundy);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* PAGE LAYOUT */
+
+    .page {
+      min-height: calc(100svh - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 20px 28px;
+    }
+
+    .screen {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen[hidden] {
+      display: none;
+    }
+
+    /* OPENING POMEGRANATE */
+
+    .fruit-button {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(78vw, 590px);
+      aspect-ratio: 1;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .fruit-button img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform-origin: 50% 55%;
+      animation: sway 4.5s ease-in-out infinite;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .fruit-button:focus-visible {
+      outline: 2px solid var(--burgundy);
+      outline-offset: 8px;
+      border-radius: 50%;
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(-2deg);
+      }
+
+      50% {
+        transform: rotate(2deg);
+      }
+    }
+
+    .instruction {
+      margin: 20px 0 0;
+      color: #88777a;
+      font-size: 19px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* CROSS-SECTION SCREEN */
+
+    .cross-stage {
+      position: relative;
+      width: min(94vw, 850px);
+      height: min(68vw, 650px);
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .cross-section {
+      position: relative;
+      z-index: 2;
+      width: min(66%, 530px);
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .cross-section img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* SIX SEEDS IN A BALANCED ORBIT */
+
+    .seed {
+      position: absolute;
+      z-index: 3;
+      width: clamp(66px, 10vw, 105px);
+      height: clamp(66px, 10vw, 105px);
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    .seed img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .seed-1 {
+      top: 7%;
+      left: 13%;
+      transform: rotate(-18deg);
+    }
+
+    .seed-2 {
+      top: 7%;
+      right: 13%;
+      transform: rotate(18deg);
+    }
+
+    .seed-3 {
+      top: 39%;
+      left: 0;
+      transform: rotate(-35deg);
+    }
+
+    .seed-4 {
+      top: 39%;
+      right: 0;
+      transform: rotate(35deg);
+    }
+
+    .seed-5 {
+      bottom: 7%;
+      left: 13%;
+      transform: rotate(18deg);
+    }
+
+    .seed-6 {
+      bottom: 7%;
+      right: 13%;
+      transform: rotate(-18deg);
+    }
+
+    /* SMOOTH TRANSITION */
+
+    .screen {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .screen.entering {
+      animation: screen-enter 850ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    @keyframes screen-enter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fruit-button.bursting img {
+      animation: fruit-burst 850ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    @keyframes fruit-burst {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+
+      35% {
+        transform: scale(1.13) rotate(-3deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(.68) rotate(4deg);
+        opacity: 0;
+      }
+    }
+
+    .seed {
+      opacity: 0;
+    }
+
+    .screen.entering .seed {
+      animation: seed-arrive 900ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    .screen.entering .seed-1 {
+      animation-delay: 80ms;
+    }
+
+    .screen.entering .seed-2 {
+      animation-delay: 140ms;
+    }
+
+    .screen.entering .seed-3 {
+      animation-delay: 200ms;
+    }
+
+    .screen.entering .seed-4 {
+      animation-delay: 260ms;
+    }
+
+    .screen.entering .seed-5 {
+      animation-delay: 320ms;
+    }
+
+    .screen.entering .seed-6 {
+      animation-delay: 380ms;
+    }
+
+    @keyframes seed-arrive {
+      from {
+        opacity: 0;
+        scale: .35;
+      }
+
+      to {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    /* CLOSE ARCHIVE */
+
+    .close-button {
+      margin-top: 26px;
+      padding: 12px 27px;
+      border: 1px solid #dfd4c7;
+      border-radius: 40px;
+      background: transparent;
+      color: #806f72;
+      font-size: 17px;
+      cursor: pointer;
+      transition:
+        color 200ms ease,
+        border-color 200ms ease;
+    }
+
+    .close-button:hover {
+      color: var(--burgundy);
+      border-color: var(--burgundy);
+    }
+
+    .close-button:focus-visible {
+      outline: 2px solid var(--burgundy);
+      outline-offset: 4px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      header {
+        height: 64px;
+        padding: 0 22px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .page {
+        min-height: calc(100svh - 64px);
+        padding: 24px 14px;
+      }
+
+      .fruit-button {
+        width: min(90vw, 470px);
+      }
+
+      .instruction {
+        font-size: 17px;
+        margin-top: 12px;
+      }
+
+      .cross-stage {
+        width: 100%;
+        height: min(105vw, 500px);
+        min-height: 320px;
+      }
+
+      .cross-section {
+        width: 76%;
+      }
+
+      .seed {
+        width: clamp(48px, 15vw, 75px);
+        height: clamp(48px, 15vw, 75px);
+      }
+
+      .seed-1 {
+        top: 4%;
+        left: 5%;
+      }
+
+      .seed-2 {
+        top: 4%;
+        right: 5%;
+      }
+
+      .seed-3 {
+        top: 40%;
+        left: -2%;
+      }
+
+      .seed-4 {
+        top: 40%;
+        right: -2%;
+      }
+
+      .seed-5 {
+        bottom: 4%;
+        left: 5%;
+      }
+
+      .seed-6 {
+        bottom: 4%;
+        right: 5%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <a class="brand" href="#" id="homeLink">The Gauri Archive</a>
-</header>
+  <header>
+    <div class="brand">The Gauri Archive</div>
+  </header>
 
-<main>
+  <main class="page">
 
-  <section class="world" id="world">
+    <!-- SCREEN 1: WHOLE POMEGRANATE -->
 
-    <div class="fruit-stage" id="fruitStage">
+    <section class="screen" id="opening-screen">
 
-      <!-- Whole pomegranate: first screen -->
-      <img
-        class="fruit whole-fruit"
-        src="images/pomegranate-whole.png"
-        alt="A whole pomegranate"
-        draggable="false"
-      >
-
-      <!-- Cross-section: appears after clicking -->
-      <img
-        class="fruit cross-fruit"
-        src="images/pomegranate-cross-section.png"
-        alt="A pomegranate cut open"
-        draggable="false"
-      >
-
-      <!-- Click the whole fruit to open -->
       <button
-        class="fruit-trigger"
-        id="fruitTrigger"
+        class="fruit-button"
+        id="open-fruit"
         aria-label="Open the pomegranate"
-      ></button>
+      >
+        <img
+          src="./images/pomegranate-whole.png"
+          alt="A whole pomegranate"
+          draggable="false"
+        >
+      </button>
 
-      <!-- Seeds are arranged deliberately around the fruit -->
-      <div class="seed-layer" id="seedLayer">
+      <p class="instruction">
+        Click the pomegranate to explore.
+      </p>
 
-        <button class="seed" data-index="0" aria-label="Open Medicine">
-          <img src="images/seed1.png" alt="">
-        </button>
+    </section>
 
-        <button class="seed" data-index="1" aria-label="Open Experiences">
-          <img src="images/seed2.png" alt="">
-        </button>
+    <!-- SCREEN 2: CROSS-SECTION -->
 
-        <button class="seed" data-index="2" aria-label="Open Research and Innovation">
-          <img src="images/seed3.png" alt="">
-        </button>
+    <section class="screen" id="archive-screen" hidden>
 
-        <button class="seed" data-index="3" aria-label="Open SuperMoms">
-          <img src="images/seed4.png" alt="">
-        </button>
+      <div class="cross-stage">
 
-        <button class="seed" data-index="4" aria-label="Open Art, Culture and History">
-          <img src="images/seed5.png" alt="">
-        </button>
+        <div class="cross-section">
+          <img
+            src="./images/pomegranate-cross-section.png"
+            alt="Pomegranate cross-section"
+            draggable="false"
+          >
+        </div>
 
-        <button class="seed" data-index="5" aria-label="Open Ideas and Writing">
-          <img src="images/seed6.png" alt="">
-        </button>
+        <div class="seed seed-1">
+          <img src="./images/seed1.png" alt="" draggable="false">
+        </div>
+
+        <div class="seed seed-2">
+          <img src="./images/seed2.png" alt="" draggable="false">
+        </div>
+
+        <div class="seed seed-3">
+          <img src="./images/seed3.png" alt="" draggable="false">
+        </div>
+
+        <div class="seed seed-4">
+          <img src="./images/seed4.png" alt="" draggable="false">
+        </div>
+
+        <div class="seed seed-5">
+          <img src="./images/seed5.png" alt="" draggable="false">
+        </div>
+
+        <div class="seed seed-6">
+          <img src="./images/seed6.png" alt="" draggable="false">
+        </div>
 
       </div>
-    </div>
 
-    <p class="instruction" id="instruction" aria-live="polite">
-      Click the pomegranate to explore.
-    </p>
+      <p class="instruction">
+        Choose a seed to explore.
+      </p>
 
-    <button
-      class="close-button"
-      id="closeButton"
-      hidden
-    >
-      Close archive
-    </button>
+      <button class="close-button" id="close-archive">
+        Close archive
+      </button>
 
-  </section>
+    </section>
 
-  <!-- Archive content appears when a seed is clicked -->
-  <section
-    class="archive-section"
-    id="archiveSection"
-    aria-live="polite"
-    aria-labelledby="sectionTitle"
-  >
-    <div class="eyebrow">From the archive</div>
+  </main>
 
-    <h1 id="sectionTitle"></h1>
+  <script>
+    const openingScreen = document.getElementById("opening-screen");
+    const archiveScreen = document.getElementById("archive-screen");
 
-    <p id="sectionDescription"></p>
+    const openButton = document.getElementById("open-fruit");
+    const closeButton = document.getElementById("close-archive");
 
-    <button class="back-button" id="backButton">
-      ← Back to the seeds
-    </button>
-  </section>
+    let isTransitioning = false;
 
-</main>
+    function openArchive() {
+      if (isTransitioning) return;
 
-<script>
-(() => {
-  const world = document.getElementById("world");
-  const fruitTrigger = document.getElementById("fruitTrigger");
-  const instruction = document.getElementById("instruction");
-  const closeButton = document.getElementById("closeButton");
-  const archiveSection = document.getElementById("archiveSection");
-  const sectionTitle = document.getElementById("sectionTitle");
-  const sectionDescription = document.getElementById("sectionDescription");
-  const backButton = document.getElementById("backButton");
-  const homeLink = document.getElementById("homeLink");
-  const seeds = [...document.querySelectorAll(".seed")];
+      isTransitioning = true;
 
-  const sections = [
-    {
-      title: "Medicine",
-      description: "My journey through medicine, clinical learning, and the experiences that shape the doctor I hope to become."
-    },
-    {
-      title: "Experiences",
-      description: "The moments, people, places, and experiences that have become a part of my story."
-    },
-    {
-      title: "Research & Innovation",
-      description: "Research, med-tech experiments, and ideas that might become something more."
-    },
-    {
-      title: "SuperMoms",
-      description: "A growing idea built around pregnancy, motherhood, and making care more thoughtful."
-    },
-    {
-      title: "Art, Culture & History",
-      description: "The art, stories, culture, and history that inspire the way I see the world."
-    },
-    {
-      title: "Ideas & Writing",
-      description: "A collection of thoughts, ideas, and things I want to explore."
+      openButton.classList.add("bursting");
+
+      window.setTimeout(() => {
+        openingScreen.hidden = true;
+        archiveScreen.hidden = false;
+
+        archiveScreen.classList.remove("entering");
+
+        // Restart the entrance animation cleanly.
+        void archiveScreen.offsetWidth;
+
+        archiveScreen.classList.add("entering");
+
+        isTransitioning = false;
+      }, 650);
     }
-  ];
 
-  let opened = false;
-  let selectedSeed = null;
+    function closeArchive() {
+      if (isTransitioning) return;
 
-  function openFruit() {
-    if (opened) return;
+      isTransitioning = true;
 
-    opened = true;
-    world.classList.add("open");
+      archiveScreen.hidden = true;
+      openingScreen.hidden = false;
 
-    instruction.textContent = "Choose a seed to explore.";
-    closeButton.hidden = false;
-    fruitTrigger.setAttribute("aria-label", "Pomegranate opened");
-  }
+      openButton.classList.remove("bursting");
 
-  function openSection(index) {
-    if (!opened || !sections[index]) return;
-
-    selectedSeed = index;
-
-    seeds.forEach((seed, i) => {
-      seed.classList.toggle("selected", i === index);
-    });
-
-    sectionTitle.textContent = sections[index].title;
-    sectionDescription.textContent = sections[index].description;
-
-    archiveSection.classList.remove("visible");
-
-    // Restart the section's entrance animation.
-    void archiveSection.offsetWidth;
-
-    archiveSection.classList.add("visible");
-
-    requestAnimationFrame(() => {
-      archiveSection.scrollIntoView({
-        behavior: window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches ? "auto" : "smooth",
-        block: "start"
-      });
-    });
-  }
-
-  function backToSeeds() {
-    archiveSection.classList.remove("visible");
-
-    seeds.forEach(seed => seed.classList.remove("selected"));
-
-    selectedSeed = null;
-
-    instruction.textContent = "Choose a seed to explore.";
-
-    world.scrollIntoView({
-      behavior: window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches ? "auto" : "smooth",
-      block: "start"
-    });
-  }
-
-  function closeArchive() {
-    opened = false;
-    selectedSeed = null;
-
-    world.classList.remove("open");
-    archiveSection.classList.remove("visible");
-
-    seeds.forEach(seed => seed.classList.remove("selected"));
-
-    instruction.textContent = "Click the pomegranate to explore.";
-    closeButton.hidden = true;
-
-    fruitTrigger.setAttribute("aria-label", "Open the pomegranate");
-  }
-
-  fruitTrigger.addEventListener("click", openFruit);
-
-  fruitTrigger.addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openFruit();
+      isTransitioning = false;
     }
-  });
 
-  seeds.forEach((seed, index) => {
-    seed.addEventListener("click", () => openSection(index));
-  });
-
-  closeButton.addEventListener("click", closeArchive);
-  backButton.addEventListener("click", backToSeeds);
-
-  homeLink.addEventListener("click", event => {
-    event.preventDefault();
-    closeArchive();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-})();
-</script>
+    openButton.addEventListener("click", openArchive);
+    closeButton.addEventListener("click", closeArchive);
+  </script>
 
 </body>
 </html>
