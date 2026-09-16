@@ -56,30 +56,45 @@
       font-weight: bold;
     }
 
-    /* PAGE */
+    
+/* PAGE COMPOSITION */
 
-    .page {
-      min-height: calc(100vh - 80px);
-      min-height: calc(100svh - 80px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 20px 40px;
-    }
+.page {
+  min-height: calc(100vh - 80px);
+  min-height: calc(100svh - 80px);
 
-    .screen {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    .screen[hidden] {
-      display: none !important;
-    }
+  padding: 24px 20px 40px;
+}
 
+.screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.screen[hidden] {
+  display: none !important;
+}
+
+/* OPENING INSTRUCTION */
+
+.instruction {
+  margin: 0;
+  color: var(--muted);
+
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
     
 /* OPENING POMEGRANATE */
 
@@ -531,23 +546,36 @@
 
     <section class="screen" id="opening-screen">
 
-      <button
-        class="fruit-button"
-        id="open-fruit"
-        aria-label="Open the pomegranate"
-      >
-        <img
-          src="./images/pomegranate-whole.png"
-          alt="A whole pomegranate"
-          draggable="false"
-        >
-      </button>
+  <button
+    class="fruit-button"
+    id="open-fruit"
+    aria-label="Open the pomegranate"
+  >
+    <img
+      src="./images/pomegranate-whole.png"
+      alt="A whole pomegranate"
+      draggable="false"
+    >
+  </button>
 
-      <p class="instruction">
-        Click the pomegranate to explore.
-      </p>
+  <p class="instruction">
+    A little universe, waiting to be opened.
+  </p>
 
-    </section>
+  <p class="opening-hint">
+    Click to explore ↓
+  </p>
+
+</section>
+
+    
+.opening-hint {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
 
     <!-- SCREEN 2: CROSS-SECTION -->
 
