@@ -51,11 +51,27 @@ button { font: inherit; }
   display: grid;
   place-items: center;
 }
-.whole-fruit, .cross-section {
-  position: absolute;
-  width: 88%;
-  max-width: 760px;
-}
+
+  .whole-fruit img,
+  .cross-section img {
+    display: block;
+    width: 100%;
+  }
+
+  .whole-fruit img {
+    transform-origin: 50% 12%;
+    animation: fruitSway 5s ease-in-out infinite;
+  }
+
+  @keyframes fruitSway {
+    0%, 100% {
+      transform: rotate(-2deg) translateY(0);
+    }
+
+    50% {
+      transform: rotate(2deg) translateY(-5px);
+    }
+  }
 .whole-fruit {
   z-index: 2;
   border: 0;
@@ -85,29 +101,73 @@ button { font: inherit; }
   transform: scale(.2);
   transition: opacity 600ms, transform 800ms;
 }
-.seed {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(54px, 10%, 70px);
-  aspect-ratio: 1;
-  border: 1px solid #e3b5a9;
-  border-radius: 50%;
-  background: var(--blush);
-  padding: 5px;
-  cursor: pointer;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(var(--radius) * -1)) rotate(calc(var(--angle) * -1));
-  transition: background 250ms, border-color 250ms, box-shadow 250ms;
-}
+
+  .seed {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: clamp(58px, 10%, 76px);
+    aspect-ratio: 1;
+
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--angle))
+      translateY(calc(var(--radius) * -1))
+      rotate(calc(var(--angle) * -1));
+
+    transition: filter 250ms ease;
+  }
+
+  .seed img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition: transform 300ms ease;
+  }
+
+  .seed:hover img,
+  .seed:focus-visible img {
+    transform: scale(1.15) rotate(-8deg);
+  }
+
+  .seed:focus-visible {
+    outline: 2px dashed var(--burgundy);
+    outline-offset: 5px;
+  }
 .seed img { width: 100%; height: 100%; object-fit: contain; }
-.seed:hover, .seed:focus-visible {
-  background: #f0d3c7;
-  border-color: var(--burgundy);
-  box-shadow: 0 0 0 4px rgba(158, 1, 36, .12);
-  outline: none;
-}
-.scene.open .whole-fruit { opacity: 0; transform: scale(.25); pointer-events: none; }
+
+  .scene.open .whole-fruit img {
+    animation: fruitOpen 650ms ease-in forwards;
+  }
+
+  @keyframes fruitOpen {
+    0% {
+      transform: scale(1) rotate(0);
+    }
+
+    30% {
+      transform: scale(1.08) rotate(-4deg);
+    }
+
+    60% {
+      transform: scale(.95) rotate(4deg);
+    }
+
+    100% {
+      transform: scale(.3) rotate(-8deg);
+    }
+  }
 .scene.open .cross-section { opacity: 1; transform: scale(1) rotate(0); }
 .scene.open .orbit { opacity: 1; transform: scale(1); }
 .scene.open .orbit:not(.paused) { animation: revolve 35s linear infinite; }
