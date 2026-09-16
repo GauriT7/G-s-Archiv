@@ -558,8 +558,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 7px;
-  height: 7px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #9f1239;
   pointer-events: none;
@@ -570,20 +570,20 @@
 }
 
 .cursor-trail.visible {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .cursor-particle {
   position: fixed;
-  width: 5px;
-  height: 7px;
+  width: 8px;
+  height: 11px;
   border-radius: 50%;
   background: #9f1239;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.65;
+  opacity: 0.9;
   transform: translate(-50%, -50%) rotate(25deg);
-  animation: seed-fade 550ms ease-out forwards;
+  animation: seed-fade 850ms ease-out forwards;
 }
 
 @keyframes seed-fade {
@@ -962,7 +962,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const now = performance.now();
 
     // Leave a small particle occasionally, not on every mouse movement
-    if (now - lastParticleTime > 55) {
+    if (now - lastParticleTime > 35) {
       lastParticleTime = now;
 
       const particle = document.createElement("div");
