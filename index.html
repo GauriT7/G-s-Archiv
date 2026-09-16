@@ -594,13 +594,8 @@
 }
 
 /* Keep the effect off touchscreens and for reduced-motion preferences */
-@media (hover: hover) and (pointer: fine) {
-  .cursor-trail {
-    display: block;
-  }
-}
 
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .cursor-trail,
   .cursor-particle {
     display: none !important;
@@ -951,17 +946,15 @@ function openArchive() {
     });
 
     // Subtle pomegranate-seed cursor trail
-if (
-  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const trail = document.createElement("div");
   trail.className = "cursor-trail";
   document.body.appendChild(trail);
 
   let lastParticleTime = 0;
 
-  window.addEventListener("mousemove", (event) => {
+  window.addEventListener("pointermove", (event) => {
+  if (event.pointerType !== "mouse") return;
     trail.style.left = `${event.clientX}px`;
     trail.style.top = `${event.clientY}px`;
     trail.classList.add("visible");
