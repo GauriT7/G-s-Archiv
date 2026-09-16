@@ -54,7 +54,7 @@ button {
 }
 
 /* -------------------------
-   FIRST SCREEN
+   MAIN ARCHIVE
 ------------------------- */
 
 .archive {
@@ -62,28 +62,32 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 35px 20px 55px;
+  padding: 24px 16px 36px;
 }
 
 .archive-inner {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
+/* -------------------------
+   FRUIT STAGE
+------------------------- */
+
 .fruit-stage {
   position: relative;
-  width: min(100%, 620px);
-  height: clamp(350px, 57vw, 570px);
+  width: min(100%, 660px);
+  height: clamp(390px, 64vw, 610px);
   display: grid;
   place-items: center;
   isolation: isolate;
 }
 
-/* The illustrations overlap in the same position. */
+/* Both illustrations share the same stage. */
 
 .fruit {
   position: absolute;
@@ -97,36 +101,36 @@ button {
   -webkit-user-drag: none;
 }
 
-/* Whole pomegranate: visible immediately. */
+/* Whole fruit: initial screen. */
 
 .whole-fruit {
-  width: min(83%, 500px);
-  height: 95%;
+  width: min(92%, 590px);
+  height: 100%;
   opacity: 1;
   transform-origin: 50% 56%;
-  animation: gentle-sway 4s ease-in-out infinite;
+  animation: gentle-sway 5s ease-in-out infinite;
   transition:
-    opacity 900ms ease,
+    opacity 850ms ease,
     transform 1100ms cubic-bezier(.2,.8,.2,1);
   z-index: 2;
 }
 
-/* Cross-section: hidden until the transition begins. */
+/* Cross-section: hidden until opening. */
 
 .cross-section {
-  width: min(78%, 440px);
+  width: min(78%, 480px);
   height: 100%;
   opacity: 0;
-  transform: scale(.78) rotate(-5deg);
+  transform: scale(.88) rotate(-3deg);
   transition:
-    opacity 1000ms ease,
-    transform 1200ms cubic-bezier(.2,.8,.2,1);
+    opacity 900ms ease,
+    transform 1100ms cubic-bezier(.2,.8,.2,1);
   z-index: 1;
 }
 
 .archive-inner.opened .whole-fruit {
   opacity: 0;
-  transform: scale(.68) rotate(12deg);
+  transform: scale(.72) rotate(10deg);
   animation: none;
 }
 
@@ -135,87 +139,170 @@ button {
   transform: scale(1) rotate(0deg);
 }
 
+/* Make the whole fruit keyboard accessible. */
+
+.whole-fruit {
+  cursor: pointer;
+}
+
+.whole-fruit:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
 /* -------------------------
-   SEED BURST
+   TEMPORARY SEED BURST
 ------------------------- */
+
+/*
+   The burst particles are separate from the
+   interactive seeds.
+
+   They exist only during the transition.
+   They never remain scattered on the page.
+*/
 
 .seed-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 3;
+  z-index: 4;
+  overflow: visible;
 }
 
-.flying-seed {
+.burst-seed {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(34px, 6vw, 58px);
-  height: clamp(34px, 6vw, 58px);
+
+  width: clamp(28px, 5vw, 48px);
+  height: clamp(28px, 5vw, 48px);
+
   object-fit: contain;
+
   opacity: 0;
+  visibility: hidden;
+
+  --burst-x: 0px;
+  --burst-y: 0px;
+  --burst-rotation: 0deg;
+
   transform: translate(-50%, -50%) scale(.2);
-  transition:
-    transform 1500ms cubic-bezier(.16,1,.3,1),
-    opacity 700ms ease;
-  pointer-events: none;
 }
 
-.opened .flying-seed {
-  opacity: 1;
-  transform:
-    translate(
-      calc(-50% + var(--x)),
-      calc(-50% + var(--y))
-    )
-    rotate(var(--rotation))
-    scale(1);
+/* Only animate when the burst is triggered. */
+
+.archive-inner.bursting .burst-seed {
+  visibility: visible;
+  animation: seed-burst 1500ms
+    cubic-bezier(.16,1,.3,1) forwards;
 }
 
-.opened .flying-seed:nth-child(1) {
-  transition-delay: 100ms;
+/* Stagger the seeds slightly. */
+
+.archive-inner.bursting .burst-seed:nth-child(1) {
+  --burst-x: -100px;
+  --burst-y: -130px;
+  --burst-rotation: -30deg;
+  animation-delay: 0ms;
 }
 
-.opened .flying-seed:nth-child(2) {
-  transition-delay: 180ms;
+.archive-inner.bursting .burst-seed:nth-child(2) {
+  --burst-x: 100px;
+  --burst-y: -130px;
+  --burst-rotation: 30deg;
+  animation-delay: 70ms;
 }
 
-.opened .flying-seed:nth-child(3) {
-  transition-delay: 260ms;
+.archive-inner.bursting .burst-seed:nth-child(3) {
+  --burst-x: -150px;
+  --burst-y: -15px;
+  --burst-rotation: -20deg;
+  animation-delay: 140ms;
 }
 
-.opened .flying-seed:nth-child(4) {
-  transition-delay: 340ms;
+.archive-inner.bursting .burst-seed:nth-child(4) {
+  --burst-x: 150px;
+  --burst-y: -15px;
+  --burst-rotation: 20deg;
+  animation-delay: 210ms;
 }
 
-.opened .flying-seed:nth-child(5) {
-  transition-delay: 420ms;
+.archive-inner.bursting .burst-seed:nth-child(5) {
+  --burst-x: -100px;
+  --burst-y: 110px;
+  --burst-rotation: 25deg;
+  animation-delay: 280ms;
 }
 
-.opened .flying-seed:nth-child(6) {
-  transition-delay: 500ms;
+.archive-inner.bursting .burst-seed:nth-child(6) {
+  --burst-x: 100px;
+  --burst-y: 110px;
+  --burst-rotation: -25deg;
+  animation-delay: 350ms;
 }
 
-/* No circles around the seeds. */
+@keyframes seed-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.2);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--burst-x)),
+        calc(-50% + var(--burst-y))
+      )
+      rotate(var(--burst-rotation))
+      scale(.75);
+  }
+}
+
+/* -------------------------
+   INTERACTIVE SEEDS
+------------------------- */
+
+/*
+   These are separate from the burst particles.
+
+   They are placed inside the cross-section,
+   not around the outside of the fruit.
+
+   No circles or decorative containers.
+*/
 
 .seed-button {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(40px, 6vw, 60px);
-  height: clamp(40px, 6vw, 60px);
+
+  width: clamp(32px, 5vw, 48px);
+  height: clamp(32px, 5vw, 48px);
+
   padding: 0;
   border: 0;
   background: transparent;
-  cursor: pointer;
+
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+
+  transform: translate(-50%, -50%) scale(.6);
+
   z-index: 5;
+
   transition:
-    left 1200ms cubic-bezier(.16,1,.3,1),
-    top 1200ms cubic-bezier(.16,1,.3,1),
-    opacity 500ms ease;
+    opacity 450ms ease,
+    transform 550ms cubic-bezier(.2,.8,.2,1);
 }
 
 .seed-button img {
@@ -223,12 +310,51 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 300ms ease;
+  transition: transform 250ms ease;
+}
+
+.archive-inner.opened .seed-button {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* All six hotspots remain inside the fruit. */
+
+.archive-inner.opened .seed-button:nth-of-type(1) {
+  left: 42%;
+  top: 40%;
+}
+
+.archive-inner.opened .seed-button:nth-of-type(2) {
+  left: 58%;
+  top: 40%;
+}
+
+.archive-inner.opened .seed-button:nth-of-type(3) {
+  left: 38%;
+  top: 50%;
+}
+
+.archive-inner.opened .seed-button:nth-of-type(4) {
+  left: 62%;
+  top: 50%;
+}
+
+.archive-inner.opened .seed-button:nth-of-type(5) {
+  left: 44%;
+  top: 60%;
+}
+
+.archive-inner.opened .seed-button:nth-of-type(6) {
+  left: 56%;
+  top: 60%;
 }
 
 .seed-button:focus-visible {
   outline: 2px solid var(--red);
-  outline-offset: 5px;
+  outline-offset: 3px;
   border-radius: 50%;
 }
 
@@ -236,41 +362,6 @@ button {
   .seed-button:hover img {
     transform: scale(1.2) rotate(-8deg);
   }
-}
-
-.opened .seed-button {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.opened .seed-button:nth-child(1) {
-  left: 22%;
-  top: 28%;
-}
-
-.opened .seed-button:nth-child(2) {
-  left: 77%;
-  top: 30%;
-}
-
-.opened .seed-button:nth-child(3) {
-  left: 15%;
-  top: 52%;
-}
-
-.opened .seed-button:nth-child(4) {
-  left: 84%;
-  top: 55%;
-}
-
-.opened .seed-button:nth-child(5) {
-  left: 30%;
-  top: 79%;
-}
-
-.opened .seed-button:nth-child(6) {
-  left: 72%;
-  top: 81%;
 }
 
 /* -------------------------
@@ -288,7 +379,7 @@ button {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
 .archive-button {
@@ -298,10 +389,10 @@ button {
   background: var(--cream);
   color: var(--muted);
   cursor: pointer;
+
   transition:
     color 250ms ease,
-    border-color 250ms ease,
-    background 250ms ease;
+    border-color 250ms ease;
 }
 
 .archive-button:hover {
@@ -318,7 +409,7 @@ button {
   display: none;
 }
 
-.opened #backButton {
+.archive-inner.opened #backButton {
   display: inline-block;
 }
 
@@ -333,28 +424,28 @@ button {
 
   .archive {
     min-height: calc(100svh - 64px);
-    padding: 20px 12px 35px;
+    padding: 16px 10px 28px;
   }
 
   .fruit-stage {
-    height: min(115vw, 460px);
+    height: min(115vw, 480px);
   }
 
   .whole-fruit {
-    width: 84%;
+    width: 100%;
   }
 
   .cross-section {
-    width: 88%;
+    width: 90%;
   }
 
   .seed-button {
-    width: 42px;
-    height: 42px;
+    width: 34px;
+    height: 34px;
   }
 
   .archive-controls {
-    margin-top: 22px;
+    margin-top: 20px;
   }
 }
 
@@ -370,6 +461,10 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* -------------------------
+   GENTLE SWAY
+------------------------- */
 
 @keyframes gentle-sway {
   0%, 100% {
@@ -415,7 +510,7 @@ button {
         aria-label="Pomegranate illustration"
       >
 
-        <!-- First screen illustration -->
+        <!-- Initial whole pomegranate -->
 
         <img
           class="fruit whole-fruit"
@@ -423,6 +518,9 @@ button {
           src="images/pomegranate-whole.png"
           alt="Whole pomegranate"
           draggable="false"
+          tabindex="0"
+          role="button"
+          aria-label="Open the archive"
         >
 
         <!-- Cross-section illustration -->
@@ -435,43 +533,31 @@ button {
           draggable="false"
         >
 
-        <!-- Seeds that burst outward -->
+        <!-- Temporary burst particles -->
 
         <div class="seed-layer" aria-hidden="true">
 
-          <img class="flying-seed"
-               src="images/seed1.png"
-               style="--x:-120px;--y:-150px;--rotation:-25deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed1.png" alt="">
 
-          <img class="flying-seed"
-               src="images/seed2.png"
-               style="--x:130px;--y:-145px;--rotation:35deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed2.png" alt="">
 
-          <img class="flying-seed"
-               src="images/seed3.png"
-               style="--x:-180px;--y:0px;--rotation:20deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed3.png" alt="">
 
-          <img class="flying-seed"
-               src="images/seed4.png"
-               style="--x:185px;--y:10px;--rotation:-35deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed4.png" alt="">
 
-          <img class="flying-seed"
-               src="images/seed5.png"
-               style="--x:-115px;--y:150px;--rotation:45deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed5.png" alt="">
 
-          <img class="flying-seed"
-               src="images/seed6.png"
-               style="--x:125px;--y:150px;--rotation:-20deg"
-               alt="">
+          <img class="burst-seed"
+               src="images/seed6.png" alt="">
 
         </div>
 
-        <!-- Clickable seeds -->
+        <!-- Interactive seeds inside the fruit -->
 
         <button class="seed-button"
                 type="button"
@@ -535,14 +621,15 @@ button {
 <script>
 (() => {
   const archiveInner = document.getElementById("archiveInner");
-  const fruitStage = document.getElementById("fruitStage");
   const wholeFruit = document.getElementById("wholeFruit");
-  const crossSection = document.getElementById("crossSection");
-  const instruction = document.getElementById("instruction");
   const backButton = document.getElementById("backButton");
   const homeLink = document.getElementById("homeLink");
+  const instruction = document.getElementById("instruction");
+
+  const seedButtons = document.querySelectorAll(".seed-button");
 
   let isOpen = false;
+  let burstTimer = null;
 
   function openArchive() {
     if (isOpen) return;
@@ -551,9 +638,23 @@ button {
 
     archiveInner.classList.add("opened");
 
+    // Trigger the burst only when opening.
+    archiveInner.classList.remove("bursting");
+
+    // Force a fresh animation on every opening.
+    void archiveInner.offsetWidth;
+
+    archiveInner.classList.add("bursting");
+
     instruction.textContent = "Choose a seed to explore.";
 
-    // Move keyboard focus away from the disappearing fruit.
+    // Remove burst particles after the animation.
+    clearTimeout(burstTimer);
+
+    burstTimer = setTimeout(() => {
+      archiveInner.classList.remove("bursting");
+    }, 2200);
+
     backButton.focus({ preventScroll: true });
   }
 
@@ -562,27 +663,32 @@ button {
 
     isOpen = false;
 
+    clearTimeout(burstTimer);
+
     archiveInner.classList.remove("opened");
+    archiveInner.classList.remove("bursting");
 
     instruction.textContent =
       "Click the pomegranate to explore.";
 
-    wholeFruit.focus?.({ preventScroll: true });
+    wholeFruit.focus({ preventScroll: true });
   }
 
-  // Clicking the whole fruit opens the cross-section.
+  // Open the archive by clicking the whole fruit.
   wholeFruit.addEventListener("click", openArchive);
-  fruitStage.addEventListener("click", (event) => {
-    if (event.target === fruitStage ||
-        event.target === crossSection) {
-      if (!isOpen) openArchive();
+
+  // Keyboard access for the whole fruit.
+  wholeFruit.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openArchive();
     }
   });
 
-  // Clicking Close archive returns to the first screen.
+  // Close the archive.
   backButton.addEventListener("click", closeArchive);
 
-  // Clicking the archive name returns home.
+  // Clicking the archive name returns to the initial screen.
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
 
@@ -593,39 +699,28 @@ button {
     }
   });
 
-  // Make the six seeds interactive without inventing
-  // new content or adding extra sections.
-  document.querySelectorAll(".seed-button").forEach((button, index) => {
+  // Interactive seeds.
+  seedButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
       instruction.textContent =
         `Seed ${index + 1} selected.`;
     });
   });
 
-  // Open the archive with Enter or Space when the
-  // whole pomegranate is focused.
-  wholeFruit.setAttribute("tabindex", "0");
-  wholeFruit.setAttribute("role", "button");
-  wholeFruit.setAttribute("aria-label", "Open the archive");
-
-  wholeFruit.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openArchive();
-    }
-  });
-
-  // Return to the whole pomegranate with Escape.
+  // Escape returns to the whole pomegranate.
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && isOpen) {
       closeArchive();
     }
   });
 
-  // If an image fails to load, identify the exact file.
+  // Report missing images in the browser console.
   document.querySelectorAll("img").forEach((image) => {
     image.addEventListener("error", () => {
-      console.error("Could not load image:", image.getAttribute("src"));
+      console.error(
+        "Could not load image:",
+        image.getAttribute("src")
+      );
     });
   });
 })();
