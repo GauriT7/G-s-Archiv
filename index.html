@@ -4,17 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Gauri Archive</title>
 
 <style>
 :root {
-  --paper: #f8f4e9;
-  --cream: #fffaf0;
-  --ink: #30221f;
-  --muted: #88766d;
-  --red: #a5002c;
-  --line: #dfd4c7;
+  --cream: #f8f4e9;
+  --cream-light: #fffaf0;
+  --red: #a9002d;
+  --red-dark: #6e1027;
+  --text: #352522;
+  --muted: #82736b;
+  --line: #e4d5c9;
 }
 
 * {
@@ -27,467 +27,384 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--cream);
+  color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
+  overflow-x: hidden;
 }
 
 button {
   font: inherit;
-  color: inherit;
 }
 
-.site-header {
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 5px;
+}
+
+/* Custom cursor */
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: url("images/pomegranate-whole.png") 16 16, auto;
+  }
+
+  button,
+  a {
+    cursor: url("images/seed1.png") 8 8, pointer;
+  }
+}
+
+/* Header */
+
+header {
   height: 80px;
-  padding: 0 clamp(22px, 6vw, 90px);
+  padding: 0 6%;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--line);
 }
 
-.site-header a {
+.brand {
   color: var(--red);
   font-size: 19px;
   font-weight: bold;
   text-decoration: none;
 }
 
-/* -------------------------
-   MAIN ARCHIVE
-------------------------- */
+/* Main archive */
 
-.archive {
-  min-height: calc(100svh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px 36px;
+main {
+  width: 100%;
 }
 
-.archive-inner {
-  width: 100%;
-  max-width: 1000px;
+.world {
+  min-height: calc(100svh - 80px);
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  padding: 35px 20px 55px;
 }
 
-/* -------------------------
-   FRUIT STAGE
-------------------------- */
-
 .fruit-stage {
+  width: min(540px, 88vw);
+  height: min(540px, 88vw);
   position: relative;
-  width: min(100%, 660px);
-  height: clamp(390px, 64vw, 610px);
   display: grid;
   place-items: center;
   isolation: isolate;
 }
 
-/* Both illustrations share the same stage. */
+/* Fruit images */
 
 .fruit {
   position: absolute;
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
-  pointer-events: none;
+  inset: 0;
+  display: block;
   user-select: none;
   -webkit-user-drag: none;
-}
-
-/* Whole fruit: initial screen. */
-
-.whole-fruit {
-  width: min(92%, 590px);
-  height: 100%;
-  opacity: 1;
-  transform-origin: 50% 56%;
-  animation: gentle-sway 5s ease-in-out infinite;
-  transition:
-    opacity 850ms ease,
-    transform 1100ms cubic-bezier(.2,.8,.2,1);
-  z-index: 2;
-}
-
-/* Cross-section: hidden until opening. */
-
-.cross-section {
-  width: min(78%, 480px);
-  height: 100%;
-  opacity: 0;
-  transform: scale(.88) rotate(-3deg);
   transition:
     opacity 900ms ease,
-    transform 1100ms cubic-bezier(.2,.8,.2,1);
-  z-index: 1;
+    transform 1100ms cubic-bezier(.2,.75,.2,1);
 }
-
-.archive-inner.opened .whole-fruit {
-  opacity: 0;
-  transform: scale(.72) rotate(10deg);
-  animation: none;
-}
-
-.archive-inner.opened .cross-section {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
-
-/* Make the whole fruit keyboard accessible. */
 
 .whole-fruit {
-  cursor: pointer;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1);
+  animation: sway 5s ease-in-out infinite;
+  transform-origin: 50% 58%;
 }
 
-.whole-fruit:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 6px;
-  border-radius: 50%;
+.cross-fruit {
+  z-index: 1;
+  opacity: 0;
+  transform: scale(.88) rotate(-8deg);
+  pointer-events: none;
 }
 
-/* -------------------------
-   TEMPORARY SEED BURST
-------------------------- */
+/* Accessible click target */
 
-/*
-   The burst particles are separate from the
-   interactive seeds.
-
-   They exist only during the transition.
-   They never remain scattered on the page.
-*/
-
-.seed-layer {
+.fruit-trigger {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 4;
-  overflow: visible;
-}
-
-.burst-seed {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  width: clamp(28px, 5vw, 48px);
-  height: clamp(28px, 5vw, 48px);
-
-  object-fit: contain;
-
-  opacity: 0;
-  visibility: hidden;
-
-  --burst-x: 0px;
-  --burst-y: 0px;
-  --burst-rotation: 0deg;
-
-  transform: translate(-50%, -50%) scale(.2);
-}
-
-/* Only animate when the burst is triggered. */
-
-.archive-inner.bursting .burst-seed {
-  visibility: visible;
-  animation: seed-burst 1500ms
-    cubic-bezier(.16,1,.3,1) forwards;
-}
-
-/* Stagger the seeds slightly. */
-
-.archive-inner.bursting .burst-seed:nth-child(1) {
-  --burst-x: -100px;
-  --burst-y: -130px;
-  --burst-rotation: -30deg;
-  animation-delay: 0ms;
-}
-
-.archive-inner.bursting .burst-seed:nth-child(2) {
-  --burst-x: 100px;
-  --burst-y: -130px;
-  --burst-rotation: 30deg;
-  animation-delay: 70ms;
-}
-
-.archive-inner.bursting .burst-seed:nth-child(3) {
-  --burst-x: -150px;
-  --burst-y: -15px;
-  --burst-rotation: -20deg;
-  animation-delay: 140ms;
-}
-
-.archive-inner.bursting .burst-seed:nth-child(4) {
-  --burst-x: 150px;
-  --burst-y: -15px;
-  --burst-rotation: 20deg;
-  animation-delay: 210ms;
-}
-
-.archive-inner.bursting .burst-seed:nth-child(5) {
-  --burst-x: -100px;
-  --burst-y: 110px;
-  --burst-rotation: 25deg;
-  animation-delay: 280ms;
-}
-
-.archive-inner.bursting .burst-seed:nth-child(6) {
-  --burst-x: 100px;
-  --burst-y: 110px;
-  --burst-rotation: -25deg;
-  animation-delay: 350ms;
-}
-
-@keyframes seed-burst {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(.2);
-  }
-
-  12% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translate(
-        calc(-50% + var(--burst-x)),
-        calc(-50% + var(--burst-y))
-      )
-      rotate(var(--burst-rotation))
-      scale(.75);
-  }
-}
-
-/* -------------------------
-   INTERACTIVE SEEDS
-------------------------- */
-
-/*
-   These are separate from the burst particles.
-
-   They are placed inside the cross-section,
-   not around the outside of the fruit.
-
-   No circles or decorative containers.
-*/
-
-.seed-button {
-  position: absolute;
-
-  width: clamp(32px, 5vw, 48px);
-  height: clamp(32px, 5vw, 48px);
-
-  padding: 0;
+  z-index: 10;
   border: 0;
+  padding: 0;
   background: transparent;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transform: translate(-50%, -50%) scale(.6);
-
-  z-index: 5;
-
-  transition:
-    opacity 450ms ease,
-    transform 550ms cubic-bezier(.2,.8,.2,1);
-}
-
-.seed-button img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: transform 250ms ease;
-}
-
-.archive-inner.opened .seed-button {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* All six hotspots remain inside the fruit. */
-
-.archive-inner.opened .seed-button:nth-of-type(1) {
-  left: 42%;
-  top: 40%;
-}
-
-.archive-inner.opened .seed-button:nth-of-type(2) {
-  left: 58%;
-  top: 40%;
-}
-
-.archive-inner.opened .seed-button:nth-of-type(3) {
-  left: 38%;
-  top: 50%;
-}
-
-.archive-inner.opened .seed-button:nth-of-type(4) {
-  left: 62%;
-  top: 50%;
-}
-
-.archive-inner.opened .seed-button:nth-of-type(5) {
-  left: 44%;
-  top: 60%;
-}
-
-.archive-inner.opened .seed-button:nth-of-type(6) {
-  left: 56%;
-  top: 60%;
-}
-
-.seed-button:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
   border-radius: 50%;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .seed-button:hover img {
-    transform: scale(1.2) rotate(-8deg);
-  }
+.fruit-trigger:focus-visible {
+  outline-offset: 8px;
 }
 
-/* -------------------------
-   TEXT & CONTROLS
-------------------------- */
+/* Gentle movement */
 
-.instruction {
-  margin: 12px 0 0;
-  color: var(--muted);
-  font-size: clamp(15px, 1.6vw, 18px);
-  font-style: italic;
-}
-
-.archive-controls {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.archive-button {
-  padding: 11px 20px;
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  background: var(--cream);
-  color: var(--muted);
-  cursor: pointer;
-
-  transition:
-    color 250ms ease,
-    border-color 250ms ease;
-}
-
-.archive-button:hover {
-  color: var(--red);
-  border-color: var(--red);
-}
-
-.archive-button:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 4px;
-}
-
-#backButton {
-  display: none;
-}
-
-.archive-inner.opened #backButton {
-  display: inline-block;
-}
-
-/* -------------------------
-   RESPONSIVE
-------------------------- */
-
-@media (max-width: 600px) {
-  .site-header {
-    height: 64px;
-  }
-
-  .archive {
-    min-height: calc(100svh - 64px);
-    padding: 16px 10px 28px;
-  }
-
-  .fruit-stage {
-    height: min(115vw, 480px);
-  }
-
-  .whole-fruit {
-    width: 100%;
-  }
-
-  .cross-section {
-    width: 90%;
-  }
-
-  .seed-button {
-    width: 34px;
-    height: 34px;
-  }
-
-  .archive-controls {
-    margin-top: 20px;
-  }
-}
-
-/* Respect reduced-motion preferences. */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* -------------------------
-   GENTLE SWAY
-------------------------- */
-
-@keyframes gentle-sway {
+@keyframes sway {
   0%, 100% {
     transform: rotate(-2deg) translateY(0);
   }
 
   50% {
-    transform: rotate(2deg) translateY(-7px);
+    transform: rotate(2deg) translateY(-9px);
   }
 }
 
-/* -------------------------
-   POMEGRANATE CURSOR
-------------------------- */
+/* Seeds */
 
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: url("images/seed1.png") 16 16, auto;
+.seed-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.seed {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.1);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+  transition:
+    left 1050ms cubic-bezier(.16,1,.3,1),
+    top 1050ms cubic-bezier(.16,1,.3,1),
+    opacity 500ms ease,
+    transform 900ms cubic-bezier(.16,1,.3,1);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.seed img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* The seeds settle in a balanced pattern */
+
+.world.open .whole-fruit {
+  opacity: 0;
+  animation: none;
+  transform: scale(.78) rotate(18deg);
+  pointer-events: none;
+}
+
+.world.open .cross-fruit {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+  z-index: 3;
+}
+
+.world.open .fruit-trigger {
+  pointer-events: none;
+}
+
+.world.open .seed-layer {
+  pointer-events: auto;
+}
+
+.world.open .seed {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Deliberate positions, not random placement */
+
+.world.open .seed:nth-child(1) {
+  left: 24%;
+  top: 23%;
+}
+
+.world.open .seed:nth-child(2) {
+  left: 50%;
+  top: 15%;
+}
+
+.world.open .seed:nth-child(3) {
+  left: 76%;
+  top: 23%;
+}
+
+.world.open .seed:nth-child(4) {
+  left: 24%;
+  top: 77%;
+}
+
+.world.open .seed:nth-child(5) {
+  left: 50%;
+  top: 85%;
+}
+
+.world.open .seed:nth-child(6) {
+  left: 76%;
+  top: 77%;
+}
+
+/* Seed selection */
+
+.seed.selected {
+  z-index: 20;
+  transform: translate(-50%, -50%) scale(1.22) rotate(-8deg);
+  filter: drop-shadow(0 5px 10px rgba(100, 0, 25, .18));
+}
+
+/* Text below the fruit */
+
+.instruction {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  font-style: italic;
+  text-align: center;
+  min-height: 26px;
+}
+
+.close-button {
+  margin-top: 24px;
+  border: 1px solid var(--line);
+  background: var(--cream-light);
+  color: var(--muted);
+  padding: 12px 25px;
+  border-radius: 40px;
+  font-size: 16px;
+  transition: border-color .2s, color .2s;
+}
+
+.close-button:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.close-button[hidden] {
+  display: none;
+}
+
+/* Archive section */
+
+.archive-section {
+  width: min(900px, 88%);
+  margin: 0 auto 100px;
+  padding: 65px 0 75px;
+  border-top: 1px solid var(--line);
+  display: none;
+  animation: sectionIn 700ms ease both;
+}
+
+.archive-section.visible {
+  display: block;
+}
+
+@keyframes sectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
-  a,
-  button {
-    cursor: url("images/seed1.png") 16 16, pointer;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.archive-section h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: normal;
+  color: var(--red);
+  margin: 0 0 25px;
+  line-height: 1.1;
+}
+
+.archive-section p {
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 700px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 20px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  background: transparent;
+  padding: 13px 25px;
+  border-radius: 40px;
+  font-size: 17px;
+  transition: background .2s, color .2s;
+}
+
+.back-button:hover {
+  background: var(--red);
+  color: white;
+}
+
+/* Mobile proportions */
+
+@media (max-width: 600px) {
+  header {
+    height: 65px;
+    padding: 0 6%;
+  }
+
+  .world {
+    min-height: calc(100vh - 65px);
+    padding: 25px 15px 40px;
+  }
+
+  .fruit-stage {
+    width: min(88vw, 430px);
+    height: min(88vw, 430px);
+  }
+
+  .seed {
+    width: 34px;
+    height: 34px;
+  }
+
+  .instruction {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .archive-section {
+    padding: 45px 0 60px;
+    margin-bottom: 60px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }
 </style>
@@ -495,232 +412,241 @@ button {
 
 <body>
 
-<header class="site-header">
-  <a href="#" id="homeLink">The Gauri Archive</a>
+<header>
+  <a class="brand" href="#" id="homeLink">The Gauri Archive</a>
 </header>
 
 <main>
-  <section class="archive" id="archive">
 
-    <div class="archive-inner" id="archiveInner">
+  <section class="world" id="world">
 
-      <div
-        class="fruit-stage"
-        id="fruitStage"
-        aria-label="Pomegranate illustration"
+    <div class="fruit-stage" id="fruitStage">
+
+      <!-- Whole pomegranate: first screen -->
+      <img
+        class="fruit whole-fruit"
+        src="images/pomegranate-whole.png"
+        alt="A whole pomegranate"
+        draggable="false"
       >
 
-        <!-- Initial whole pomegranate -->
+      <!-- Cross-section: appears after clicking -->
+      <img
+        class="fruit cross-fruit"
+        src="images/pomegranate-cross-section.png"
+        alt="A pomegranate cut open"
+        draggable="false"
+      >
 
-        <img
-          class="fruit whole-fruit"
-          id="wholeFruit"
-          src="images/pomegranate-whole.png"
-          alt="Whole pomegranate"
-          draggable="false"
-          tabindex="0"
-          role="button"
-          aria-label="Open the archive"
-        >
+      <!-- Click the whole fruit to open -->
+      <button
+        class="fruit-trigger"
+        id="fruitTrigger"
+        aria-label="Open the pomegranate"
+      ></button>
 
-        <!-- Cross-section illustration -->
+      <!-- Seeds are arranged deliberately around the fruit -->
+      <div class="seed-layer" id="seedLayer">
 
-        <img
-          class="fruit cross-section"
-          id="crossSection"
-          src="images/pomegranate-cross-section.png"
-          alt="Pomegranate cross-section"
-          draggable="false"
-        >
-
-        <!-- Temporary burst particles -->
-
-        <div class="seed-layer" aria-hidden="true">
-
-          <img class="burst-seed"
-               src="images/seed1.png" alt="">
-
-          <img class="burst-seed"
-               src="images/seed2.png" alt="">
-
-          <img class="burst-seed"
-               src="images/seed3.png" alt="">
-
-          <img class="burst-seed"
-               src="images/seed4.png" alt="">
-
-          <img class="burst-seed"
-               src="images/seed5.png" alt="">
-
-          <img class="burst-seed"
-               src="images/seed6.png" alt="">
-
-        </div>
-
-        <!-- Interactive seeds inside the fruit -->
-
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 1">
+        <button class="seed" data-index="0" aria-label="Open Medicine">
           <img src="images/seed1.png" alt="">
         </button>
 
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 2">
+        <button class="seed" data-index="1" aria-label="Open Experiences">
           <img src="images/seed2.png" alt="">
         </button>
 
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 3">
+        <button class="seed" data-index="2" aria-label="Open Research and Innovation">
           <img src="images/seed3.png" alt="">
         </button>
 
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 4">
+        <button class="seed" data-index="3" aria-label="Open SuperMoms">
           <img src="images/seed4.png" alt="">
         </button>
 
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 5">
+        <button class="seed" data-index="4" aria-label="Open Art, Culture and History">
           <img src="images/seed5.png" alt="">
         </button>
 
-        <button class="seed-button"
-                type="button"
-                aria-label="Explore seed 6">
+        <button class="seed" data-index="5" aria-label="Open Ideas and Writing">
           <img src="images/seed6.png" alt="">
         </button>
 
       </div>
-
-      <p class="instruction" id="instruction">
-        Click the pomegranate to explore.
-      </p>
-
-      <div class="archive-controls">
-
-        <button
-          class="archive-button"
-          id="backButton"
-          type="button"
-        >
-          Close archive
-        </button>
-
-      </div>
-
     </div>
 
+    <p class="instruction" id="instruction" aria-live="polite">
+      Click the pomegranate to explore.
+    </p>
+
+    <button
+      class="close-button"
+      id="closeButton"
+      hidden
+    >
+      Close archive
+    </button>
+
   </section>
+
+  <!-- Archive content appears when a seed is clicked -->
+  <section
+    class="archive-section"
+    id="archiveSection"
+    aria-live="polite"
+    aria-labelledby="sectionTitle"
+  >
+    <div class="eyebrow">From the archive</div>
+
+    <h1 id="sectionTitle"></h1>
+
+    <p id="sectionDescription"></p>
+
+    <button class="back-button" id="backButton">
+      ← Back to the seeds
+    </button>
+  </section>
+
 </main>
 
 <script>
 (() => {
-  const archiveInner = document.getElementById("archiveInner");
-  const wholeFruit = document.getElementById("wholeFruit");
+  const world = document.getElementById("world");
+  const fruitTrigger = document.getElementById("fruitTrigger");
+  const instruction = document.getElementById("instruction");
+  const closeButton = document.getElementById("closeButton");
+  const archiveSection = document.getElementById("archiveSection");
+  const sectionTitle = document.getElementById("sectionTitle");
+  const sectionDescription = document.getElementById("sectionDescription");
   const backButton = document.getElementById("backButton");
   const homeLink = document.getElementById("homeLink");
-  const instruction = document.getElementById("instruction");
+  const seeds = [...document.querySelectorAll(".seed")];
 
-  const seedButtons = document.querySelectorAll(".seed-button");
+  const sections = [
+    {
+      title: "Medicine",
+      description: "My journey through medicine, clinical learning, and the experiences that shape the doctor I hope to become."
+    },
+    {
+      title: "Experiences",
+      description: "The moments, people, places, and experiences that have become a part of my story."
+    },
+    {
+      title: "Research & Innovation",
+      description: "Research, med-tech experiments, and ideas that might become something more."
+    },
+    {
+      title: "SuperMoms",
+      description: "A growing idea built around pregnancy, motherhood, and making care more thoughtful."
+    },
+    {
+      title: "Art, Culture & History",
+      description: "The art, stories, culture, and history that inspire the way I see the world."
+    },
+    {
+      title: "Ideas & Writing",
+      description: "A collection of thoughts, ideas, and things I want to explore."
+    }
+  ];
 
-  let isOpen = false;
-  let burstTimer = null;
+  let opened = false;
+  let selectedSeed = null;
 
-  function openArchive() {
-    if (isOpen) return;
+  function openFruit() {
+    if (opened) return;
 
-    isOpen = true;
+    opened = true;
+    world.classList.add("open");
 
-    archiveInner.classList.add("opened");
+    instruction.textContent = "Choose a seed to explore.";
+    closeButton.hidden = false;
+    fruitTrigger.setAttribute("aria-label", "Pomegranate opened");
+  }
 
-    // Trigger the burst only when opening.
-    archiveInner.classList.remove("bursting");
+  function openSection(index) {
+    if (!opened || !sections[index]) return;
 
-    // Force a fresh animation on every opening.
-    void archiveInner.offsetWidth;
+    selectedSeed = index;
 
-    archiveInner.classList.add("bursting");
+    seeds.forEach((seed, i) => {
+      seed.classList.toggle("selected", i === index);
+    });
+
+    sectionTitle.textContent = sections[index].title;
+    sectionDescription.textContent = sections[index].description;
+
+    archiveSection.classList.remove("visible");
+
+    // Restart the section's entrance animation.
+    void archiveSection.offsetWidth;
+
+    archiveSection.classList.add("visible");
+
+    requestAnimationFrame(() => {
+      archiveSection.scrollIntoView({
+        behavior: window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches ? "auto" : "smooth",
+        block: "start"
+      });
+    });
+  }
+
+  function backToSeeds() {
+    archiveSection.classList.remove("visible");
+
+    seeds.forEach(seed => seed.classList.remove("selected"));
+
+    selectedSeed = null;
 
     instruction.textContent = "Choose a seed to explore.";
 
-    // Remove burst particles after the animation.
-    clearTimeout(burstTimer);
-
-    burstTimer = setTimeout(() => {
-      archiveInner.classList.remove("bursting");
-    }, 2200);
-
-    backButton.focus({ preventScroll: true });
+    world.scrollIntoView({
+      behavior: window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches ? "auto" : "smooth",
+      block: "start"
+    });
   }
 
   function closeArchive() {
-    if (!isOpen) return;
+    opened = false;
+    selectedSeed = null;
 
-    isOpen = false;
+    world.classList.remove("open");
+    archiveSection.classList.remove("visible");
 
-    clearTimeout(burstTimer);
+    seeds.forEach(seed => seed.classList.remove("selected"));
 
-    archiveInner.classList.remove("opened");
-    archiveInner.classList.remove("bursting");
+    instruction.textContent = "Click the pomegranate to explore.";
+    closeButton.hidden = true;
 
-    instruction.textContent =
-      "Click the pomegranate to explore.";
-
-    wholeFruit.focus({ preventScroll: true });
+    fruitTrigger.setAttribute("aria-label", "Open the pomegranate");
   }
 
-  // Open the archive by clicking the whole fruit.
-  wholeFruit.addEventListener("click", openArchive);
+  fruitTrigger.addEventListener("click", openFruit);
 
-  // Keyboard access for the whole fruit.
-  wholeFruit.addEventListener("keydown", (event) => {
+  fruitTrigger.addEventListener("keydown", event => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      openArchive();
+      openFruit();
     }
   });
 
-  // Close the archive.
-  backButton.addEventListener("click", closeArchive);
+  seeds.forEach((seed, index) => {
+    seed.addEventListener("click", () => openSection(index));
+  });
 
-  // Clicking the archive name returns to the initial screen.
-  homeLink.addEventListener("click", (event) => {
+  closeButton.addEventListener("click", closeArchive);
+  backButton.addEventListener("click", backToSeeds);
+
+  homeLink.addEventListener("click", event => {
     event.preventDefault();
+    closeArchive();
 
-    if (isOpen) {
-      closeArchive();
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
-
-  // Interactive seeds.
-  seedButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      instruction.textContent =
-        `Seed ${index + 1} selected.`;
-    });
-  });
-
-  // Escape returns to the whole pomegranate.
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && isOpen) {
-      closeArchive();
-    }
-  });
-
-  // Report missing images in the browser console.
-  document.querySelectorAll("img").forEach((image) => {
-    image.addEventListener("error", () => {
-      console.error(
-        "Could not load image:",
-        image.getAttribute("src")
-      );
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   });
 })();
