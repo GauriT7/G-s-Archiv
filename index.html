@@ -12,6 +12,8 @@
       --burgundy: #a0002b;
       --dark-burgundy: #69001d;
       --text: #39272b;
+      --muted: #88777a;
+      --border: #e1d8cb;
     }
 
     * {
@@ -34,6 +36,10 @@
       font: inherit;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     /* HEADER */
 
     header {
@@ -41,7 +47,7 @@
       padding: 0 6%;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #e1d8cb;
+      border-bottom: 1px solid var(--border);
     }
 
     .brand {
@@ -50,15 +56,16 @@
       font-weight: bold;
     }
 
-    /* PAGE LAYOUT */
+    /* PAGE */
 
     .page {
+      min-height: calc(100vh - 80px);
       min-height: calc(100svh - 80px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 36px 20px 28px;
+      padding: 30px 20px 40px;
     }
 
     .screen {
@@ -70,7 +77,7 @@
     }
 
     .screen[hidden] {
-      display: none;
+      display: none !important;
     }
 
     /* OPENING POMEGRANATE */
@@ -79,7 +86,7 @@
       position: relative;
       display: grid;
       place-items: center;
-      width: min(78vw, 590px);
+      width: min(88vw, 650px);
       aspect-ratio: 1;
       padding: 0;
       border: 0;
@@ -94,9 +101,10 @@
       height: 100%;
       object-fit: contain;
       transform-origin: 50% 55%;
-      animation: sway 4.5s ease-in-out infinite;
+      animation: sway 5s ease-in-out infinite;
       user-select: none;
       -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .fruit-button:focus-visible {
@@ -116,14 +124,14 @@
     }
 
     .instruction {
-      margin: 20px 0 0;
-      color: #88777a;
+      margin: 18px 0 0;
+      color: var(--muted);
       font-size: 19px;
       font-style: italic;
       text-align: center;
     }
 
-    /* CROSS-SECTION SCREEN */
+    /* CROSS-SECTION STAGE */
 
     .cross-stage {
       position: relative;
@@ -137,11 +145,12 @@
 
     .cross-section {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       width: min(66%, 530px);
       height: 100%;
       display: grid;
       place-items: center;
+      pointer-events: none;
     }
 
     .cross-section img {
@@ -151,18 +160,29 @@
       object-fit: contain;
       user-select: none;
       -webkit-user-drag: none;
+      pointer-events: none;
     }
 
-    /* SIX SEEDS IN A BALANCED ORBIT */
+    /* CLICKABLE SEEDS */
 
     .seed {
       position: absolute;
       z-index: 3;
       width: clamp(66px, 10vw, 105px);
       height: clamp(66px, 10vw, 105px);
+
       display: grid;
       place-items: center;
-      pointer-events: none;
+
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+
+      cursor: pointer;
+      pointer-events: auto;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .seed img {
@@ -172,7 +192,29 @@
       object-fit: contain;
       user-select: none;
       -webkit-user-drag: none;
+
+      /* The BUTTON receives the click, not the image. */
+      pointer-events: none;
+
+      transition: transform 250ms ease;
     }
+
+    .seed:focus-visible {
+      outline: 2px solid var(--burgundy);
+      outline-offset: 3px;
+    }
+
+    .seed:active img {
+      transform: scale(.9);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .seed:hover img {
+        transform: scale(1.08);
+      }
+    }
+
+    /* BALANCED SEED PLACEMENT */
 
     .seed-1 {
       top: 7%;
@@ -210,21 +252,16 @@
       transform: rotate(-18deg);
     }
 
-    /* SMOOTH TRANSITION */
-
-    .screen {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* SCREEN TRANSITIONS */
 
     .screen.entering {
-      animation: screen-enter 850ms cubic-bezier(.22, 1, .36, 1) both;
+      animation: screen-enter 750ms cubic-bezier(.22, 1, .36, 1) both;
     }
 
     @keyframes screen-enter {
       from {
         opacity: 0;
-        transform: translateY(16px);
+        transform: translateY(14px);
       }
 
       to {
@@ -244,7 +281,7 @@
       }
 
       35% {
-        transform: scale(1.13) rotate(-3deg);
+        transform: scale(1.12) rotate(-3deg);
         opacity: 1;
       }
 
@@ -259,32 +296,15 @@
     }
 
     .screen.entering .seed {
-      animation: seed-arrive 900ms cubic-bezier(.22, 1, .36, 1) both;
+      animation: seed-arrive 800ms cubic-bezier(.22, 1, .36, 1) both;
     }
 
-    .screen.entering .seed-1 {
-      animation-delay: 80ms;
-    }
-
-    .screen.entering .seed-2 {
-      animation-delay: 140ms;
-    }
-
-    .screen.entering .seed-3 {
-      animation-delay: 200ms;
-    }
-
-    .screen.entering .seed-4 {
-      animation-delay: 260ms;
-    }
-
-    .screen.entering .seed-5 {
-      animation-delay: 320ms;
-    }
-
-    .screen.entering .seed-6 {
-      animation-delay: 380ms;
-    }
+    .screen.entering .seed-1 { animation-delay: 80ms; }
+    .screen.entering .seed-2 { animation-delay: 140ms; }
+    .screen.entering .seed-3 { animation-delay: 200ms; }
+    .screen.entering .seed-4 { animation-delay: 260ms; }
+    .screen.entering .seed-5 { animation-delay: 320ms; }
+    .screen.entering .seed-6 { animation-delay: 380ms; }
 
     @keyframes seed-arrive {
       from {
@@ -298,30 +318,96 @@
       }
     }
 
-    /* CLOSE ARCHIVE */
+    /* BOTTOM SEED INFORMATION PANEL */
 
-    .close-button {
-      margin-top: 26px;
-      padding: 12px 27px;
+    .seed-detail {
+      width: min(100%, 760px);
+      margin: 30px auto 0;
+      padding: 34px 40px;
+
+      background: #fcf8ef;
+      border: 1px solid var(--border);
+      border-top: 2px solid #d9b6b4;
+      border-radius: 3px;
+
+      animation: detail-enter 450ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    @keyframes detail-enter {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .detail-eyebrow {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .detail-title {
+      margin: 0 0 20px;
+      color: var(--burgundy);
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: normal;
+      line-height: 1.2;
+    }
+
+    .detail-description {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    /* BUTTONS */
+
+    .archive-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 24px;
       border: 1px solid #dfd4c7;
       border-radius: 40px;
       background: transparent;
       color: #806f72;
       font-size: 17px;
       cursor: pointer;
+
       transition:
         color 200ms ease,
-        border-color 200ms ease;
+        border-color 200ms ease,
+        background 200ms ease;
     }
 
-    .close-button:hover {
+    .archive-button:hover {
       color: var(--burgundy);
       border-color: var(--burgundy);
     }
 
-    .close-button:focus-visible {
+    .archive-button:focus-visible {
       outline: 2px solid var(--burgundy);
       outline-offset: 4px;
+    }
+
+    .close-button {
+      margin-top: 26px;
     }
 
     /* MOBILE */
@@ -337,6 +423,7 @@
       }
 
       .page {
+        min-height: calc(100vh - 64px);
         min-height: calc(100svh - 64px);
         padding: 24px 14px;
       }
@@ -377,12 +464,12 @@
 
       .seed-3 {
         top: 40%;
-        left: -2%;
+        left: 0;
       }
 
       .seed-4 {
         top: 40%;
-        right: -2%;
+        right: 0;
       }
 
       .seed-5 {
@@ -394,6 +481,23 @@
         bottom: 4%;
         right: 5%;
       }
+
+      .seed-detail {
+        margin-top: 22px;
+        padding: 26px 22px;
+      }
+
+      .detail-description {
+        font-size: 16px;
+      }
+
+      .detail-actions {
+        flex-direction: column;
+      }
+
+      .archive-button {
+        width: 100%;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -403,6 +507,7 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -452,37 +557,101 @@
           >
         </div>
 
-        <div class="seed seed-1">
+        <!-- Each seed is now a real, accessible button. -->
+
+        <button
+          class="seed seed-1"
+          data-seed="1"
+          aria-label="Explore seed 1"
+        >
           <img src="./images/seed1.png" alt="" draggable="false">
-        </div>
+        </button>
 
-        <div class="seed seed-2">
+        <button
+          class="seed seed-2"
+          data-seed="2"
+          aria-label="Explore seed 2"
+        >
           <img src="./images/seed2.png" alt="" draggable="false">
-        </div>
+        </button>
 
-        <div class="seed seed-3">
+        <button
+          class="seed seed-3"
+          data-seed="3"
+          aria-label="Explore seed 3"
+        >
           <img src="./images/seed3.png" alt="" draggable="false">
-        </div>
+        </button>
 
-        <div class="seed seed-4">
+        <button
+          class="seed seed-4"
+          data-seed="4"
+          aria-label="Explore seed 4"
+        >
           <img src="./images/seed4.png" alt="" draggable="false">
-        </div>
+        </button>
 
-        <div class="seed seed-5">
+        <button
+          class="seed seed-5"
+          data-seed="5"
+          aria-label="Explore seed 5"
+        >
           <img src="./images/seed5.png" alt="" draggable="false">
-        </div>
+        </button>
 
-        <div class="seed seed-6">
+        <button
+          class="seed seed-6"
+          data-seed="6"
+          aria-label="Explore seed 6"
+        >
           <img src="./images/seed6.png" alt="" draggable="false">
-        </div>
+        </button>
 
       </div>
 
-      <p class="instruction">
+      <p class="instruction" id="seed-instruction">
         Choose a seed to explore.
       </p>
 
-      <button class="close-button" id="close-archive">
+      <!-- BOTTOM INFORMATION PANEL -->
+
+      <section
+        class="seed-detail"
+        id="seed-detail"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+      >
+        <p class="detail-eyebrow" id="detail-eyebrow">
+          FROM THE ARCHIVE
+        </p>
+
+        <h2 class="detail-title" id="detail-title">
+          Seed 1
+        </h2>
+
+        <p class="detail-description" id="detail-description"></p>
+
+        <div class="detail-actions">
+
+          <button
+            class="archive-button"
+            id="back-to-seeds"
+          >
+            ← Back to the seeds
+          </button>
+
+          <button
+            class="archive-button"
+            id="close-detail"
+          >
+            Close entry
+          </button>
+
+        </div>
+      </section>
+
+      <button class="archive-button close-button" id="close-archive">
         Close archive
       </button>
 
@@ -497,7 +666,62 @@
     const openButton = document.getElementById("open-fruit");
     const closeButton = document.getElementById("close-archive");
 
+    const seedButtons = document.querySelectorAll(".seed");
+
+    const seedInstruction = document.getElementById("seed-instruction");
+    const seedDetail = document.getElementById("seed-detail");
+
+    const detailEyebrow = document.getElementById("detail-eyebrow");
+    const detailTitle = document.getElementById("detail-title");
+    const detailDescription = document.getElementById("detail-description");
+
+    const backButton = document.getElementById("back-to-seeds");
+    const closeDetailButton = document.getElementById("close-detail");
+
     let isTransitioning = false;
+    let selectedSeed = null;
+    let transitionTimer = null;
+
+    /*
+      Add your actual archive entries here.
+
+      The filenames above are already correct.
+      Only change the text inside these descriptions.
+    */
+
+    const seedEntries = {
+      1: {
+        title: "Seed 1",
+        description: "Your first archive entry goes here."
+      },
+
+      2: {
+        title: "Seed 2",
+        description: "Your second archive entry goes here."
+      },
+
+      3: {
+        title: "Seed 3",
+        description: "Your third archive entry goes here."
+      },
+
+      4: {
+        title: "Seed 4",
+        description: "Your fourth archive entry goes here."
+      },
+
+      5: {
+        title: "Seed 5",
+        description: "Your fifth archive entry goes here."
+      },
+
+      6: {
+        title: "Seed 6",
+        description: "Your sixth archive entry goes here."
+      }
+    };
+
+    /* OPEN THE POMEGRANATE */
 
     function openArchive() {
       if (isTransitioning) return;
@@ -506,36 +730,115 @@
 
       openButton.classList.add("bursting");
 
-      window.setTimeout(() => {
+      transitionTimer = window.setTimeout(() => {
         openingScreen.hidden = true;
         archiveScreen.hidden = false;
 
         archiveScreen.classList.remove("entering");
 
-        // Restart the entrance animation cleanly.
+        // Restart the entrance animation.
         void archiveScreen.offsetWidth;
 
         archiveScreen.classList.add("entering");
 
         isTransitioning = false;
+        transitionTimer = null;
       }, 650);
     }
+
+    /* SHOW THE SELECTED SEED */
+
+    function openSeed(seedNumber) {
+      const entry = seedEntries[seedNumber];
+
+      if (!entry) return;
+
+      selectedSeed = seedNumber;
+
+      detailEyebrow.textContent = "FROM THE ARCHIVE";
+      detailTitle.textContent = entry.title;
+      detailDescription.textContent = entry.description;
+
+      seedDetail.hidden = false;
+      seedInstruction.hidden = true;
+
+      seedDetail.classList.remove("entering");
+
+      // Restart the detail animation.
+      void seedDetail.offsetWidth;
+
+      seedDetail.classList.add("entering");
+
+      // Highlight the currently selected seed.
+      seedButtons.forEach(button => {
+        const isSelected =
+          Number(button.dataset.seed) === seedNumber;
+
+        button.setAttribute("aria-pressed", String(isSelected));
+      });
+    }
+
+    /* CLOSE THE DETAIL PANEL */
+
+    function closeDetail() {
+      seedDetail.hidden = true;
+      seedInstruction.hidden = false;
+
+      selectedSeed = null;
+
+      seedButtons.forEach(button => {
+        button.setAttribute("aria-pressed", "false");
+      });
+    }
+
+    /* RETURN TO THE OPENING SCREEN */
 
     function closeArchive() {
       if (isTransitioning) return;
 
-      isTransitioning = true;
+      if (transitionTimer !== null) {
+        window.clearTimeout(transitionTimer);
+        transitionTimer = null;
+      }
+
+      closeDetail();
 
       archiveScreen.hidden = true;
       openingScreen.hidden = false;
 
       openButton.classList.remove("bursting");
 
-      isTransitioning = false;
+      archiveScreen.classList.remove("entering");
     }
 
+    /* CLICK EVENTS */
+
     openButton.addEventListener("click", openArchive);
+
     closeButton.addEventListener("click", closeArchive);
+
+    backButton.addEventListener("click", closeDetail);
+
+    closeDetailButton.addEventListener("click", closeDetail);
+
+    seedButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const seedNumber = Number(button.dataset.seed);
+        openSeed(seedNumber);
+      });
+    });
+
+    /* KEYBOARD SUPPORT */
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        if (!seedDetail.hidden) {
+          closeDetail();
+        } else if (!archiveScreen.hidden) {
+          closeArchive();
+        }
+      }
+    });
   </script>
 
 </body>
