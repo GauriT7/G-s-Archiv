@@ -450,12 +450,16 @@
       }
 
       .fruit-button {
-        width: min(90vw, 470px);
+        width: min(88vw, 460px);
       }
 
       .instruction {
-        font-size: 17px;
+        font-size: 16px;
         margin-top: 12px;
+      }
+
+      .opening-hint {
+    font-size: 11px;
       }
 
       .cross-stage {
@@ -757,28 +761,28 @@
 
     /* OPEN THE POMEGRANATE */
 
-    function openArchive() {
-      if (isTransitioning) return;
+    
+function openArchive() {
+  if (isTransitioning) return;
 
-      isTransitioning = true;
+  isTransitioning = true;
 
-      openButton.classList.add("bursting");
+  openButton.classList.add("bursting");
 
-      transitionTimer = window.setTimeout(() => {
-        openingScreen.hidden = true;
-        archiveScreen.hidden = false;
+  transitionTimer = window.setTimeout(() => {
+    openingScreen.hidden = true;
+    archiveScreen.hidden = false;
 
-        archiveScreen.classList.remove("entering");
+    archiveScreen.classList.remove("entering");
 
-        // Restart the entrance animation.
-        void archiveScreen.offsetWidth;
+    void archiveScreen.offsetWidth;
 
-        archiveScreen.classList.add("entering");
+    archiveScreen.classList.add("entering");
 
-        isTransitioning = false;
-        transitionTimer = null;
-      }, 650);
-    }
+    isTransitioning = false;
+    transitionTimer = null;
+  }, 850);
+}
 
     /* SHOW THE SELECTED SEED */
 
