@@ -811,6 +811,14 @@ function openArchive() {
 
         button.setAttribute("aria-pressed", String(isSelected));
       });
+
+      // Scroll to the opened entry.
+  
+      seedDetail.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+      
     }
 
     /* CLOSE THE DETAIL PANEL */
@@ -859,7 +867,7 @@ function openArchive() {
     seedButtons.forEach(button => {
       button.addEventListener("click", () => {
         const seedNumber = Number(button.dataset.seed);
-        openSeed(seedNumber);
+        (seedNumber);
       });
     });
 
