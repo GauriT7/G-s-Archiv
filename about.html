@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>about — archive.gauri</title>
+
+  <!-- Curvy editorial font for floating words -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --cream: #f8f4e9;
+      --burgundy: #a0002b;
+      --dark-burgundy: #69001d;
+      --text: #39272b;
+      --muted: #88777a;
+      --border: #e1d8cb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    header {
+      position: relative;
+      z-index: 20;
+
+      min-height: 120px;
+      padding: 20px 6%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      text-align: center;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      color: var(--burgundy);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .home-link {
+      position: absolute;
+      left: 6%;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--muted);
+
+      font-size: 14px;
+      letter-spacing: 0.08em;
+
+      transition:
+        color 200ms ease,
+        opacity 200ms ease;
+    }
+
+    .home-link:hover {
+      color: var(--burgundy);
+    }
+
+
+
+    /* =========================================
+       ABOUT PAGE
+    ========================================= */
+
+    .about-page {
+      position: relative;
+
+      min-height: calc(100vh - 120px);
+      min-height: calc(100svh - 120px);
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 70px 7% 80px;
+    }
+
+
+
+    /* Keep real content above floating animation */
+
+    .about-content {
+      position: relative;
+      z-index: 10;
+
+      width: min(100%, 1080px);
+
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+
+      align-items: center;
+
+      gap: clamp(45px, 8vw, 110px);
+    }
+
+
+
+    /* =========================================
+       HANDWRITTEN BIO
+    ========================================= */
+
+    .bio-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bio-image {
+      display: block;
+
+      width: min(100%, 520px);
+      max-height: 640px;
+
+      object-fit: contain;
+
+      opacity: 0;
+
+      transform: translateY(12px);
+
+      animation:
+        content-arrive 1000ms 1300ms ease forwards;
+    }
+
+
+
+    /* =========================================
+       PHOTO
+    ========================================= */
+
+    .photo-wrap {
+      position: relative;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      opacity: 0;
+
+      transform: translateY(12px);
+
+      animation:
+        content-arrive 1000ms 1450ms ease forwards;
+    }
+
+    .photo {
+      display: block;
+
+      width: min(100%, 420px);
+      max-height: 570px;
+
+      object-fit: cover;
+
+      border-radius: 2px;
+
+      box-shadow:
+        0 14px 40px rgba(60, 30, 35, 0.08);
+    }
+
+
+
+    /* Tiny imperfect caption */
+
+    .photo-caption {
+      position: absolute;
+
+      left: 8%;
+      bottom: -30px;
+
+      color: var(--muted);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 14px;
+      font-style: italic;
+
+      opacity: 0.8;
+    }
+
+
+
+    @keyframes content-arrive {
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+
+    /* =========================================
+       FALLING SEEDS / FLOATING WORDS
+    ========================================= */
+
+    .whimsy-layer {
+      position: absolute;
+      inset: 0;
+
+      z-index: 2;
+
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+
+
+    /*
+      Each item contains:
+
+      1. seed image
+      2. corresponding word
+
+      JavaScript randomly chooses:
+      - x position
+      - y position
+      - rotation
+      - animation delay
+      - opacity
+    */
+
+    .morph-item {
+      position: absolute;
+
+      left: var(--x);
+      top: var(--y);
+
+      width: max-content;
+
+      opacity: 0;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(var(--rotation));
+
+      animation:
+        item-enter 1700ms var(--delay)
+        cubic-bezier(.16, .8, .3, 1)
+        forwards;
+    }
+
+
+
+    /* Seed starts visible */
+
+    .morph-seed {
+      display: block;
+
+      width: var(--seed-size);
+      height: var(--seed-size);
+
+      object-fit: contain;
+
+      opacity: 1;
+
+      transform: rotate(var(--seed-rotation));
+
+      animation:
+        seed-vanish 900ms
+        calc(var(--delay) + 1200ms)
+        ease forwards;
+    }
+
+
+
+    /* Word begins hidden */
+
+    .morph-word {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      white-space: nowrap;
+
+      color: var(--burgundy);
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(19px, 2vw, 31px);
+
+      font-weight: 600;
+
+      font-style: italic;
+
+      opacity: 0;
+
+      animation:
+
+        word-appear 1000ms
+        calc(var(--delay) + 1350ms)
+        ease forwards,
+
+        word-float var(--float-time)
+        calc(var(--delay) + 2300ms)
+        ease-in-out infinite alternate,
+
+        word-breathe var(--breathe-time)
+        calc(var(--delay) + 2200ms)
+        ease-in-out infinite alternate;
+    }
+
+
+
+    /*
+      Seed falls from above screen
+      into final random position
+    */
+
+    @keyframes item-enter {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translate(-50%, -65vh)
+          rotate(-18deg);
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      72% {
+        transform:
+          translate(-50%, 9px)
+          rotate(calc(var(--rotation) + 5deg));
+      }
+
+      87% {
+        transform:
+          translate(-50%, -5px)
+          rotate(calc(var(--rotation) - 2deg));
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translate(-50%, -50%)
+          rotate(var(--rotation));
+      }
+
+    }
+
+
+
+    @keyframes seed-vanish {
+
+      0% {
+        opacity: 1;
+        transform:
+          rotate(var(--seed-rotation))
+          scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          rotate(var(--seed-rotation))
+          scale(0.55);
+      }
+
+    }
+
+
+
+    @keyframes word-appear {
+
+      from {
+        opacity: 0;
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: var(--base-opacity);
+        filter: blur(0);
+      }
+
+    }
+
+
+
+    /*
+      Words gently drift
+    */
+
+    @keyframes word-float {
+
+      0% {
+        transform:
+          translate(-50%, -50%)
+          translate(0, 0)
+          rotate(-1deg);
+      }
+
+      50% {
+        transform:
+          translate(-50%, -50%)
+          translate(8px, -10px)
+          rotate(1deg);
+      }
+
+      100% {
+        transform:
+          translate(-50%, -50%)
+          translate(-6px, 8px)
+          rotate(-1deg);
+      }
+
+    }
+
+
+
+    /*
+      This creates the depth:
+      one word fades down while another
+      becomes stronger, continuously.
+    */
+
+    @keyframes word-breathe {
+
+      0% {
+        opacity: calc(var(--base-opacity) * 0.45);
+      }
+
+      50% {
+        opacity: var(--base-opacity);
+      }
+
+      100% {
+        opacity: calc(var(--base-opacity) * 0.62);
+      }
+
+    }
+
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 760px) {
+
+      header {
+        min-height: 95px;
+
+        padding:
+          16px 20px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .tagline {
+        font-size: 15px;
+      }
+
+      .home-link {
+        left: 18px;
+
+        font-size: 12px;
+      }
+
+      .about-page {
+        min-height:
+          calc(100svh - 95px);
+
+        padding:
+          70px 24px 80px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+      }
+
+      .bio-wrap {
+        order: 1;
+      }
+
+      .photo-wrap {
+        order: 2;
+      }
+
+      .bio-image {
+        width:
+          min(100%, 470px);
+      }
+
+      .photo {
+        width:
+          min(82vw, 380px);
+
+        max-height:
+          500px;
+      }
+
+      .morph-word {
+        font-size:
+          clamp(18px, 6vw, 25px);
+      }
+
+      .photo-caption {
+        left: 12%;
+      }
+
+    }
+
+
+
+    /* =========================================
+       ACCESSIBILITY
+    ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <header>
+
+    <a
+      class="home-link"
+      href="./index.html"
+    >
+      ← archive
+    </a>
+
+    <div class="brand">
+      archive.gauri
+    </div>
+
+    <p class="tagline">
+      collection of things I’ve made, found and thought about
+    </p>
+
+  </header>
+
+
+
+  <main class="about-page">
+
+    <!--
+      Seeds + words are automatically
+      generated here using JavaScript.
+    -->
+
+    <div
+      class="whimsy-layer"
+      id="whimsy-layer"
+      aria-hidden="true"
+    ></div>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <section class="about-content">
+
+      <!-- LEFT: your handwritten Procreate bio -->
+
+      <div class="bio-wrap">
+
+        <img
+          class="bio-image"
+          src="./images/Bio.png"
+          alt="A handwritten introduction by Gauri"
+        >
+
+      </div>
+
+
+
+      <!-- RIGHT: your photo -->
+
+      <div class="photo-wrap">
+
+        <img
+          class="photo"
+          src="./images/Photo.jpg"
+          alt="Portrait of Gauri"
+        >
+
+        <span class="photo-caption">
+          a work in progress
+        </span>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <script>
+
+    /*
+      WORDS
+
+      Edit this whenever you want.
+    */
+
+    const words = [
+
+      "art",
+      "history",
+      "fashion",
+      "creative direction",
+      "medicine",
+      "psychology",
+      "economics",
+      "tech",
+      "AI",
+      "longevity",
+      "mixed media",
+      "culture",
+      "languages",
+      "food"
+
+    ];
+
+
+
+    /*
+      YOUR EXISTING SIX SEEDS
+    */
+
+    const seedImages = [
+
+      "./images/seed1.png",
+      "./images/seed2.png",
+      "./images/seed3.png",
+      "./images/seed4.png",
+      "./images/seed5.png",
+      "./images/seed6.png"
+
+    ];
+
+
+
+    const layer =
+      document.getElementById("whimsy-layer");
+
+
+
+    /*
+      Areas roughly occupied by the main
+      photo + bio.
+
+      We try not to place too many words
+      right over the centre.
+    */
+
+    function createMorphItem(word, index) {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "morph-item";
+
+
+
+      /*
+        RANDOM FINAL POSITION
+
+        Bias toward screen edges so your
+        actual bio/photo remain readable.
+      */
+
+      let x;
+      let y;
+
+      const side =
+        index % 4;
+
+
+
+      if (side === 0) {
+
+        x = random(5, 26);
+        y = random(16, 85);
+
+      }
+
+      else if (side === 1) {
+
+        x = random(74, 95);
+        y = random(14, 84);
+
+      }
+
+      else if (side === 2) {
+
+        x = random(10, 90);
+        y = random(8, 25);
+
+      }
+
+      else {
+
+        x = random(9, 91);
+        y = random(76, 94);
+
+      }
+
+
+
+      const rotation =
+        random(-8, 8);
+
+      const seedRotation =
+        random(-40, 40);
+
+      const delay =
+        random(100, 1300);
+
+      const opacity =
+        random(0.22, 0.72);
+
+      const size =
+        random(35, 65);
+
+      const floatTime =
+        random(6500, 10500);
+
+      const breatheTime =
+        random(3500, 7000);
+
+
+
+      item.style.setProperty(
+        "--x",
+        `${x}%`
+      );
+
+      item.style.setProperty(
+        "--y",
+        `${y}%`
+      );
+
+      item.style.setProperty(
+        "--rotation",
+        `${rotation}deg`
+      );
+
+      item.style.setProperty(
+        "--seed-rotation",
+        `${seedRotation}deg`
+      );
+
+      item.style.setProperty(
+        "--delay",
+        `${delay}ms`
+      );
+
+      item.style.setProperty(
+        "--base-opacity",
+        opacity.toFixed(2)
+      );
+
+      item.style.setProperty(
+        "--seed-size",
+        `${size}px`
+      );
+
+      item.style.setProperty(
+        "--float-time",
+        `${floatTime}ms`
+      );
+
+      item.style.setProperty(
+        "--breathe-time",
+        `${breatheTime}ms`
+      );
+
+
+
+      /*
+        SEED
+      */
+
+      const seed =
+        document.createElement("img");
+
+      seed.className =
+        "morph-seed";
+
+      seed.src =
+        seedImages[
+          index % seedImages.length
+        ];
+
+      seed.alt = "";
+
+
+
+      /*
+        WORD
+      */
+
+      const text =
+        document.createElement("span");
+
+      text.className =
+        "morph-word";
+
+      text.textContent =
+        word;
+
+
+
+      item.appendChild(seed);
+
+      item.appendChild(text);
+
+      layer.appendChild(item);
+
+    }
+
+
+
+    /*
+      Utility:
+      number between min/max
+    */
+
+    function random(min, max) {
+
+      return Math.random()
+        * (max - min)
+        + min;
+
+    }
+
+
+
+    /*
+      Shuffle slightly so the arrangement
+      isn't identical every time.
+    */
+
+    const shuffledWords =
+      [...words]
+      .sort(() =>
+        Math.random() - 0.5
+      );
+
+
+
+    shuffledWords.forEach(
+      createMorphItem
+    );
+
+  </script>
+
+
+</body>
+
+</html>
