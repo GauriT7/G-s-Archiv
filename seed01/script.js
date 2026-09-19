@@ -356,3 +356,26 @@ window.addEventListener(
   },
   { passive: true }
 );
+
+/* =========================================================
+   WAR SCENE — ACTIVE ON SCROLL
+========================================================= */
+
+const warScene = document.querySelector("#war");
+
+if (warScene) {
+  const warObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        warScene.classList.add("active");
+      } else {
+        warScene.classList.remove("active");
+      }
+    },
+    {
+      threshold: 0.35
+    }
+  );
+
+  warObserver.observe(warScene);
+}
