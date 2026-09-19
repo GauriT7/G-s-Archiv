@@ -111,8 +111,8 @@
 /* PAGE COMPOSITION */
 
 .page {
-  min-height: calc(100vh - 80px);
-  min-height: calc(100svh - 80px);
+  min-height: calc(100vh - 120px);
+  min-height: calc(100svh - 120px);
 
   display: flex;
   flex-direction: column;
@@ -499,8 +499,9 @@
 
     @media (max-width: 600px) {
       header {
-        height: 64px;
-        padding: 0 22px;
+        min-height: 90px;
+        height: auto;
+        padding: 16px 55px;
       }
 
       .brand {
