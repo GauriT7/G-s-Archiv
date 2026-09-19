@@ -552,7 +552,7 @@
        MOBILE
     ========================================= */
 
-    @media (max-width: 760px) {
+    @media (max-width: 600px) {
 
   header {
     min-height: 88px;
@@ -573,8 +573,7 @@
   }
 
   .about-page {
-    min-height: calc(100svh - 88px);
-    padding: 36px 18px 70px;
+    padding: 28px 14px 55px;
     overflow: hidden;
   }
 
@@ -582,7 +581,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    align-items: center;
+    gap: 22px;
 
     align-items: center;
     justify-content: flex-start;
@@ -591,13 +591,15 @@
   .bio-wrap {
     order: 1;
     width: 100%;
+    display: flex;
     transform: none;
     justify-content: center;
   }
 
   .bio-image {
-    width: min(92vw, 520px);
-    max-height: none;
+    width: 86vw;
+    max-height: 430px;
+    height: auto;
     opacity: 0;
     transform: translateY(10px);
     animation:
@@ -607,6 +609,10 @@
   .photo-wrap {
     order: 2;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     transform: none;
     justify-content: center;
     opacity: 0;
@@ -615,8 +621,10 @@
   }
 
   .photo {
-    width: min(82vw, 420px);
-    max-height: none;
+    width: 78vw;
+    max-width: 360px;
+    height: 440px;
+    
     aspect-ratio: 4 / 5;
     object-fit: cover;
     border-radius: 38px;
@@ -625,11 +633,12 @@
   .photo-caption {
     position: static;
 
-    width: min(82vw, 420px);
+    width: 78px;
+    max-width: 360px;
 
-    margin-top: 10px;
+    margin-top: 9px;
 
-    font-size: 13px;
+    font-size: 12px;
 
     text-align: left;
   }
@@ -639,11 +648,16 @@
   }
 
   .morph-word {
-    font-size: clamp(17px, 5vw, 23px);
+    font-size: 18px;
   }
 
   .morph-item {
-    max-width: 90vw;
+    max-width: 90px;
+  }
+
+  .morph-seed {
+    width: var(--seed-size);
+    height: var(--seed-size);
   }
 
 }
@@ -830,27 +844,27 @@ const height = window.innerHeight;
 
 let safeZones;
 
-if (width <= 760 && height > width) {
+if (width <= 600 && height > width) {
 
-  // MOBILE PORTRAIT
+  // PHONE PORTRAIT
 
   safeZones = [
 
-    { x: 7,  y: 10 },
-    { x: 50, y: 8 },
-    { x: 93, y: 11 },
+    { x: 6,  y: 10 },
+    { x: 94, y: 11 },
 
-    { x: 5,  y: 28 },
-    { x: 95, y: 30 },
+    { x: 5,  y: 30 },
+    { x: 95, y: 32 },
 
-    { x: 5,  y: 55 },
-    { x: 95, y: 57 },
+    { x: 5,  y: 72 },
+    { x: 95, y: 74 },
 
-    { x: 7,  y: 80 },
-    { x: 50, y: 91 },
-    { x: 93, y: 82 }
+    { x: 8,  y: 91 },
+    { x: 92, y: 91 }
 
   ];
+
+}
 
 } else if (width <= 900) {
 
@@ -932,7 +946,9 @@ const y =
         random(0.30, 0.70);
 
       const size =
-        width <= 760
+        width <= 600
+        ? random(16, 28)
+        : width <= 760
         ? random(22, 38)
         : random(35, 65);
 
