@@ -940,3 +940,76 @@ figcaption {
     height: 350px;
   }
 }
+
+/* =========================================================
+   IMAGE LIGHTBOX
+========================================================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background: rgba(45, 25, 28, 0.88);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: min(88vw, 1100px);
+  max-height: 82vh;
+
+  object-fit: contain;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+.lightbox-close {
+  position: absolute;
+
+  top: 24px;
+  right: 30px;
+
+  border: 0;
+  background: none;
+
+  color: white;
+
+  font-size: 28px;
+  font-weight: 300;
+
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  position: absolute;
+
+  left: 50%;
+  bottom: 25px;
+
+  transform: translateX(-50%);
+
+  color: white;
+
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .06em;
+
+  text-align: center;
+}
