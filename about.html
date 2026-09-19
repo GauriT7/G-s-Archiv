@@ -141,14 +141,15 @@
       position: relative;
       z-index: 10;
 
-      width: min(100%, 1080px);
+      width: min(100%, 1120px);
 
       display: grid;
       grid-template-columns: 1fr 0.9fr;
 
       align-items: center;
 
-      gap: clamp(45px, 8vw, 110px);
+      gap: clamp(25px, 4vw, 55px);
+
     }
 
 
@@ -166,8 +167,8 @@
     .bio-image {
       display: block;
 
-      width: min(100%, 520px);
-      max-height: 640px;
+      width: min(100%, 570px);
+      max-height: 680px;
 
       object-fit: contain;
 
@@ -208,7 +209,7 @@
 
       object-fit: cover;
 
-      border-radius: 2px;
+      border-radius: 55px;
 
       box-shadow:
         0 14px 40px rgba(60, 30, 35, 0.08);
@@ -292,7 +293,7 @@
         rotate(var(--rotation));
 
       animation:
-        item-enter 1700ms var(--delay)
+        item-enter 2800ms var(--delay)
         cubic-bezier(.16, .8, .3, 1)
         forwards;
     }
@@ -314,8 +315,8 @@
       transform: rotate(var(--seed-rotation));
 
       animation:
-        seed-vanish 900ms
-        calc(var(--delay) + 1200ms)
+        seed-vanish 1300ms
+        calc(var(--delay) + 2300ms)
         ease forwards;
     }
 
@@ -351,16 +352,16 @@
 
       animation:
 
-        word-appear 1000ms
-        calc(var(--delay) + 1350ms)
+        word-appear 1400ms
+        calc(var(--delay) + 3450ms)
         ease forwards,
 
         word-float var(--float-time)
-        calc(var(--delay) + 2300ms)
+        calc(var(--delay) + 4800ms)
         ease-in-out infinite alternate,
 
         word-breathe var(--breathe-time)
-        calc(var(--delay) + 2200ms)
+        calc(var(--delay) + 4500ms)
         ease-in-out infinite alternate;
     }
 
@@ -684,22 +685,29 @@
 
     const words = [
 
-      "art",
-      "history",
-      "fashion",
-      "creative direction",
-      "medicine",
-      "psychology",
-      "economics",
-      "tech",
-      "AI",
-      "longevity",
-      "mixed media",
-      "culture",
-      "languages",
-      "food"
+  "art",
+  "history",
+  "fashion",
+  "creative direction",
+  "medicine",
+  "psychology",
+  "economics",
+  "tech",
+  "AI",
+  "longevity",
+  "mixed media",
+  "culture",
+  "languages",
+  "food",
 
-    ];
+  "art",
+  "history",
+  "medicine",
+  "culture",
+  "AI",
+  "fashion"
+
+];
 
 
 
@@ -744,47 +752,54 @@
 
 
       /*
-        RANDOM FINAL POSITION
+  SAFE PERIMETER POSITIONS
 
-        Bias toward screen edges so your
-        actual bio/photo remain readable.
-      */
+  Words live around the bio + photo,
+  never underneath them.
+*/
 
-      let x;
-      let y;
+const safeZones = [
 
-      const side =
-        index % 4;
+  // Far left
+  { x: 7,  y: 25 },
+  { x: 8,  y: 48 },
+  { x: 7,  y: 72 },
+
+  // Upper area
+  { x: 27, y: 12 },
+  { x: 48, y: 10 },
+  { x: 69, y: 12 },
+
+  // Between / around the two columns
+  { x: 43, y: 30 },
+  { x: 48, y: 70 },
+
+  // Far right
+  { x: 93, y: 28 },
+  { x: 94, y: 50 },
+  { x: 93, y: 72 },
+
+  // Bottom
+  { x: 25, y: 90 },
+  { x: 48, y: 92 },
+  { x: 70, y: 90 }
+
+];
+
+const position =
+  safeZones[index % safeZones.length];
 
 
+/*
+  Add a little randomness so they don't
+  look mathematically positioned.
+*/
 
-      if (side === 0) {
+const x =
+  position.x + random(-2.5, 2.5);
 
-        x = random(5, 26);
-        y = random(16, 85);
-
-      }
-
-      else if (side === 1) {
-
-        x = random(74, 95);
-        y = random(14, 84);
-
-      }
-
-      else if (side === 2) {
-
-        x = random(10, 90);
-        y = random(8, 25);
-
-      }
-
-      else {
-
-        x = random(9, 91);
-        y = random(76, 94);
-
-      }
+const y =
+  position.y + random(-2.5, 2.5);
 
 
 
@@ -798,7 +813,7 @@
         random(100, 1300);
 
       const opacity =
-        random(0.22, 0.72);
+        random(0.30, 0.70);
 
       const size =
         random(35, 65);
