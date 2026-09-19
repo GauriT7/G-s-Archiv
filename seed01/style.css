@@ -1653,3 +1653,23 @@ body.thread-pulling .web-node {
   height: auto !important;
   object-fit: contain !important;
 }
+/* WAR IMAGE — FORCE VISIBLE */
+
+#war .story-image.large {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+#war .story-image.large img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  transform: none !important;
+  clip-path: none !important;
+  filter: none !important;
+}
+
