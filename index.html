@@ -39,6 +39,45 @@
     [hidden] {
       display: none !important;
     }
+    header {
+  position: relative;
+}
+
+.about-link {
+  position: absolute;
+
+  right: 6%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-style: italic;
+
+  letter-spacing: 0.05em;
+
+  text-decoration: none;
+
+  transition:
+    color 200ms ease,
+    opacity 200ms ease;
+}
+
+.about-link:hover {
+  color: var(--burgundy);
+}
+
+@media (max-width: 600px) {
+
+  .about-link {
+    right: 18px;
+
+    font-size: 12px;
+  }
+
+}
 
     /* HEADER */
 
@@ -620,8 +659,22 @@
 <body>
 
   <header>
-  <div class="brand">archive.gauri</div>
-  <p class="tagline">collection of things I’ve made, found and thought about</p>
+
+  <div class="brand">
+    archive.gauri
+  </div>
+
+  <p class="tagline">
+    collection of things I’ve made, found and thought about
+  </p>
+
+  <a
+    href="./about.html"
+    class="about-link"
+  >
+    about
+  </a>
+
 </header>
 
   <main class="page">
