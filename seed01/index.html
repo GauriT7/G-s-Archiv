@@ -1,1 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Seed 01 — archive.gauri</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f5efe4;
+      --burgundy: #641b2b;
+      --ink: #29221f;
+      --soft: #b9a99b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 25px 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      color: var(--burgundy);
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .back {
+      color: var(--burgundy);
+      text-decoration: none;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    /* MAIN */
+
+    main {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 30px 100px;
+    }
+
+    .seed-world {
+      position: relative;
+      width: min(100%, 1050px);
+      min-height: 650px;
+    }
+
+    /* TITLE */
+
+    .title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 5;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--burgundy);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 0.9;
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      font-size: 18px;
+      font-style: italic;
+      color: #665954;
+    }
+
+    /* THREADS */
+
+    .thread {
+      position: absolute;
+      text-decoration: none;
+      color: var(--ink);
+      text-align: center;
+      transition: transform 300ms ease;
+      z-index: 4;
+    }
+
+    .thread:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .thread-name {
+      display: block;
+      color: var(--burgundy);
+      font-size: 28px;
+      font-style: italic;
+    }
+
+    .thread-note {
+      display: block;
+      margin-top: 4px;
+      color: #776a62;
+      font-size: 14px;
+    }
+
+    /* POSITIONS */
+
+    .art {
+      left: 18%;
+      top: 25%;
+      transform: translate(-50%, -50%);
+    }
+
+    .history {
+      left: 50%;
+      top: 10%;
+      transform: translate(-50%, -50%);
+    }
+
+    .food {
+      left: 82%;
+      top: 25%;
+      transform: translate(-50%, -50%);
+    }
+
+    .war {
+      left: 18%;
+      top: 75%;
+      transform: translate(-50%, -50%);
+    }
+
+    .economics {
+      left: 50%;
+      top: 90%;
+      transform: translate(-50%, -50%);
+    }
+
+    .people {
+      left: 82%;
+      top: 75%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* CONNECTIONS */
+
+    .line {
+      position: absolute;
+      height: 1px;
+      background: rgba(100, 27, 43, 0.22);
+      transform-origin: left center;
+      z-index: 1;
+    }
+
+    .line.one {
+      width: 330px;
+      left: 24%;
+      top: 30%;
+      transform: rotate(-28deg);
+    }
+
+    .line.two {
+      width: 330px;
+      left: 52%;
+      top: 30%;
+      transform: rotate(28deg);
+    }
+
+    .line.three {
+      width: 360px;
+      left: 24%;
+      top: 68%;
+      transform: rotate(28deg);
+    }
+
+    .line.four {
+      width: 360px;
+      left: 52%;
+      top: 68%;
+      transform: rotate(-28deg);
+    }
+
+    .line.five {
+      width: 300px;
+      left: 30%;
+      top: 35%;
+      transform: rotate(90deg);
+    }
+
+    /* FOOTNOTE */
+
+    .footer-note {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--soft);
+      font-size: 13px;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 20px;
+      }
+
+      main {
+        padding: 30px 20px 70px;
+      }
+
+      .seed-world {
+        min-height: 720px;
+      }
+
+      .thread-name {
+        font-size: 23px;
+      }
+
+      .thread-note {
+        font-size: 12px;
+      }
+
+      .art {
+        left: 16%;
+        top: 24%;
+      }
+
+      .history {
+        left: 50%;
+        top: 8%;
+      }
+
+      .food {
+        left: 84%;
+        top: 24%;
+      }
+
+      .war {
+        left: 16%;
+        top: 76%;
+      }
+
+      .economics {
+        left: 50%;
+        top: 92%;
+      }
+
+      .people {
+        left: 84%;
+        top: 76%;
+      }
+
+      .line {
+        opacity: 0.5;
+      }
+
+      .line.one,
+      .line.two,
+      .line.three,
+      .line.four {
+        width: 210px;
+      }
+
+      .line.five {
+        display: none;
+      }
+
+      .footer-note {
+        bottom: -25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="../index.html" class="brand">archive.gauri</a>
+    <a href="../index.html" class="back">← back to the pomegranate</a>
+  </header>
+
+  <main>
+
+    <section class="seed-world">
+
+      <!-- CONNECTIONS -->
+
+      <div class="line one"></div>
+      <div class="line two"></div>
+      <div class="line three"></div>
+      <div class="line four"></div>
+      <div class="line five"></div>
+
+
+      <!-- CENTRAL TITLE -->
+
+      <div class="title">
+        <div class="eyebrow">seed 01</div>
+
+        <h1>the web<br>of things</h1>
+
+        <div class="subtitle">
+          everything seems to belong to something else.
+        </div>
+      </div>
+
+
+      <!-- THREADS -->
+
+      <a href="#" class="thread art">
+        <span class="thread-name">art</span>
+        <span class="thread-note">what we choose to see</span>
+      </a>
+
+      <a href="#" class="thread history">
+        <span class="thread-name">history</span>
+        <span class="thread-note">things leaving traces</span>
+      </a>
+
+      <a href="#" class="thread food">
+        <span class="thread-name">food</span>
+        <span class="thread-note">culture, trade & memory</span>
+      </a>
+
+      <a href="#" class="thread war">
+        <span class="thread-name">war</span>
+        <span class="thread-note">power & consequence</span>
+      </a>
+
+      <a href="#" class="thread economics">
+        <span class="thread-name">economics</span>
+        <span class="thread-note">who gets what, and why</span>
+      </a>
+
+      <a href="#" class="thread people">
+        <span class="thread-name">people</span>
+        <span class="thread-note">the ones connecting it all</span>
+      </a>
+
+
+      <div class="footer-note">
+        pull one thread. see where it leads.
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
