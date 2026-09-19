@@ -426,7 +426,7 @@ figcaption {
 }
 
 /* =========================================================
-   WAR — INTERACTIVE SCENE
+   WAR — INTERvisible SCENE
 ========================================================= */
 
 #war {
@@ -492,7 +492,7 @@ figcaption {
   aspect-ratio: 1.45 / 1;
 }
 
-#war.active .story-image.large {
+#war.visible .story-image.large {
   opacity: 1;
   transform: translateY(0);
 }
@@ -555,28 +555,28 @@ figcaption {
 
 /* JS will add this */
 
-#war.active .chain span {
+#war.visible .chain span {
   opacity: 1;
   transform: translateX(0);
 }
 
-#war.active .chain span:nth-child(1) {
+#war.visible .chain span:nth-child(1) {
   transition-delay: .15s;
 }
 
-#war.active .chain span:nth-child(2) {
+#war.visible .chain span:nth-child(2) {
   transition-delay: .3s;
 }
 
-#war.active .chain span:nth-child(3) {
+#war.visible .chain span:nth-child(3) {
   transition-delay: .45s;
 }
 
-#war.active .chain span:nth-child(4) {
+#war.visible .chain span:nth-child(4) {
   transition-delay: .6s;
 }
 
-#war.active .chain span:nth-child(5) {
+#war.visible .chain span:nth-child(5) {
   transition-delay: .75s;
 }
 
@@ -1236,11 +1236,11 @@ figcaption {
   z-index: 20;
 }
 
-.web-node.active-thread {
+.web-node.visible-thread {
   transform: scale(1.08);
 }
 
-.web-node.active-thread::after {
+.web-node.visible-thread::after {
   opacity: 1;
   transform: scaleX(1);
 }
