@@ -554,72 +554,99 @@
 
     @media (max-width: 760px) {
 
-      header {
-        min-height: 95px;
+  header {
+    min-height: 88px;
+    padding: 14px 18px;
+  }
 
-        padding:
-          16px 20px;
-      }
+  .brand {
+    font-size: 17px;
+  }
 
-      .brand {
-        font-size: 18px;
-      }
+  .tagline {
+    font-size: 14px;
+  }
 
-      .tagline {
-        font-size: 15px;
-      }
+  .home-link {
+    left: 16px;
+    font-size: 11px;
+  }
 
-      .home-link {
-        left: 18px;
+  .about-page {
+    min-height: calc(100svh - 88px);
+    padding: 36px 18px 70px;
+    overflow: hidden;
+  }
 
-        font-size: 12px;
-      }
+  .about-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 
-      .about-page {
-        min-height:
-          calc(100svh - 95px);
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-        padding:
-          70px 24px 80px;
-      }
+  .bio-wrap {
+    order: 1;
+    width: 100%;
+    transform: none;
+    justify-content: center;
+  }
 
-      .about-content {
-        width: min(100%, 1160px);
-        grid-template-columns: 1.05fr 0.85fr;
-        gap: 15px;
-      }
+  .bio-image {
+    width: min(92vw, 520px);
+    max-height: none;
+    opacity: 0;
+    transform: translateY(10px);
+    animation:
+      content-arrive 900ms 900ms ease forwards;
+  }
 
-      .bio-wrap {
-        order: 1;
-      }
+  .photo-wrap {
+    order: 2;
+    width: 100%;
+    transform: none;
+    justify-content: center;
+    opacity: 0;
+    animation:
+      content-arrive 900ms 1100ms ease forwards;
+  }
 
-      .photo-wrap {
-        order: 2;
-      }
+  .photo {
+    width: min(82vw, 420px);
+    max-height: none;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 38px;
+  }
 
-      .bio-image {
-        width:
-          min(100%, 470px);
-      }
+  .photo-caption {
+    position: static;
 
-      .photo {
-        width:
-          min(82vw, 380px);
+    width: min(82vw, 420px);
 
-        max-height:
-          500px;
-      }
+    margin-top: 10px;
 
-      .morph-word {
-        font-size:
-          clamp(18px, 6vw, 25px);
-      }
+    font-size: 13px;
 
-      .photo-caption {
-        left: 12%;
-      }
+    text-align: left;
+  }
 
-    }
+  .whimsy-layer {
+    overflow: hidden;
+  }
+
+  .morph-word {
+    font-size: clamp(17px, 5vw, 23px);
+  }
+
+  .morph-item {
+    max-width: 90vw;
+  }
+
+}
 
 
 
@@ -798,33 +825,83 @@
   never underneath them.
 */
 
-const safeZones = [
+const width = window.innerWidth;
+const height = window.innerHeight;
 
-  // LEFT EDGE
-  { x: 5,  y: 24 },
-  { x: 5,  y: 52 },
-  { x: 5,  y: 80 },
+let safeZones;
 
-  // TOP
-  { x: 25, y: 10 },
-  { x: 50, y: 9 },
-  { x: 74, y: 10 },
+if (width <= 760 && height > width) {
 
-  // RIGHT EDGE
-  { x: 96, y: 28 },
-  { x: 96, y: 53 },
-  { x: 95, y: 80 },
+  // MOBILE PORTRAIT
 
-  // BOTTOM
-  { x: 25, y: 92 },
-  { x: 50, y: 93 },
-  { x: 73, y: 92 },
+  safeZones = [
 
-  // SMALL OUTER GAPS
-  { x: 8,  y: 38 },
-  { x: 91, y: 38 }
+    { x: 7,  y: 10 },
+    { x: 50, y: 8 },
+    { x: 93, y: 11 },
 
-];
+    { x: 5,  y: 28 },
+    { x: 95, y: 30 },
+
+    { x: 5,  y: 55 },
+    { x: 95, y: 57 },
+
+    { x: 7,  y: 80 },
+    { x: 50, y: 91 },
+    { x: 93, y: 82 }
+
+  ];
+
+} else if (width <= 900) {
+
+  // MOBILE LANDSCAPE / TABLET
+
+  safeZones = [
+
+    { x: 6,  y: 14 },
+    { x: 28, y: 9 },
+    { x: 52, y: 10 },
+    { x: 76, y: 9 },
+    { x: 95, y: 15 },
+
+    { x: 5,  y: 48 },
+    { x: 95, y: 48 },
+
+    { x: 8,  y: 86 },
+    { x: 32, y: 91 },
+    { x: 58, y: 90 },
+    { x: 86, y: 86 }
+
+  ];
+
+} else {
+
+  // DESKTOP
+
+  safeZones = [
+
+    { x: 5,  y: 24 },
+    { x: 5,  y: 52 },
+    { x: 5,  y: 80 },
+
+    { x: 25, y: 10 },
+    { x: 50, y: 9 },
+    { x: 74, y: 10 },
+
+    { x: 96, y: 28 },
+    { x: 96, y: 53 },
+    { x: 95, y: 80 },
+
+    { x: 25, y: 92 },
+    { x: 50, y: 93 },
+    { x: 73, y: 92 },
+
+    { x: 8,  y: 38 },
+    { x: 91, y: 38 }
+
+  ];
+
+}
 
 const position =
   safeZones[index % safeZones.length];
@@ -855,7 +932,9 @@ const y =
         random(0.30, 0.70);
 
       const size =
-        random(35, 65);
+        width <= 760
+        ? random(22, 38)
+        : random(35, 65);
 
       const floatTime =
         random(6500, 10500);
