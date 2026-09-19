@@ -401,9 +401,6 @@ figcaption {
    WAR
 ========================================================= */
 
-#war {
-  min-height: 620px;
-}
 
 #war .section-heading {
   align-items: center;
@@ -419,13 +416,6 @@ figcaption {
   margin-left: 9%;
 }
 
-#war .chain {
-  position: absolute;
-  right: 2%;
-  bottom: 75px;
-  width: 380px;
-  justify-content: flex-start;
-}
 
 #war .chain span {
   background: rgba(250, 247, 239, .65);
@@ -433,6 +423,149 @@ figcaption {
 
 #war .section-meta {
   margin-left: 3%;
+}
+
+/* =========================================================
+   WAR — INTERACTIVE SCENE
+========================================================= */
+
+#war {
+  position: relative;
+  width: min(1100px, 92vw);
+  height: 720px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* title */
+
+#war .section-meta {
+  position: absolute;
+  top: 55px;
+  left: 5%;
+  margin: 0;
+}
+
+#war h2 {
+  position: absolute;
+  top: 95px;
+  left: 5%;
+  width: 470px;
+  margin: 0;
+
+  font-size: clamp(55px, 6vw, 82px);
+  line-height: .86;
+}
+
+/* supporting sentence */
+
+#war .section-heading p {
+  position: absolute;
+  top: 115px;
+  right: 7%;
+  width: 210px;
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* image */
+
+#war .story-image.large {
+  position: absolute;
+  top: 285px;
+  left: 8%;
+
+  width: 48%;
+  margin: 0;
+}
+
+#war .story-image.large img {
+  aspect-ratio: 1.45 / 1;
+}
+
+/* chain */
+
+#war .chain {
+  position: absolute;
+  top: 300px;
+  right: 5%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 260px;
+  margin: 0;
+  gap: 0;
+
+  font-size: 14px;
+}
+
+/* remove boxes */
+
+#war .chain span {
+  position: relative;
+
+  padding: 8px 0;
+  border: 0;
+
+  opacity: 0;
+  transform: translateX(-15px);
+
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+}
+
+/* connecting line */
+
+#war .chain span::before {
+  content: "";
+
+  position: absolute;
+  left: -18px;
+  top: 100%;
+
+  width: 1px;
+  height: 20px;
+
+  background: var(--burgundy);
+  opacity: .35;
+}
+
+/* final item */
+
+#war .chain span:last-child::before {
+  display: none;
+}
+
+/* JS will add this */
+
+#war.active .chain span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#war.active .chain span:nth-child(1) {
+  transition-delay: .15s;
+}
+
+#war.active .chain span:nth-child(2) {
+  transition-delay: .3s;
+}
+
+#war.active .chain span:nth-child(3) {
+  transition-delay: .45s;
+}
+
+#war.active .chain span:nth-child(4) {
+  transition-delay: .6s;
+}
+
+#war.active .chain span:nth-child(5) {
+  transition-delay: .75s;
 }
 
 /* =========================================================
