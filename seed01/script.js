@@ -1,28 +1,74 @@
 /* =========================================================
    SEED 01 — THE WEB OF THINGS
-   INTERACTION
+   Interaction + scroll choreography
 ========================================================= */
 
 
 /* ---------------------------------------------------------
-   1. THREAD CLICKS
+   1. THREAD NAVIGATION
 --------------------------------------------------------- */
 
 const nodes = document.querySelectorAll(".web-node");
 
-nodes.forEach((node) => {
+const threadMap = {
+  art: "art",
+  history: "people",
+  food: "food",
+  war: "war",
+  economics: "economics",
+  people: "people"
+};
 
+nodes.forEach(node => {
   node.addEventListener("click", () => {
+    const thread = node.dataset.thread;
+    const targetId = threadMap[thread];
 
-    const targetName = node.dataset.thread;
-    const target = document.getElementById(targetName);
+    const target = document.getElementById(targetId);
 
     if (!target) return;
 
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+    document.body.classList.add("thread-pulling");
+
+    setTimeout(() => {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 180);
+
+    setTimeout(() => {
+      document.body.classList.remove("thread-pulling");
+    }, 1000);
+  });
+});
+
+
+/* ---------------------------------------------------------
+   2. NODE HOVER — THE WEB RESPONDS
+--------------------------------------------------------- */
+
+nodes.forEach(node => {
+
+  node.addEventListener("mouseenter", () => {
+
+    nodes.forEach(other => {
+      if (other !== node) {
+        other.classList.add("node-dim");
+      }
     });
+
+    node.classList.add("node-focus");
+
+  });
+
+  node.addEventListener("mouseleave", () => {
+
+    nodes.forEach(other => {
+      other.classList.remove("node-dim");
+    });
+
+    node.classList.remove("node-focus");
 
   });
 
@@ -30,74 +76,92 @@ nodes.forEach((node) => {
 
 
 /* ---------------------------------------------------------
-   2. SCROLL REVEAL
+   3. STORY SECTION REVEAL
 --------------------------------------------------------- */
 
 const sections = document.querySelectorAll(".story-section");
 
-const observer = new IntersectionObserver(
-  (entries) => {
+const sectionObserver = new IntersectionObserver(
+  entries => {
 
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
 
       if (entry.isIntersecting) {
+
         entry.target.classList.add("visible");
+
+        /* stagger the internal elements */
+
+        const images = entry.target.querySelectorAll(
+          "img"
+        );
+
+        const text = entry.target.querySelectorAll(
+          "h2, h3, p, .story-chain, .story-question, .timeline"
+        );
+
+        images.forEach((image, i) => {
+          setTimeout(() => {
+            image.classList.add("image-visible");
+          }, 150 + i * 120);
+        });
+
+        text.forEach((element, i) => {
+          setTimeout(() => {
+            element.classList.add("text-visible");
+          }, 100 + i * 90);
+        });
+
       }
 
     });
 
   },
   {
-    threshold: 0.12
+    threshold: 0.18
   }
 );
 
-
-sections.forEach((section) => {
-  observer.observe(section);
+sections.forEach(section => {
+  sectionObserver.observe(section);
 });
 
 
 /* ---------------------------------------------------------
-   3. ACTIVE THREAD
-   As you move through the story, the corresponding
-   node on the opening web becomes slightly emphasized.
+   4. ACTIVE THREAD
 --------------------------------------------------------- */
 
-const sectionMap = [
-  { id: "war", node: "node-war" },
-  { id: "economics", node: "node-economics" },
-  { id: "food", node: "node-food" },
-  { id: "fashion", node: "node-art" },
-  { id: "art", node: "node-art" },
-  { id: "people", node: "node-people" }
-];
-
+const threadNodes = {
+  war: "node-war",
+  economics: "node-economics",
+  food: "node-food",
+  fashion: "node-art",
+  art: "node-art",
+  propaganda: "node-art",
+  media: "node-history",
+  people: "node-people"
+};
 
 const activeObserver = new IntersectionObserver(
-  (entries) => {
+  entries => {
 
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
 
       if (!entry.isIntersecting) return;
 
-      document
-        .querySelectorAll(".web-node")
-        .forEach((node) => node.classList.remove("active"));
+      nodes.forEach(node => {
+        node.classList.remove("active-thread");
+      });
 
+      const nodeId = threadNodes[entry.target.id];
 
-      const match = sectionMap.find(
-        item => item.id === entry.target.id
-      );
+      if (nodeId) {
 
+        const activeNode =
+          document.getElementById(nodeId);
 
-      if (match) {
-
-        const node =
-          document.querySelector("." + match.node);
-
-        if (node) {
-          node.classList.add("active");
+        if (activeNode) {
+          activeNode.classList.add("active-thread");
         }
 
       }
@@ -110,153 +174,41 @@ const activeObserver = new IntersectionObserver(
   }
 );
 
-
-sections.forEach((section) => {
+sections.forEach(section => {
   activeObserver.observe(section);
 });
 
 
 /* ---------------------------------------------------------
-   4. MAKE ACTIVE NODE LOOK ALIVE
---------------------------------------------------------- */
-
-const interactionStyle = document.createElement("style");
-
-interactionStyle.textContent = `
-
-  .web-node.active strong {
-    transform: translateY(-2px);
-  }
-
-  .web-node.active::after {
-    opacity: .8;
-    transform: translateY(0);
-  }
-
-  .web-node.active {
-    transform: translate(-50%, -50%) scale(1.08);
-  }
-
-`;
-
-document.head.appendChild(interactionStyle);
-
-
-/* ---------------------------------------------------------
-   5. IMAGE LIGHTBOX
-   Click photographs to enlarge them.
---------------------------------------------------------- */
-
-const clickableImages = document.querySelectorAll(
-  ".story-section img"
-);
-
-
-const lightbox = document.createElement("div");
-
-lightbox.className = "lightbox";
-
-lightbox.innerHTML = `
-  <button class="lightbox-close" aria-label="Close">×</button>
-  <img src="" alt="">
-  <div class="lightbox-caption"></div>
-`;
-
-document.body.appendChild(lightbox);
-
-
-const lightboxImage =
-  lightbox.querySelector("img");
-
-const lightboxCaption =
-  lightbox.querySelector(".lightbox-caption");
-
-
-clickableImages.forEach((image) => {
-
-  image.style.cursor = "zoom-in";
-
-  image.addEventListener("click", () => {
-
-    lightboxImage.src =
-      image.currentSrc || image.src;
-
-    lightboxImage.alt =
-      image.alt || "";
-
-    const caption =
-      image.closest("figure")?.querySelector("figcaption");
-
-    lightboxCaption.textContent =
-      caption ? caption.textContent : image.alt;
-
-    lightbox.classList.add("open");
-
-  });
-
-});
-
-
-function closeLightbox() {
-  lightbox.classList.remove("open");
-}
-
-
-lightbox.addEventListener("click", (event) => {
-
-  if (
-    event.target === lightbox ||
-    event.target.classList.contains("lightbox-close")
-  ) {
-    closeLightbox();
-  }
-
-});
-
-
-document.addEventListener("keydown", (event) => {
-
-  if (event.key === "Escape") {
-    closeLightbox();
-  }
-
-});
-
-
-/* ---------------------------------------------------------
-   6. GENTLE IMAGE MOVEMENT
+   5. IMAGE PARALLAX
 --------------------------------------------------------- */
 
 const parallaxImages =
-  document.querySelectorAll(
-    ".story-image img"
-  );
+  document.querySelectorAll(".story-image img");
 
+function updateParallax() {
 
-function moveImages() {
+  const viewportCentre =
+    window.innerHeight / 2;
 
-  parallaxImages.forEach((image) => {
+  parallaxImages.forEach(image => {
 
-    const rect =
-      image.getBoundingClientRect();
+    const rect = image.getBoundingClientRect();
 
-    const screenMiddle =
-      window.innerHeight / 2;
-
-    const imageMiddle =
+    const imageCentre =
       rect.top + rect.height / 2;
 
     const distance =
-      imageMiddle - screenMiddle;
+      imageCentre - viewportCentre;
 
     const movement =
       Math.max(
-        -7,
-        Math.min(7, distance * -0.012)
+        -18,
+        Math.min(18, distance * -0.035)
       );
 
     image.style.setProperty(
-      "--image-offset",
+      "--parallax",
       `${movement}px`
     );
 
@@ -264,118 +216,201 @@ function moveImages() {
 
 }
 
-
 window.addEventListener(
   "scroll",
-  moveImages,
+  updateParallax,
   { passive: true }
 );
 
-moveImages();
+window.addEventListener(
+  "resize",
+  updateParallax
+);
+
+updateParallax();
 
 
 /* ---------------------------------------------------------
-   7. FINAL WEB — HOVER CONNECTION
+   6. CHAIN — ONE IDEA AT A TIME
 --------------------------------------------------------- */
 
-const finalNodes =
-  document.querySelectorAll(".final-web span");
+document
+  .querySelectorAll(".story-chain")
+  .forEach(chain => {
 
+    const pieces =
+      chain.querySelectorAll("span");
 
-finalNodes.forEach((node) => {
+    pieces.forEach((piece, i) => {
 
-  node.addEventListener("mouseenter", () => {
-
-    finalNodes.forEach((other) => {
-
-      if (other !== node) {
-        other.style.opacity = "0.3";
-      }
+      piece.style.transitionDelay =
+        `${i * 100}ms`;
 
     });
 
   });
 
 
-  node.addEventListener("mouseleave", () => {
+/* ---------------------------------------------------------
+   7. FINAL WEB — EVERYTHING RECONNECTS
+--------------------------------------------------------- */
 
-    finalNodes.forEach((other) => {
-      other.style.opacity = "1";
+const finalWeb =
+  document.querySelector(".final-web");
+
+if (finalWeb) {
+
+  const finalNodes =
+    finalWeb.querySelectorAll("span");
+
+  finalNodes.forEach(node => {
+
+    node.addEventListener("mouseenter", () => {
+
+      finalNodes.forEach(other => {
+
+        if (other !== node) {
+          other.classList.add("final-dim");
+        }
+
+      });
+
+      node.classList.add("final-focus");
+
+    });
+
+    node.addEventListener("mouseleave", () => {
+
+      finalNodes.forEach(other => {
+        other.classList.remove("final-dim");
+      });
+
+      node.classList.remove("final-focus");
+
     });
 
   });
 
-});
+}
 
 
 /* ---------------------------------------------------------
    8. SCROLL PROGRESS
 --------------------------------------------------------- */
 
-window.addEventListener("scroll", () => {
+function updateScrollProgress() {
 
-  const scrollTop = window.scrollY;
+  const scrollTop =
+    window.scrollY;
 
-  const pageHeight =
+  const documentHeight =
     document.documentElement.scrollHeight -
     window.innerHeight;
 
   const progress =
-    pageHeight > 0
-      ? scrollTop / pageHeight
+    documentHeight > 0
+      ? scrollTop / documentHeight
       : 0;
 
-  document.body.style.setProperty(
-    "--scroll",
-    progress
-  );
+  document.documentElement.style
+    .setProperty(
+      "--scroll-progress",
+      progress
+    );
 
-});
-
-
-/* ---------------------------------------------------------
-   9. TINY THREAD PARALLAX
---------------------------------------------------------- */
-
-const webLines =
-  document.querySelector(".web-lines");
-
+}
 
 window.addEventListener(
   "scroll",
-  () => {
-
-    if (!webLines) return;
-
-    const movement =
-      Math.min(window.scrollY * 0.015, 12);
-
-    webLines.style.transform =
-      `translateY(${movement}px)`;
-
-  },
+  updateScrollProgress,
   { passive: true }
 );
 
-/* =========================================================
-   WAR SCENE — ACTIVE ON SCROLL
-========================================================= */
+updateScrollProgress();
 
-const warScene = document.querySelector("#war");
 
-if (warScene) {
-  const warObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        warScene.classList.add("active");
-      } else {
-        warScene.classList.remove("active");
-      }
-    },
-    {
-      threshold: 0.35
-    }
-  );
+/* ---------------------------------------------------------
+   9. LIGHTBOX
+--------------------------------------------------------- */
 
-  warObserver.observe(warScene);
-}
+document
+  .querySelectorAll(".story-section img")
+  .forEach(img => {
+
+    img.style.cursor = "zoom-in";
+
+    img.addEventListener("click", () => {
+
+      const overlay =
+        document.createElement("div");
+
+      overlay.className =
+        "lightbox";
+
+      const image =
+        document.createElement("img");
+
+      image.src = img.src;
+      image.alt = img.alt;
+
+      const close =
+        document.createElement("button");
+
+      close.className =
+        "lightbox-close";
+
+      close.innerHTML = "×";
+
+      overlay.appendChild(close);
+      overlay.appendChild(image);
+
+      document.body.appendChild(overlay);
+
+      requestAnimationFrame(() => {
+        overlay.classList.add("open");
+      });
+
+      const remove = () => {
+
+        overlay.classList.remove("open");
+
+        setTimeout(() => {
+          overlay.remove();
+        }, 300);
+
+      };
+
+      close.addEventListener(
+        "click",
+        remove
+      );
+
+      overlay.addEventListener(
+        "click",
+        event => {
+
+          if (event.target === overlay) {
+            remove();
+          }
+
+        }
+      );
+
+      document.addEventListener(
+        "keydown",
+        function escape(event) {
+
+          if (event.key === "Escape") {
+            remove();
+            document.removeEventListener(
+              "keydown",
+              escape
+            );
+          }
+
+        }
+      );
+
+    });
+
+  });
