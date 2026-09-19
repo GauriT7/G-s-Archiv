@@ -195,7 +195,7 @@
 
       opacity: 0;
 
-      transform: translateX(-25px);
+      transform: translateX(-40px);
 
       animation:
         content-arrive 1000ms 1450ms ease forwards;
@@ -367,7 +367,7 @@
 
     .word-changing {
   animation:
-    word-change-out 700ms ease-in-out forwards;
+    word-change-out 1000ms ease-in-out forwards;
 }
 
 @keyframes word-change-out {
@@ -377,7 +377,12 @@
     filter: blur(0);
   }
 
-  50% {
+  45% {
+    opacity: 0.35;
+    filter: blur(2px);
+  }
+
+  75% {
     opacity: 0;
     filter: blur(5px);
   }
@@ -813,8 +818,8 @@ const safeZones = [
   { x: 71, y: 91 },
 
   // LITTLE CORNERS / GAPS
-  { x: 17, y: 36 },
-  { x: 84, y: 36 }
+  { x: 11, y: 35 },
+  { x: 91, y: 36 }
 
 ];
 
@@ -828,10 +833,10 @@ const position =
 */
 
 const x =
-  position.x + random(-1.2, 1.2);
+  position.x + random(-2, 2);
 
 const y =
-  position.y + random(-1.5, 1.5);
+  position.y + random(-2, 2);
 
 
       const rotation =
