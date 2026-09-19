@@ -1,20 +1,24 @@
-const threadNodes = document.querySelectorAll(".thread-node");
+const revealElements = document.querySelectorAll(
+    ".story-section, .chain, .fashion-item, .art-gallery figure, .poster-wall img, .media-timeline div, .people-statement, .final-thread span, .ending p"
+);
 
-function revealThread() {
 
-    threadNodes.forEach((node, index) => {
+function revealOnScroll() {
 
-        const position = node.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
+    revealElements.forEach((element) => {
 
-        if (position < windowHeight * 0.75) {
-            node.classList.add("visible");
+        const position = element.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        if (position < screenHeight * 0.82) {
+            element.classList.add("revealed");
         }
 
     });
 
 }
 
-window.addEventListener("scroll", revealThread);
 
-revealThread();
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
