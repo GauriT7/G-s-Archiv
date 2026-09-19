@@ -258,7 +258,7 @@
       position: absolute;
       inset: 0;
 
-      z-index: 2;
+      z-index: 5;
 
       pointer-events: none;
       overflow: hidden;
@@ -281,24 +281,23 @@
     */
 
     .morph-item {
-      position: absolute;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
 
-      left: var(--x);
-      top: var(--y);
+  width: max-content;
+  height: max-content;
 
-      width: max-content;
+  opacity: 1;
 
-      opacity: 0;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--rotation));
 
-      transform:
-        translate(-50%, -50%)
-        rotate(var(--rotation));
+  pointer-events: none;
 
-      animation:
-        item-enter 2800ms var(--delay)
-        cubic-bezier(.16, .8, .3, 1)
-        forwards;
-    }
+  z-index: 3;
+}
 
 
 
@@ -317,7 +316,7 @@
   transform: rotate(var(--seed-rotation));
 
   animation:
-    seed-vanish 1800ms
+    seed-vanish 2200ms
     calc(var(--delay) + 3200ms)
     ease-in-out forwards;
 }
@@ -327,46 +326,44 @@
     /* Word begins hidden */
 
     .morph-word {
-      position: absolute;
+  position: absolute;
 
-      left: 50%;
-      top: 50%;
+  left: 50%;
+  top: 50%;
 
-      transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-      white-space: nowrap;
+  white-space: nowrap;
 
-      color: var(--burgundy);
+  color: var(--burgundy);
 
-      font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
 
-      font-size:
-        clamp(19px, 2vw, 31px);
+  font-size:
+    clamp(19px, 2vw, 31px);
 
-      font-weight: 600;
+  font-weight: 600;
+  font-style: italic;
 
-      font-style: italic;
+  opacity: 0;
 
-      opacity: 0;
+  animation:
+    word-appear 1400ms
+    calc(var(--delay) + 3450ms)
+    ease forwards,
 
-      animation:
+    word-float var(--float-time)
+    calc(var(--delay) + 4800ms)
+    ease-in-out infinite alternate,
 
-        word-appear 1400ms
-        calc(var(--delay) + 3450ms)
-        ease forwards,
-
-        word-float var(--float-time)
-        calc(var(--delay) + 4800ms)
-        ease-in-out infinite alternate,
-
-        word-breathe var(--breathe-time)
-        calc(var(--delay) + 4500ms)
-        ease-in-out infinite alternate;
-    }
-
+    word-breathe var(--breathe-time)
+    calc(var(--delay) + 4500ms)
+    ease-in-out infinite alternate;
+}
+    
     .word-changing {
   animation:
     word-change-out 1000ms ease-in-out forwards;
@@ -400,53 +397,10 @@
 
     /*
       Seed falls from above screen
-      into final random position
+      into final random position- removed
     */
 
-    @keyframes item-enter {
-
-  0% {
-    opacity: 0;
-
-    transform:
-      translate(-50%, -65vh)
-      rotate(-18deg);
-  }
-
-  35% {
-    opacity: 1;
-  }
-
-  72% {
-    transform:
-      translate(-50%, -50%)
-      translateY(18px)
-      rotate(calc(var(--rotation) + 4deg));
-  }
-
-  86% {
-    transform:
-      translate(-50%, -50%)
-      translateY(-5px)
-      rotate(calc(var(--rotation) - 2deg));
-  }
-
-  94% {
-    transform:
-      translate(-50%, -50%)
-      translateY(2px)
-      rotate(var(--rotation));
-  }
-
-  100% {
-    opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--rotation));
-  }
-
-}
+    
 
 
 
