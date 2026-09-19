@@ -141,14 +141,14 @@
       position: relative;
       z-index: 10;
 
-      width: min(100%, 1120px);
+      width: min(100%, 1160px);
 
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
+      grid-template-columns: 1.05fr 0.85fr;
 
       align-items: center;
 
-      gap: clamp(25px, 4vw, 55px);
+      gap: 0;
 
     }
 
@@ -162,13 +162,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      transform: translateX(25px);
     }
 
     .bio-image {
       display: block;
 
       width: min(100%, 630px);
-      max-height: 680px;
+      max-height: 700px;
 
       object-fit: contain;
 
@@ -195,7 +197,7 @@
 
       opacity: 0;
 
-      transform: translateX(-40px);
+      transform: translateX(-58px);
 
       animation:
         content-arrive 1000ms 1450ms ease forwards;
@@ -799,28 +801,28 @@
 const safeZones = [
 
   // LEFT EDGE
-  { x: 7,  y: 25 },
-  { x: 7,  y: 52 },
-  { x: 8,  y: 78 },
+  { x: 5,  y: 24 },
+  { x: 5,  y: 52 },
+  { x: 5,  y: 80 },
 
   // TOP
   { x: 25, y: 10 },
-  { x: 48, y: 9 },
-  { x: 72, y: 10 },
+  { x: 50, y: 9 },
+  { x: 74, y: 10 },
 
-  // RIGHT OF PHOTO
-  { x: 95, y: 27 },
+  // RIGHT EDGE
+  { x: 96, y: 28 },
   { x: 96, y: 53 },
-  { x: 95, y: 78 },
+  { x: 95, y: 80 },
 
   // BOTTOM
-  { x: 24, y: 91 },
-  { x: 47, y: 92 },
-  { x: 71, y: 91 },
+  { x: 25, y: 92 },
+  { x: 50, y: 93 },
+  { x: 73, y: 92 },
 
-  // LITTLE CORNERS / GAPS
-  { x: 11, y: 35 },
-  { x: 91, y: 36 }
+  // SMALL OUTER GAPS
+  { x: 8,  y: 38 },
+  { x: 91, y: 38 }
 
 ];
 
@@ -834,10 +836,10 @@ const position =
 */
 
 const x =
-  position.x + random(-2, 2);
+  position.x + random(-1.5, 1.5);
 
 const y =
-  position.y + random(-2, 2);
+  position.y + random(-1.5, 1.5);
 
 
       const rotation =
