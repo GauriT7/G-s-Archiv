@@ -479,10 +479,22 @@ figcaption {
 
   width: 48%;
   margin: 0;
+
+  opacity: 0;
+  transform: translateY(35px);
+
+  transition:
+    opacity .9s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1);
 }
 
 #war .story-image.large img {
   aspect-ratio: 1.45 / 1;
+}
+
+#war.active .story-image.large {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* chain */
