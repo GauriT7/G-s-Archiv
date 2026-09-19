@@ -311,14 +311,22 @@
 
   object-fit: contain;
 
-  opacity: 1;
+  opacity: 0;
 
-  transform: rotate(var(--seed-rotation));
+  transform:
+    translateY(-65vh)
+    rotate(var(--seed-rotation));
 
   animation:
-    seed-vanish 2200ms
-    calc(var(--delay) + 3200ms)
-    ease-in-out forwards;
+    seed-fall 3200ms
+    var(--delay)
+    cubic-bezier(.16, .8, .3, 1)
+    forwards,
+
+    seed-vanish 1800ms
+    calc(var(--delay) + 4200ms)
+    ease-in-out
+    forwards;
 }
 
 
@@ -399,6 +407,78 @@
       Seed falls from above screen
       into final random position- removed
     */
+
+    @keyframes seed-fall {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(-65vh)
+      rotate(-18deg);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  72% {
+    transform:
+      translateY(18px)
+      rotate(calc(var(--seed-rotation) + 4deg));
+  }
+
+  86% {
+    transform:
+      translateY(-5px)
+      rotate(calc(var(--seed-rotation) - 2deg));
+  }
+
+  94% {
+    transform:
+      translateY(2px)
+      rotate(var(--seed-rotation));
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(var(--seed-rotation));
+  }
+}
+
+
+@keyframes seed-vanish {
+
+  0% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(var(--seed-rotation))
+      scale(1);
+  }
+
+  60% {
+    opacity: 0.7;
+
+    transform:
+      translateY(0)
+      rotate(var(--seed-rotation))
+      scale(0.92);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(0)
+      rotate(var(--seed-rotation))
+      scale(0.72);
+  }
+}
 
     
 
