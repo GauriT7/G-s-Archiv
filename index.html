@@ -813,6 +813,14 @@
             Close entry
           </button>
 
+          <button
+            class="archive-button"
+            id="open-entry"
+          >
+  
+            Open entry →
+          </button>
+
         </div>
       </section>
 
@@ -963,6 +971,13 @@ function openArchive() {
         button.setAttribute("aria-pressed", "false");
       });
     }
+    
+    document.getElementById("open-entry").addEventListener("click", () => {
+      if (selectedSeed === 1) {
+        window.location.href = "./seed01/index.html";
+      }
+    });
+ 
 
     /* RETURN TO THE OPENING SCREEN */
 
