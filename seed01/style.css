@@ -1458,3 +1458,24 @@ body.thread-pulling .web-node {
   }
 
 }
+/* =========================================================
+   IMAGE INTEGRITY — NEVER CROP THE ARCHIVE
+========================================================= */
+
+.story-section img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+.story-image {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.story-image img {
+  height: auto !important;
+  object-fit: contain !important;
+}
