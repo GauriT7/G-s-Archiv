@@ -426,158 +426,290 @@ figcaption {
 }
 
 /* =========================================================
-   WAR — INTERvisible SCENE
+   WAR — INTERACTIVE SCENE
 ========================================================= */
 
 #war {
   position: relative;
   width: min(1100px, 92vw);
-  height: 720px;
+  min-height: 760px;
   margin: 0 auto;
   padding: 0;
 }
 
-/* title */
+
+/* -------------------------
+   META
+------------------------- */
 
 #war .section-meta {
   position: absolute;
   top: 55px;
-  left: 5%;
+  left: 4%;
   margin: 0;
+
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .12em;
 }
+
+
+/* -------------------------
+   MAIN HEADLINE
+------------------------- */
 
 #war h2 {
   position: absolute;
-  top: 95px;
-  left: 5%;
-  width: 470px;
+
+  top: 105px;
+  left: 4%;
+
+  width: 520px;
   margin: 0;
 
-  font-size: clamp(55px, 6vw, 82px);
-  line-height: .86;
+  font-size: clamp(58px, 6.5vw, 88px);
+  line-height: .82;
+  font-weight: 400;
+  letter-spacing: -.035em;
+
+  z-index: 5;
 }
 
-/* supporting sentence */
+
+/* -------------------------
+   SUPPORTING TEXT
+------------------------- */
 
 #war .section-heading p {
   position: absolute;
-  top: 115px;
-  right: 7%;
-  width: 210px;
+
+  top: 125px;
+  right: 4%;
+
+  width: 190px;
   margin: 0;
 
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.4;
+
+  z-index: 5;
 }
 
-/* image */
+
+/* -------------------------
+   IMAGE
+------------------------- */
 
 #war .story-image.large {
-  position: absolute;
-  top: 285px;
-  left: 8%;
 
-  width: 48%;
+  position: absolute;
+
+  top: 285px;
+  left: 4%;
+
+  width: 55%;
   margin: 0;
 
+  z-index: 2;
+
   opacity: 0;
-  transform: translateY(35px);
+
+  transform:
+    translateX(-70px)
+    translateY(30px);
 
   transition:
-    opacity .9s ease,
-    transform 1s cubic-bezier(.2,.8,.2,1);
+    opacity 1s ease,
+    transform 1.2s cubic-bezier(.16,.8,.25,1);
 }
 
-#war .story-image.large img {
-  aspect-ratio: 1.45 / 1;
-}
 
 #war.visible .story-image.large {
+
   opacity: 1;
-  transform: translateY(0);
+
+  transform:
+    translateX(0)
+    translateY(0);
 }
 
-/* chain */
+
+/* DON'T FORCE A RATIO */
+
+#war .story-image.large img {
+
+  width: 100%;
+  height: auto !important;
+
+  aspect-ratio: auto !important;
+
+  object-fit: contain !important;
+
+  box-shadow:
+    0 18px 45px rgba(59,48,44,.08);
+}
+
+
+/* -------------------------
+   IMAGE CAPTION
+------------------------- */
+
+#war .story-image > span {
+
+  margin-top: 8px;
+
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .05em;
+
+  color: var(--muted);
+}
+
+
+/* -------------------------
+   THE THREAD
+------------------------- */
 
 #war .chain {
+
   position: absolute;
-  top: 300px;
-  right: 5%;
+
+  top: 330px;
+  right: 4%;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
   width: 260px;
+
   margin: 0;
+  padding-left: 25px;
+
   gap: 0;
 
   font-size: 14px;
+
+  z-index: 5;
 }
 
-/* remove boxes */
 
-#war .chain span {
-  position: relative;
+/* vertical thread */
 
-  padding: 8px 0;
-  border: 0;
+#war .chain::before {
 
-  opacity: 0;
-  transform: translateX(-15px);
-
-  transition:
-    opacity .5s ease,
-    transform .5s ease;
-}
-
-/* connecting line */
-
-#war .chain span::before {
   content: "";
 
   position: absolute;
-  left: -18px;
-  top: 100%;
+
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
 
   width: 1px;
-  height: 20px;
 
   background: var(--burgundy);
-  opacity: .35;
+
+  transform-origin: top;
+
+  transform: scaleY(0);
+
+  transition:
+    transform 1.4s cubic-bezier(.16,.8,.25,1);
 }
 
-/* final item */
 
-#war .chain span:last-child::before {
-  display: none;
+#war.visible .chain::before {
+
+  transform: scaleY(1);
 }
 
-/* JS will add this */
+
+/* individual thread points */
+
+#war .chain span {
+
+  position: relative;
+
+  padding: 10px 0;
+
+  border: 0;
+
+  opacity: 0;
+
+  transform: translateX(-25px);
+
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.16,.8,.25,1);
+}
+
+
+/* little node */
+
+#war .chain span::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: -25px;
+  top: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  border: 1px solid var(--burgundy);
+
+  border-radius: 50%;
+
+  background: var(--paper);
+
+  transform:
+    translateY(-50%)
+    scale(0);
+
+  transition:
+    transform .4s ease;
+}
+
 
 #war.visible .chain span {
+
   opacity: 1;
+
   transform: translateX(0);
 }
 
+
+#war.visible .chain span::before {
+
+  transform:
+    translateY(-50%)
+    scale(1);
+}
+
+
+/* stagger */
+
 #war.visible .chain span:nth-child(1) {
-  transition-delay: .15s;
+  transition-delay: .2s;
 }
 
 #war.visible .chain span:nth-child(2) {
-  transition-delay: .3s;
+  transition-delay: .4s;
 }
 
 #war.visible .chain span:nth-child(3) {
-  transition-delay: .45s;
-}
-
-#war.visible .chain span:nth-child(4) {
   transition-delay: .6s;
 }
 
+#war.visible .chain span:nth-child(4) {
+  transition-delay: .8s;
+}
+
 #war.visible .chain span:nth-child(5) {
-  transition-delay: .75s;
+  transition-delay: 1s;
 }
 
 /* =========================================================
