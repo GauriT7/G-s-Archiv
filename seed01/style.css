@@ -261,9 +261,8 @@ img {
   top: 76%;
 }
 
-
 /* =========================================================
-   STORY
+   STORY — COMPACT VISUAL SCENES
 ========================================================= */
 
 #story {
@@ -272,14 +271,13 @@ img {
 
 .story-section {
   position: relative;
-  width: min(1000px, calc(100% - 80px));
-  min-height: auto;
+  width: min(1080px, 92vw);
   margin: 0 auto;
-  padding: 90px 0;
+  padding: 70px 0;
   scroll-margin-top: 40px;
 
   opacity: 0;
-  transform: translateY(25px);
+  transform: translateY(20px);
 
   transition:
     opacity .8s ease,
@@ -295,6 +293,10 @@ img {
   min-height: auto;
 }
 
+.section-meta {
+  margin-bottom: 20px;
+}
+
 
 /* =========================================================
    SECTION HEADINGS
@@ -304,31 +306,30 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 55px;
+  gap: 60px;
 }
 
 .story-section h2 {
   margin: 0;
-  max-width: 650px;
+  max-width: 680px;
   color: var(--burgundy);
-  font-size: clamp(38px, 4.5vw, 64px);
-  line-height: .9;
+  font-size: clamp(44px, 5.2vw, 72px);
+  line-height: .88;
   font-weight: 400;
-  letter-spacing: -.02em;
+  letter-spacing: -.025em;
 }
 
 .section-heading p,
 .body-copy {
-  max-width: 300px;
+  max-width: 280px;
   margin: 0;
   color: var(--muted);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
-
 /* =========================================================
-   IMAGES
+   SCENE IMAGES
 ========================================================= */
 
 .story-image {
@@ -336,6 +337,7 @@ img {
 }
 
 .story-image img {
+  display: block;
   width: 100%;
   object-fit: cover;
 
@@ -350,7 +352,7 @@ img {
 
 .story-image.large {
   width: 58%;
-  margin: 48px auto 0;
+  margin: 35px auto 0;
 }
 
 .story-image.large img {
@@ -360,25 +362,25 @@ img {
 .story-image > span,
 figcaption {
   display: block;
-  margin-top: 9px;
+  margin-top: 7px;
   font-family: var(--mono);
   font-size: 8px;
   letter-spacing: .06em;
   color: var(--muted);
 }
 
-
 /* =========================================================
-   CHAINS
+   THREADS / CHAINS
 ========================================================= */
+
 .chain {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 6px;
 
-  margin: 38px auto 0;
+  margin: 30px auto 0;
   max-width: 820px;
 
   font-size: 14px;
@@ -395,42 +397,86 @@ figcaption {
   font-style: normal;
 }
 
-
 /* =========================================================
-   SPLITS
+   WAR
 ========================================================= */
 
-.split {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 90px;
+#war {
+  min-height: 620px;
+}
+
+#war .section-heading {
   align-items: center;
 }
 
-.split .story-image img {
-  max-height: 500px;
+#war .section-heading h2 {
+  max-width: 500px;
+}
+
+#war .story-image.large {
+  width: 54%;
+  margin-top: 32px;
+  margin-left: 9%;
+}
+
+#war .chain {
+  position: absolute;
+  right: 2%;
+  bottom: 75px;
+  width: 380px;
+  justify-content: flex-start;
+}
+
+#war .chain span {
+  background: rgba(250, 247, 239, .65);
+}
+
+#war .section-meta {
+  margin-left: 3%;
+}
+
+/* =========================================================
+   ECONOMICS
+========================================================= */
+
+#economics {
+  min-height: 560px;
+  padding-top: 45px;
+}
+
+#economics .split {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 55px;
+  align-items: center;
+}
+
+#economics .split .story-image img {
+  width: 100%;
+  max-height: 420px;
   object-fit: cover;
 }
 
+#economics .body-copy {
+  max-width: 310px;
+}
 
-/* =========================================================
-   ECONOMICS QUESTION
-========================================================= */
-
-.question {
-  margin: 90px 0 0;
-  text-align: center;
+#economics .question {
+  margin: 45px 0 0;
+  text-align: right;
 
   color: var(--burgundy);
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(36px, 4.5vw, 58px);
+  line-height: .9;
   font-style: italic;
 }
 
-.question small {
+#economics .question small {
   display: block;
-  margin-top: 8px;
+  margin-top: 7px;
+
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 8px;
   font-style: normal;
   letter-spacing: .08em;
   color: var(--muted);
@@ -441,12 +487,32 @@ figcaption {
    FOOD
 ========================================================= */
 
-.food-layout .story-image img {
+#food {
+  min-height: 540px;
+  padding-top: 50px;
+}
+
+#food .section-heading {
+  align-items: center;
+}
+
+#food .section-heading h2 {
+  max-width: 560px;
+}
+
+#food .story-image {
+  width: 48%;
+  margin: 35px 8% 0 auto;
+}
+
+#food .story-image img {
   aspect-ratio: 4 / 3;
 }
 
-.mini-chain {
-  margin-top: 40px;
+#food .mini-chain {
+  margin-top: 22px;
+  margin-left: 8%;
+
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: .08em;
