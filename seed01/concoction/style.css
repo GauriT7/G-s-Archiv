@@ -1,1 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
 
+
+/* -------------------------
+   BASIC RESET
+------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4efe6;
+    color: #4b1720;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+}
+
+
+/* -------------------------
+   OPENING
+------------------------- */
+
+.opening {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    margin-bottom: 35px;
+    opacity: 0.7;
+}
+
+
+h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(70px, 11vw, 150px);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+}
+
+
+.intro {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+
+    font-size: 22px;
+
+    margin-top: 45px;
+
+    opacity: 0.8;
+}
+
+
+/* -------------------------
+   THREAD INTRO
+------------------------- */
+
+.thread-intro {
+    min-height: 140vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 18vh;
+}
+
+
+.small-text {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    margin-bottom: 100px;
+
+    opacity: 0.6;
+}
+
+
+.web {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.thread-node {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(32px, 5vw, 65px);
+
+    letter-spacing: 0.04em;
+
+    transition: opacity 0.4s ease;
+}
+
+
+.thread-line {
+    width: 1px;
+    height: 100px;
+
+    background: #4b1720;
+
+    opacity: 0.35;
+}
+
+
+/* -------------------------
+   STATEMENT
+------------------------- */
+
+.statement {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 100px 40px;
+}
+
+
+.statement p {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(35px, 5vw, 65px);
+
+    line-height: 1.05;
+
+    margin-bottom: 60px;
+}
+
+
+.statement p:last-child {
+    font-style: italic;
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 600px) {
+
+    .opening {
+        padding: 25px;
+    }
+
+    .thread-intro {
+        padding-top: 12vh;
+    }
+
+    .thread-line {
+        height: 70px;
+    }
+
+    .statement {
+        padding: 80px 25px;
+    }
+
+}
