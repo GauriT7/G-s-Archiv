@@ -657,3 +657,46 @@ figcaption {
         font-size: 20px;
     }
 }
+
+/* =====================================================
+   SCROLL REVEALS
+===================================================== */
+
+.story-section,
+.chain,
+.fashion-item,
+.art-gallery figure,
+.poster-wall img,
+.media-timeline div,
+.people-statement,
+.final-thread span,
+.ending p {
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Slightly different movement for images */
+
+.art-gallery figure,
+.poster-wall img,
+.fashion-item {
+    transform: translateY(50px) scale(0.97);
+}
+
+
+.art-gallery figure.revealed,
+.poster-wall img.revealed,
+.fashion-item.revealed {
+    transform: translateY(0) scale(1);
+}
