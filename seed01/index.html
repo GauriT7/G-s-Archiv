@@ -8,376 +8,653 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     :root {
-      --cream: #f5efe4;
-      --burgundy: #641b2b;
-      --ink: #29221f;
-      --soft: #b9a99b;
+      --cream: #f7f1e6;
+      --burgundy: #651b2c;
+      --ink: #302824;
+      --soft: #a99a8e;
+      --line: rgba(101, 27, 44, 0.20);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
+      min-height: 100%;
+    }
+
+    body {
       background: var(--cream);
       color: var(--ink);
       font-family: "Cormorant Garamond", Georgia, serif;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* HEADER */
+
+    /* ---------------- HEADER ---------------- */
 
     header {
       position: relative;
       z-index: 10;
+
+      width: 100%;
       padding: 25px 34px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand {
+    .brand,
+    .back {
       color: var(--burgundy);
       text-decoration: none;
+    }
+
+    .brand {
       font-size: 19px;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
 
     .back {
-      color: var(--burgundy);
-      text-decoration: none;
       font-size: 14px;
       font-style: italic;
     }
 
-    /* MAIN */
+
+    /* ---------------- MAIN WORLD ---------------- */
 
     main {
-      min-height: calc(100vh - 80px);
+      min-height: calc(100vh - 75px);
+
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 60px 30px 100px;
+      align-items: center;
+
+      padding: 25px 30px 70px;
     }
 
     .seed-world {
       position: relative;
-      width: min(100%, 1050px);
-      min-height: 650px;
+
+      width: min(100%, 1100px);
+      aspect-ratio: 1.45 / 1;
+
+      max-height: 760px;
     }
 
-    /* TITLE */
+
+    /* ---------------- CONNECTION WEB ---------------- */
+
+    .web {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      z-index: 1;
+
+      overflow: visible;
+
+      pointer-events: none;
+    }
+
+    .web path {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.1;
+      vector-effect: non-scaling-stroke;
+    }
+
+
+    /* ---------------- CENTRAL TITLE ---------------- */
 
     .title {
       position: absolute;
+
       left: 50%;
       top: 50%;
+
       transform: translate(-50%, -50%);
+
+      width: 390px;
+
       text-align: center;
+
       z-index: 5;
     }
 
     .eyebrow {
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      margin-bottom: 10px;
+
       color: var(--soft);
-      margin-bottom: 8px;
+
+      font-size: 13px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
+
       color: var(--burgundy);
-      font-size: clamp(48px, 7vw, 88px);
+
+      font-size: clamp(55px, 7vw, 88px);
+      line-height: 0.88;
+
       font-weight: 500;
       font-style: italic;
-      line-height: 0.9;
     }
 
     .subtitle {
-      margin-top: 18px;
-      font-size: 18px;
+      margin-top: 19px;
+
+      color: #766960;
+
+      font-size: 17px;
       font-style: italic;
-      color: #665954;
     }
 
-    /* THREADS */
+
+    /* ---------------- THREADS ---------------- */
 
     .thread {
       position: absolute;
-      text-decoration: none;
-      color: var(--ink);
-      text-align: center;
-      transition: transform 300ms ease;
+
       z-index: 4;
+
+      width: max-content;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      color: var(--ink);
+
+      transform: translate(-50%, -50%);
+
+      transition:
+        transform 350ms ease,
+        opacity 350ms ease;
     }
 
     .thread:hover {
-      transform: translate(-50%, -50%) scale(1.08);
+      transform: translate(-50%, -50%) scale(1.07);
     }
 
     .thread-name {
       display: block;
+
       color: var(--burgundy);
-      font-size: 28px;
+
+      font-size: 29px;
+      line-height: 1;
+
+      font-weight: 500;
       font-style: italic;
     }
 
     .thread-note {
       display: block;
-      margin-top: 4px;
-      color: #776a62;
+
+      margin-top: 6px;
+
+      color: #7d7067;
+
       font-size: 14px;
+      line-height: 1.1;
     }
 
-    /* POSITIONS */
+
+    /* ---------------- THREAD POSITIONS ---------------- */
 
     .art {
-      left: 18%;
-      top: 25%;
-      transform: translate(-50%, -50%);
+      left: 15%;
+      top: 30%;
     }
 
     .history {
-      left: 50%;
-      top: 10%;
-      transform: translate(-50%, -50%);
+      left: 49%;
+      top: 8%;
     }
 
     .food {
-      left: 82%;
-      top: 25%;
-      transform: translate(-50%, -50%);
+      left: 85%;
+      top: 28%;
     }
 
     .war {
-      left: 18%;
-      top: 75%;
-      transform: translate(-50%, -50%);
+      left: 15%;
+      top: 76%;
     }
 
     .economics {
       left: 50%;
-      top: 90%;
-      transform: translate(-50%, -50%);
+      top: 94%;
     }
 
     .people {
-      left: 82%;
+      left: 85%;
       top: 75%;
-      transform: translate(-50%, -50%);
     }
 
-    /* CONNECTIONS */
 
-    .line {
-      position: absolute;
-      height: 1px;
-      background: rgba(100, 27, 43, 0.22);
-      transform-origin: left center;
-      z-index: 1;
-    }
-
-    .line.one {
-      width: 330px;
-      left: 24%;
-      top: 30%;
-      transform: rotate(-28deg);
-    }
-
-    .line.two {
-      width: 330px;
-      left: 52%;
-      top: 30%;
-      transform: rotate(28deg);
-    }
-
-    .line.three {
-      width: 360px;
-      left: 24%;
-      top: 68%;
-      transform: rotate(28deg);
-    }
-
-    .line.four {
-      width: 360px;
-      left: 52%;
-      top: 68%;
-      transform: rotate(-28deg);
-    }
-
-    .line.five {
-      width: 300px;
-      left: 30%;
-      top: 35%;
-      transform: rotate(90deg);
-    }
-
-    /* FOOTNOTE */
+    /* ---------------- FOOTNOTE ---------------- */
 
     .footer-note {
       position: absolute;
-      bottom: 10px;
+
       left: 50%;
+      bottom: -1%;
+
       transform: translateX(-50%);
+
       color: var(--soft);
+
       font-size: 13px;
       font-style: italic;
+
       white-space: nowrap;
+
+      z-index: 4;
     }
 
-    /* MOBILE */
 
-    @media (max-width: 700px) {
+    /* ==================================================
+       TABLET
+       ================================================== */
 
-      header {
-        padding: 20px;
-      }
+    @media (max-width: 900px) {
 
       main {
         padding: 30px 20px 70px;
       }
 
       .seed-world {
-        min-height: 720px;
+        width: min(100%, 760px);
+        aspect-ratio: 1.2 / 1;
       }
+
+      .title {
+        width: 330px;
+      }
+
+      h1 {
+        font-size: clamp(48px, 8vw, 72px);
+      }
+
+      .thread-name {
+        font-size: 25px;
+      }
+
+      .thread-note {
+        font-size: 13px;
+      }
+
+    }
+
+
+    /* ==================================================
+       PHONE
+       ================================================== */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 18px 18px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .back {
+        font-size: 12px;
+      }
+
+      main {
+        min-height: calc(100vh - 65px);
+
+        padding: 10px 18px 60px;
+
+        align-items: flex-start;
+      }
+
+      .seed-world {
+
+        width: 100%;
+
+        /*
+          A taller canvas on phones gives each thread
+          enough breathing room.
+        */
+        height: 760px;
+        aspect-ratio: auto;
+
+        max-height: none;
+      }
+
+
+      /* CENTRAL TITLE */
+
+      .title {
+        left: 50%;
+        top: 43%;
+
+        width: 270px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+      }
+
+      h1 {
+        font-size: 52px;
+        line-height: 0.88;
+      }
+
+      .subtitle {
+        margin-top: 15px;
+        font-size: 15px;
+      }
+
+
+      /* THREADS */
 
       .thread-name {
         font-size: 23px;
       }
 
       .thread-note {
+        margin-top: 5px;
         font-size: 12px;
+        max-width: 115px;
       }
 
+
+      /*
+        Instead of shrinking the desktop arrangement,
+        we give the phone its own composition.
+      */
+
       .art {
-        left: 16%;
-        top: 24%;
+        left: 17%;
+        top: 19%;
       }
 
       .history {
         left: 50%;
-        top: 8%;
+        top: 7%;
       }
 
       .food {
         left: 84%;
-        top: 24%;
+        top: 21%;
       }
 
       .war {
-        left: 16%;
-        top: 76%;
+        left: 17%;
+        top: 67%;
       }
 
       .economics {
         left: 50%;
-        top: 92%;
+        top: 88%;
       }
 
       .people {
         left: 84%;
-        top: 76%;
+        top: 68%;
       }
 
-      .line {
-        opacity: 0.5;
+
+      /* WEB */
+
+      .web path {
+        stroke-width: 0.9;
       }
 
-      .line.one,
-      .line.two,
-      .line.three,
-      .line.four {
-        width: 210px;
+
+      /* FOOTNOTE */
+
+      .footer-note {
+        bottom: 2%;
+
+        font-size: 11px;
       }
 
-      .line.five {
-        display: none;
+    }
+
+
+    /* ==================================================
+       VERY SMALL PHONES
+       ================================================== */
+
+    @media (max-width: 380px) {
+
+      .back {
+        font-size: 11px;
+      }
+
+      .seed-world {
+        height: 700px;
+      }
+
+      .title {
+        width: 240px;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .thread-name {
+        font-size: 21px;
+      }
+
+      .thread-note {
+        font-size: 11px;
       }
 
       .footer-note {
-        bottom: -25px;
+        display: none;
       }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
   <header>
-    <a href="../index.html" class="brand">archive.gauri</a>
-    <a href="../index.html" class="back">← back to the pomegranate</a>
+
+    <a href="../index.html" class="brand">
+      archive.gauri
+    </a>
+
+    <a href="../index.html" class="back">
+      ← back to the pomegranate
+    </a>
+
   </header>
+
 
   <main>
 
     <section class="seed-world">
 
-      <!-- CONNECTIONS -->
 
-      <div class="line one"></div>
-      <div class="line two"></div>
-      <div class="line three"></div>
-      <div class="line four"></div>
-      <div class="line five"></div>
+      <!-- ================= CONNECTION WEB ================= -->
+
+      <svg
+        class="web"
+        viewBox="0 0 1000 690"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+
+        <!-- art → history -->
+        <path d="M150 205 C260 160, 350 125, 490 70" />
+
+        <!-- history → food -->
+        <path d="M510 72 C640 105, 730 145, 850 195" />
+
+        <!-- art → war -->
+        <path d="M150 220 C125 335, 125 425, 150 515" />
+
+        <!-- food → people -->
+        <path d="M850 205 C875 315, 875 415, 850 505" />
+
+        <!-- war → economics -->
+        <path d="M165 520 C300 585, 395 620, 495 650" />
+
+        <!-- economics → people -->
+        <path d="M510 650 C650 615, 750 575, 835 520" />
+
+        <!-- history → centre -->
+        <path d="M490 82 C495 190, 495 235, 500 285" />
+
+        <!-- food → centre -->
+        <path d="M835 195 C735 235, 650 265, 590 315" />
+
+        <!-- art → centre -->
+        <path d="M165 205 C280 240, 355 265, 420 310" />
+
+        <!-- war → centre -->
+        <path d="M160 510 C280 475, 355 440, 420 390" />
+
+        <!-- people → centre -->
+        <path d="M840 510 C720 475, 650 440, 580 390" />
+
+        <!-- economics → centre -->
+        <path d="M500 640 C500 525, 500 475, 500 425" />
+
+      </svg>
 
 
-      <!-- CENTRAL TITLE -->
+      <!-- ================= CENTRAL TITLE ================= -->
 
       <div class="title">
-        <div class="eyebrow">seed 01</div>
 
-        <h1>the web<br>of things</h1>
+        <div class="eyebrow">
+          seed 01
+        </div>
+
+        <h1>
+          the web<br>
+          of things
+        </h1>
 
         <div class="subtitle">
           everything seems to belong to something else.
         </div>
+
       </div>
 
 
-      <!-- THREADS -->
+      <!-- ================= THREADS ================= -->
 
       <a href="#" class="thread art">
-        <span class="thread-name">art</span>
-        <span class="thread-note">what we choose to see</span>
+
+        <span class="thread-name">
+          art, fashion
+        </span>
+
+        <span class="thread-note">
+          what we choose to see
+        </span>
+
       </a>
+
 
       <a href="#" class="thread history">
-        <span class="thread-name">history</span>
-        <span class="thread-note">things leaving traces</span>
+
+        <span class="thread-name">
+          history
+        </span>
+
+        <span class="thread-note">
+          things leaving traces
+        </span>
+
       </a>
+
 
       <a href="#" class="thread food">
-        <span class="thread-name">food</span>
-        <span class="thread-note">culture, trade & memory</span>
+
+        <span class="thread-name">
+          food
+        </span>
+
+        <span class="thread-note">
+          culture, trade & memory
+        </span>
+
       </a>
+
 
       <a href="#" class="thread war">
-        <span class="thread-name">war</span>
-        <span class="thread-note">power & consequence</span>
+
+        <span class="thread-name">
+          war
+        </span>
+
+        <span class="thread-note">
+          power & consequence
+        </span>
+
       </a>
+
 
       <a href="#" class="thread economics">
-        <span class="thread-name">economics</span>
-        <span class="thread-note">who gets what, and why</span>
+
+        <span class="thread-name">
+          economics
+        </span>
+
+        <span class="thread-note">
+          who gets what, and why
+        </span>
+
       </a>
+
 
       <a href="#" class="thread people">
-        <span class="thread-name">people</span>
-        <span class="thread-note">the ones connecting it all</span>
+
+        <span class="thread-name">
+          people
+        </span>
+
+        <span class="thread-note">
+          the ones connecting it all
+        </span>
+
       </a>
 
+
+      <!-- ================= FOOTNOTE ================= -->
 
       <div class="footer-note">
         pull one thread. see where it leads.
       </div>
+
 
     </section>
 
