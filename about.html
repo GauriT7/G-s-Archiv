@@ -195,7 +195,7 @@
 
       opacity: 0;
 
-      transform: translateY(12px);
+      transform: translateX(-25px);
 
       animation:
         content-arrive 1000ms 1450ms ease forwards;
@@ -303,22 +303,22 @@
     /* Seed starts visible */
 
     .morph-seed {
-      display: block;
+  display: block;
 
-      width: var(--seed-size);
-      height: var(--seed-size);
+  width: var(--seed-size);
+  height: var(--seed-size);
 
-      object-fit: contain;
+  object-fit: contain;
 
-      opacity: 1;
+  opacity: 1;
 
-      transform: rotate(var(--seed-rotation));
+  transform: rotate(var(--seed-rotation));
 
-      animation:
-        seed-vanish 1300ms
-        calc(var(--delay) + 2300ms)
-        ease forwards;
-    }
+  animation:
+    seed-vanish 1800ms
+    calc(var(--delay) + 3200ms)
+    ease-in-out forwards;
+}
 
 
 
@@ -365,7 +365,31 @@
         ease-in-out infinite alternate;
     }
 
+    .word-changing {
+  animation:
+    word-change-out 700ms ease-in-out forwards;
+}
 
+@keyframes word-change-out {
+
+  0% {
+    opacity: var(--base-opacity);
+    filter: blur(0);
+  }
+
+  50% {
+    opacity: 0;
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(5px);
+  }
+
+}
+
+    
 
     /*
       Seed falls from above screen
@@ -374,59 +398,75 @@
 
     @keyframes item-enter {
 
-      0% {
-        opacity: 0;
+  0% {
+    opacity: 0;
 
-        transform:
-          translate(-50%, -65vh)
-          rotate(-18deg);
-      }
+    transform:
+      translate(-50%, -65vh)
+      rotate(-18deg);
+  }
 
-      20% {
-        opacity: 1;
-      }
+  35% {
+    opacity: 1;
+  }
 
-      72% {
-        transform:
-          translate(-50%, 9px)
-          rotate(calc(var(--rotation) + 5deg));
-      }
+  72% {
+    transform:
+      translate(-50%, -50%)
+      translateY(18px)
+      rotate(calc(var(--rotation) + 4deg));
+  }
 
-      87% {
-        transform:
-          translate(-50%, -5px)
-          rotate(calc(var(--rotation) - 2deg));
-      }
+  86% {
+    transform:
+      translate(-50%, -50%)
+      translateY(-5px)
+      rotate(calc(var(--rotation) - 2deg));
+  }
 
-      100% {
-        opacity: 1;
+  94% {
+    transform:
+      translate(-50%, -50%)
+      translateY(2px)
+      rotate(var(--rotation));
+  }
 
-        transform:
-          translate(-50%, -50%)
-          rotate(var(--rotation));
-      }
+  100% {
+    opacity: 1;
 
-    }
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--rotation));
+  }
+
+}
 
 
 
     @keyframes seed-vanish {
 
-      0% {
-        opacity: 1;
-        transform:
-          rotate(var(--seed-rotation))
-          scale(1);
-      }
+  0% {
+    opacity: 1;
+    transform:
+      rotate(var(--seed-rotation))
+      scale(1);
+  }
 
-      100% {
-        opacity: 0;
-        transform:
-          rotate(var(--seed-rotation))
-          scale(0.55);
-      }
+  65% {
+    opacity: 0.7;
+    transform:
+      rotate(var(--seed-rotation))
+      scale(0.92);
+  }
 
-    }
+  100% {
+    opacity: 0;
+    transform:
+      rotate(var(--seed-rotation))
+      scale(0.72);
+  }
+
+}
 
 
 
@@ -462,15 +502,15 @@
       50% {
         transform:
           translate(-50%, -50%)
-          translate(8px, -10px)
-          rotate(1deg);
+          translate(4px, -5px)
+          rotate(0.5deg);
       }
 
       100% {
         transform:
           translate(-50%, -50%)
-          translate(-6px, 8px)
-          rotate(-1deg);
+          translate(-3px, 4px)
+          rotate(-0.5deg);
       }
 
     }
@@ -486,7 +526,7 @@
     @keyframes word-breathe {
 
       0% {
-        opacity: calc(var(--base-opacity) * 0.45);
+        opacity: calc(var(--base-opacity) * 0.72);
       }
 
       50% {
@@ -494,7 +534,7 @@
       }
 
       100% {
-        opacity: calc(var(--base-opacity) * 0.62);
+        opacity: calc(var(--base-opacity) * 0.82);
       }
 
     }
@@ -537,9 +577,8 @@
       }
 
       .about-content {
-        grid-template-columns: 1fr;
-
-        gap: 40px;
+        grid-template-columns: 1.05fr 0.85fr;
+        gap: 20px;
       }
 
       .bio-wrap {
@@ -700,13 +739,6 @@
   "languages",
   "food",
 
-  "art",
-  "history",
-  "medicine",
-  "culture",
-  "AI",
-  "fashion"
-
 ];
 
 
@@ -760,29 +792,29 @@
 
 const safeZones = [
 
-  // Far left
+  // LEFT EDGE
   { x: 7,  y: 25 },
-  { x: 8,  y: 48 },
-  { x: 7,  y: 72 },
+  { x: 7,  y: 52 },
+  { x: 8,  y: 78 },
 
-  // Upper area
-  { x: 27, y: 12 },
-  { x: 48, y: 10 },
-  { x: 69, y: 12 },
+  // TOP
+  { x: 25, y: 10 },
+  { x: 48, y: 9 },
+  { x: 72, y: 10 },
 
-  // Between / around the two columns
-  { x: 43, y: 30 },
-  { x: 48, y: 70 },
+  // RIGHT OF PHOTO
+  { x: 95, y: 27 },
+  { x: 96, y: 53 },
+  { x: 95, y: 78 },
 
-  // Far right
-  { x: 93, y: 28 },
-  { x: 94, y: 50 },
-  { x: 93, y: 72 },
+  // BOTTOM
+  { x: 24, y: 91 },
+  { x: 47, y: 92 },
+  { x: 71, y: 91 },
 
-  // Bottom
-  { x: 25, y: 90 },
-  { x: 48, y: 92 },
-  { x: 70, y: 90 }
+  // LITTLE CORNERS / GAPS
+  { x: 17, y: 36 },
+  { x: 84, y: 36 }
 
 ];
 
@@ -796,11 +828,10 @@ const position =
 */
 
 const x =
-  position.x + random(-2.5, 2.5);
+  position.x + random(-1.2, 1.2);
 
 const y =
-  position.y + random(-2.5, 2.5);
-
+  position.y + random(-1.5, 1.5);
 
 
       const rotation =
@@ -902,8 +933,46 @@ const y =
       text.className =
         "morph-word";
 
-      text.textContent =
-        word;
+      text.textContent = word;
+      let currentWord = word;
+
+function changeWord() {
+
+  let nextWord;
+
+  do {
+    nextWord =
+      words[
+        Math.floor(
+          Math.random() * words.length
+        )
+      ];
+  }
+
+  while (nextWord === currentWord);
+
+  text.classList.add("word-changing");
+
+  setTimeout(() => {
+
+    currentWord = nextWord;
+    text.textContent = currentWord;
+
+    text.classList.remove("word-changing");
+
+    setTimeout(
+      changeWord,
+      random(7000, 12000)
+    );
+
+  }, 700);
+
+}
+
+setTimeout(
+  changeWord,
+  random(7000, 12000)
+);
 
 
 
