@@ -2201,3 +2201,87 @@ html { scroll-behavior: auto; }
   #people .people-statement { top: 32vh; }
   #final-web .final-web { top: 42vh; }
 }
+
+/* =========================================================
+   FINAL SCENE VISIBILITY FIX — V5
+   The older reveal system below the original layout used
+   opacity/clip-path on individual children. The scroll scene
+   now owns visibility, so phased elements must win.
+========================================================= */
+
+.scene-stage [data-phase] {
+  visibility: hidden;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.scene-stage [data-phase].phase-active {
+  visibility: visible;
+  opacity: 1 !important;
+  pointer-events: auto;
+  filter: none !important;
+}
+
+/* Older editorial rules were hiding headings after the scene
+   wrapper had already made them active. */
+.scene-stage [data-phase].phase-active h2,
+.scene-stage [data-phase].phase-active h3,
+.scene-stage [data-phase].phase-active p,
+.scene-stage [data-phase].phase-active span,
+.scene-stage [data-phase].phase-active figure,
+.scene-stage [data-phase].phase-active figcaption {
+  opacity: 1 !important;
+  visibility: visible;
+  clip-path: inset(0 0 0 0) !important;
+}
+
+/* Images are children of phased containers, so their own legacy
+   image-reveal opacity must also be overridden. */
+.scene-stage [data-phase].phase-active img,
+.scene-stage [data-phase].phase-active .story-image img,
+.scene-stage [data-phase].phase-active .fashion-line img,
+.scene-stage [data-phase].phase-active .art-grid img,
+.scene-stage [data-phase].phase-active .poster-grid img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: none !important;
+}
+
+/* WAR has an older #war image rule with higher specificity. */
+#war .scene-stage .story-image.large.phase-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translate3d(0,0,0) !important;
+}
+
+#war .scene-stage .story-image.large.phase-active img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Keep the staged timeline itself visible once its turn arrives;
+   its individual pieces are still controlled by JS. */
+#war .scene-stage .chain.phase-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Do not let old #war.visible-only rules control the new timeline. */
+#war .scene-stage .chain.phase-active span.chain-piece-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+#war .scene-stage .chain.phase-active i.chain-piece-active {
+  opacity: .6 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* The meta label is the opening frame. */
+.scene-stage .section-meta[data-phase="1"] {
+  transition: opacity .45s ease, transform .7s cubic-bezier(.16,.8,.25,1);
+}
