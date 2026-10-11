@@ -1,575 +1,426 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Seed 01 — archive.gauri</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Mono:wght@400;500&display=swap"
-    rel="stylesheet"
-  >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5ec">
+  <title>The Web of Things — archive.gauri</title>
+  <meta name="description" content="On war, memory, and the things that refuse to exist alone. A visual essay by archive.gauri.">
   <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
-
-
 <body>
+  <a class="skip-link" href="#essay">Skip to essay</a>
 
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
-
-  <header class="archive-header">
-
-    <a href="#" class="brand">
-      archive.gauri
-    </a>
-
-    <span class="seed-label">
-      SEED 01
-    </span>
-
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="archive.gauri home">archive.gauri</a>
+    <div class="header-right">
+      <span class="edition">SEED 01</span>
+      <button class="index-toggle" id="indexToggle" type="button" aria-expanded="false" aria-controls="threadDrawer">
+        <span class="index-icon" aria-hidden="true">☷</span>
+        <span class="index-label">THREADS</span>
+      </button>
+    </div>
   </header>
 
+  <aside class="thread-drawer" id="threadDrawer" aria-label="Essay contents" hidden>
+    <div class="drawer-top">
+      <span class="eyebrow">FIND YOUR WAY</span>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close contents">×</button>
+    </div>
+    <p class="drawer-intro">No prescribed order. Follow whichever thread catches your eye.</p>
+    <nav class="drawer-links" aria-label="Jump to a thread">
+      <a href="#history" data-thread-link="history"><span>01</span> History</a>
+      <a href="#food" data-thread-link="food"><span>02</span> Food</a>
+      <a href="#fashion" data-thread-link="fashion"><span>03</span> Art &amp; fashion</a>
+      <a href="#war" data-thread-link="war"><span>04</span> War</a>
+      <a href="#economics" data-thread-link="economics"><span>05</span> Economics</a>
+      <a href="#people" data-thread-link="people"><span>06</span> Cultures &amp; people</a>
+      <a href="#last-thread" data-thread-link="last-thread"><span>↗</span> One last thread</a>
+    </nav>
+    <div class="drawer-note">Read in order. Read out of order. It's your web now.</div>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim" hidden></div>
 
-  <!-- =====================================================
-       THE WEB — OPENING
-  ====================================================== -->
+  <main>
+    <section class="web-hero" id="top" aria-labelledby="heroTitle">
+      <div class="hero-kicker">seed 01 · the concoction</div>
+      <h1 id="heroTitle">the web<br><em>of things</em></h1>
+      <p class="hero-subtitle">nothing really exists alone.</p>
+      <p class="hero-instruction"><span class="desktop-instruction">PULL ONE THREAD.</span><span class="mobile-instruction">CHOOSE A THREAD BELOW.</span></p>
 
-  <main id="experience">
+      <svg class="web-lines" viewBox="0 0 1000 680" preserveAspectRatio="none" aria-hidden="true">
+        <ellipse cx="500" cy="340" rx="390" ry="260"></ellipse>
+        <path d="M500 80 L500 600"></path>
+        <path d="M110 340 L890 340"></path>
+        <path d="M180 155 L820 525"></path>
+        <path d="M820 155 L180 525"></path>
+        <path d="M180 155 L500 80 L820 155"></path>
+        <path d="M180 525 L500 600 L820 525"></path>
+      </svg>
 
-
-    <section class="web-intro">
-
-      <div class="web-canvas">
-
-        <!-- CONNECTIONS -->
-
-        <svg
-          class="web-lines"
-          viewBox="0 0 1000 700"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-
-          <path d="M155 210 C270 155, 375 105, 500 75" />
-          <path d="M500 75 C650 105, 750 150, 850 205" />
-
-          <path d="M155 220 C115 340, 115 430, 155 520" />
-          <path d="M850 215 C885 335, 885 430, 850 520" />
-
-          <path d="M165 525 C290 590, 395 635, 500 650" />
-          <path d="M835 525 C700 590, 610 630, 500 650" />
-
-          <path d="M500 85 C500 190, 500 245, 500 300" />
-          <path d="M170 210 C285 245, 375 275, 430 315" />
-          <path d="M830 210 C720 250, 625 280, 570 315" />
-          <path d="M165 515 C285 480, 370 440, 430 390" />
-          <path d="M835 515 C720 480, 635 440, 570 390" />
-          <path d="M500 640 C500 525, 500 460, 500 410" />
-
-        </svg>
-
-
-        <!-- CENTRAL IDEA -->
-
-        <div class="web-centre">
-
-          <span class="eyebrow">
-            seed 01 · the concoction
-          </span>
-
-          <h1>
-            the web<br>
-            of things
-          </h1>
-
-          <p>
-            nothing really exists alone.
-          </p>
-
-          <span class="pull">
-            pull one thread.
-          </span>
-
-        </div>
-
-
-        <!-- THREADS -->
-
-        <button class="web-node node-art" data-thread="art">
-          <strong>art, fashion</strong>
-          <small>what we choose to see</small>
-        </button>
-
-        <button class="web-node node-history" data-thread="history">
-          <strong>history</strong>
-          <small>things leaving traces</small>
-        </button>
-
-        <button class="web-node node-food" data-thread="food">
-          <strong>food</strong>
-          <small>culture, trade & memory</small>
-        </button>
-
-        <button class="web-node node-war" data-thread="war">
-          <strong>war</strong>
-          <small>power & consequence</small>
-        </button>
-
-        <button class="web-node node-economics" data-thread="economics">
-          <strong>economics</strong>
-          <small>who gets what, and why</small>
-        </button>
-
-        <button class="web-node node-people" data-thread="people">
-          <strong>cultures, people</strong>
-          <small>the ones connecting it all</small>
-        </button>
-
+      <button class="web-node node-history" data-target="history" aria-label="Explore history">
+        <span class="node-title">history</span><span class="node-caption">things leaving traces</span>
+      </button>
+      <button class="web-node node-art" data-target="fashion" aria-label="Explore art and fashion">
+        <span class="node-title">art, fashion</span><span class="node-caption">what we choose to see</span>
+      </button>
+      <button class="web-node node-food" data-target="food" aria-label="Explore food">
+        <span class="node-title">food</span><span class="node-caption">culture, trade &amp; memory</span>
+      </button>
+      <button class="web-node node-war" data-target="war" aria-label="Explore war">
+        <span class="node-title">war</span><span class="node-caption">power &amp; consequence</span>
+      </button>
+      <button class="web-node node-economics" data-target="economics" aria-label="Explore economics">
+        <span class="node-title">economics</span><span class="node-caption">who gets what, and why</span>
+      </button>
+      <button class="web-node node-people" data-target="people" aria-label="Explore cultures and people">
+        <span class="node-title">cultures,<br>people</span><span class="node-caption">the ones connecting it all</span>
+      </button>
+      <div class="web-mobile-index" aria-label="Choose a thread">
+        <button data-target="history">history <span>↗</span></button>
+        <button data-target="food">food <span>↗</span></button>
+        <button data-target="fashion">art, fashion <span>↗</span></button>
+        <button data-target="war">war <span>↗</span></button>
+        <button data-target="economics">economics <span>↗</span></button>
+        <button data-target="people">cultures, people <span>↗</span></button>
       </div>
-
+      <div class="hero-footnote"><span>AN OPEN INVESTIGATION</span><span>SCROLL, WANDER, RETURN</span></div>
     </section>
 
+    <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
 
+    <section class="essay-opening reading-section" id="essay" data-section="opening">
+      <div class="opening-side">
+        <span class="eyebrow">THE STARTING POINT</span>
+        <span class="opening-number">01—06</span>
+      </div>
+      <div class="opening-copy">
+        <p class="standfirst">On war, and all the places it goes.</p>
+        <p>There is a peculiar thing about stories. You enter through one door and, before you know it, you're standing somewhere entirely unexpected.</p>
+        <p>Mine began, in part, with Tehran.</p>
+        <p class="short-lines">A television series. A novel. A stationery shop. A city I had never walked through, yet one I was beginning to recognise through its streets, its people, its silences.</p>
+        <p>And then the questions began.</p>
+        <blockquote class="pull-quote">What does a war actually change?</blockquote>
+        <p>The obvious answers came first. Borders. Governments. Economies. The things we learn in history books, arranged neatly into dates and consequences.</p>
+        <p>But I kept thinking about the less obvious things.</p>
+        <p>The dinner that tastes different because an ingredient is suddenly unavailable. The dress that looks the way it does because fabric was once rationed. The painting that makes sense only when you know what happened outside the artist's window. The family that leaves home with a suitcase and spends the next three generations explaining where home used to be.</p>
+        <p>A war, I was beginning to realise, has a rather inconvenient habit of refusing to stay in its own chapter.</p>
+        <p class="line-alone">It travels.</p>
+        <p>And I wanted to follow it.</p>
+        <figure class="image-break">
+          <img src="../images/seed01/tehran-city.jpg" alt="Add your own photograph of Tehran or a credited archival city image." loading="lazy">
+          <figcaption><span>01 / A PLACE BEYOND THE FRAME</span><span>Replace this image with your own or a properly credited image.</span></figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- =====================================================
-         WEB OF THINGS
-    ====================================================== -->
-
-    <div id="story">
-
-
-      <!-- WAR -->
-
-      <section class="story-section" id="war">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          01 · WAR
+    <section class="chapter reading-section" id="history" data-section="history">
+      <div class="chapter-marker"><span>THREAD 01</span><span class="marker-line"></span><span>HISTORY</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">THINGS LEAVING TRACES</p>
+          <h2>a city, seen<br><em>through stories</em></h2>
+          <p class="chapter-deck">A screen. A novel. A city too large to fit inside either.</p>
+          <button class="related-link" data-target="people">Follow this thread to people <span>↗</span></button>
         </div>
-
-        <div class="section-heading">
-          <h2>
-            A war does not stay<br>
-            on the battlefield.
-          </h2>
-
-          <p>
-            It enters kitchens.<br>
-            It enters wardrobes.<br>
-            It enters paintings.
-          </p>
+        <div class="chapter-copy">
+          <p class="section-whisper">Begin with Tehran.</p>
+          <p>I first approached Iran through <em>Tehran</em>, the espionage thriller, and Marjan Kamali's <em>The Stationery Shop of Tehran</em>. Two very different windows, opening onto a place that cannot possibly be contained by either.</p>
+          <p>In the series, Tehran is a city of surveillance, divided loyalties and hurried decisions. The camera moves through its streets with the urgency of someone who cannot afford to stop for too long.</p>
+          <p>In the novel, we return to Tehran in 1953. Roya finds refuge in a neighbourhood stationery shop, a place of books, fountain pens, ink bottles and paper. There she meets Bahman. Their young love unfolds against a city on the brink of political upheaval, until violence interrupts the future they had imagined together.</p>
+          <p>One story moves at the speed of a thriller. The other lingers over a life that history has interrupted.</p>
+          <p>Neither tells us everything about Iran. That, perhaps, is the first thing worth remembering about looking at a country through a screen or a page: the window may be beautifully made, but it is still a window.</p>
+          <p>Beyond it lies a country of many centuries, languages, landscapes, arguments, ambitions and ordinary afternoons.</p>
+          <p>And somewhere between the two stories, I began to wonder about the life that continues outside the frame.</p>
+          <p>What did the city look like before the camera arrived? What did its young people wear? What filled its bookshops and cinemas? What was cooking in its kitchens? What happened to the things people made, the things they believed, and the things they had planned to become?</p>
+          <p>And what becomes of all these things when the world they belong to changes?</p>
+          <p class="end-note">One story had led me to a city. The city was leading me to everything else.</p>
+          <figure class="image-break image-break-small">
+            <img src="../images/seed01/stationery-shop.jpg" alt="A stationery shop, books, handwritten letters or fountain pens. Replace with a sourced image." loading="lazy">
+            <figcaption>Paper, ink, letters — ordinary things until the circumstances surrounding them change.</figcaption>
+          </figure>
+          <div class="next-thread"><span>THE NEXT THREAD</span><button data-target="war">The things that happen between the dates <span>↗</span></button></div>
         </div>
+      </div>
+    </section>
 
-
-        <div class="story-image large">
-          <img
-            src="../images/01_wwi_trenches.jpeg"
-            alt="WWI trenches"
-          >
-
-          <span>
-            the event begins somewhere.
-          </span>
+    <section class="chapter chapter-tinted reading-section" id="war" data-section="war">
+      <div class="chapter-marker"><span>THREAD 02</span><span class="marker-line"></span><span>WAR &amp; CONSEQUENCE</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">POWER &amp; CONSEQUENCE</p>
+          <h2>the things that happen<br><em>between the dates</em></h2>
+          <p class="chapter-deck">People, unfortunately, do not experience their lives in timelines.</p>
+          <button class="related-link" data-target="economics">Follow this thread to economics <span>↗</span></button>
         </div>
-
-
-        <div class="chain">
-
-          <span>war begins</span>
-          <i>→</i>
-          <span>resources are redirected</span>
-          <i>→</i>
-          <span>people move</span>
-          <i>→</i>
-          <span>scarcity appears</span>
-          <i>→</i>
-          <span>daily life changes</span>
-
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- ECONOMICS -->
-
-      <section class="story-section compact" id="economics">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          02 · ECONOMICS
-        </div>
-
-        <div class="split">
-
-          <div>
-
-            <h2>
-              War changes what an
-              economy is for.
-            </h2>
-
-            <p class="body-copy">
-              Factories change. Materials become scarce.
-              Trade is disrupted. Governments intervene.
-            </p>
-
+        <div class="chapter-copy">
+          <p>History has a fondness for dates. It likes a beginning, a turning point, a decisive afternoon. It gives us names for events and labels for the periods that follow.</p>
+          <p class="line-alone">People, unfortunately, do not experience their lives in timelines.</p>
+          <p>The 1953 coup in Iran belongs to the political history of the country. In <em>The Stationery Shop</em>, it also becomes the interruption of a young couple's future. A meeting that does not happen. A person who does not return. Questions that remain unanswered for decades.</p>
+          <p>This is what fiction can do that a chronology often cannot: bring us close enough to feel the distance between an event and the life it alters.</p>
+          <p>A political upheaval may take place over days. Its consequences can settle into a family for years.</p>
+          <p>They appear in the stories that parents tell their children, the stories they deliberately leave out, the language spoken at home, the relatives who live elsewhere, and the photographs that acquire a significance nobody thought to give them when they were taken.</p>
+          <p>Sometimes the most revealing part of history is not what happened, but what people had to learn to live with afterwards.</p>
+          <p>And this is where the web begins to form.</p>
+          <p>A political event changes the conditions of everyday life. Those conditions change the choices available to people. Their choices change the way they live, what they preserve, what they abandon and what they pass on.</p>
+          <p class="line-alone">History enters the household.</p>
+          <p>It rarely knocks first.</p>
+          <div class="connection-card">
+            <span class="eyebrow">A THREAD TO FOLLOW</span>
+            <p>When a place changes, what travels with the people who leave it?</p>
+            <button data-target="food">Follow it into the kitchen <span>↗</span></button>
           </div>
+        </div>
+      </div>
+    </section>
 
-
-          <figure class="story-image">
-
-            <img
-              src="../images/04_women_wartime_industry.jpeg"
-              alt="Women working in wartime industry"
-            >
-
-            <figcaption>
-              women working in wartime industry
-            </figcaption>
-
+    <section class="chapter reading-section" id="food" data-section="food">
+      <div class="chapter-marker"><span>THREAD 03</span><span class="marker-line"></span><span>FOOD &amp; MEMORY</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">CULTURE, TRADE &amp; MEMORY</p>
+          <h2>the kitchen<br><em>remembers</em></h2>
+          <p class="chapter-deck">A recipe can become an archive without ever looking like one.</p>
+          <button class="related-link" data-target="people">Follow this thread to belonging <span>↗</span></button>
+        </div>
+        <div class="chapter-copy">
+          <p class="section-whisper">Follow the thread into food.</p>
+          <p>Let us begin with something far less imposing than a battlefield.</p>
+          <p class="line-alone">A kitchen.</p>
+          <p>A pot on the stove. Rice steaming beneath a lid. The scent of onions browning in oil. A handful of herbs being chopped, a spice tin being opened, somebody asking whether there is enough for one more person.</p>
+          <p>Food is wonderfully ordinary. It is also a record of where people have been.</p>
+          <p>Persian cuisine offers a particularly lovely place to explore this. Think of saffron rice, the tartness of barberries, herbs folded into kuku sabzi, the slow, patient cooking of a khoresh, or the ritual of tea poured beside something sweet. Think of the sabzi polo and fish associated with Nowruz, the Persian New Year, when the arrival of spring is marked at the table as much as on the calendar.</p>
+          <p>There are histories of agriculture, trade, climate, migration and celebration tucked into these dishes. There are also preferences, family habits and the simple fact that a meal is rarely just about what is on the plate.</p>
+          <p>In <em>The Stationery Shop</em>, food helps Roya carry her Iranian identity into a life lived elsewhere. Familiar flavours become a connection to a home she can no longer inhabit in quite the same way. Cooking becomes one way of holding on, and eventually, of sharing that inheritance with others.</p>
+          <p>Which makes me think about food in a different context: what happens when people have to leave?</p>
+          <figure class="image-pair">
+            <div><img src="../images/seed01/persian-food.jpg" alt="Persian dish or table setting. Replace with your own or a credited image." loading="lazy"><figcaption>01 / A TABLE IN PERSIA</figcaption></div>
+            <div><img src="../images/seed01/sindhi-food.jpg" alt="Sindhi food such as sai bhaji, kadhi, koki or dal pakwan. Replace with your own or a credited image." loading="lazy"><figcaption>02 / A TABLE THAT TRAVELS</figcaption></div>
           </figure>
-
+          <p>Consider the Sindhi experience of Partition. Sindh itself became part of Pakistan in 1947, and many Hindu Sindhis moved to India, rebuilding their lives without the homeland that had once anchored their culture. The Sindhi experience of displacement is not identical to Iran's history, of course, but it opens a related question: what does a community carry when it cannot carry home?</p>
+          <p class="line-alone">Sometimes, it carries recipes.</p>
+          <p>Sindhi sai bhaji, with its greens, lentils and vegetables; kadhi served with rice; koki, rolled out and cooked on a griddle; dal pakwan, with its crisp pakwan and spiced lentils; the sweet, rich comfort of a festive tahiri. These dishes belong to a particular culinary inheritance, shaped by Sindh's own geography, trade, agricultural traditions and community life.</p>
+          <p>They are not simply food that survived migration. They are ways of remembering a place, of teaching children something about their inheritance, of making a home feel recognisable even when its coordinates have changed.</p>
+          <p>And the kitchen is not the only place where this happens.</p>
+          <p>Iranian cuisine has its own histories of regional variation, exchange and migration. Sindhi cuisine has its own. Their stories should not be collapsed into one another; the interesting thing is how each reveals a different way of preserving identity.</p>
+          <p>Across cultures, a recipe can become an archive without ever looking like one.</p>
+          <p>No leather binding. No official seal. Just a little of this, a little more of that, and somebody who knows when it is ready.</p>
+          <p>And yet, even these intimate traditions are vulnerable to circumstances beyond the kitchen. War can disrupt agriculture and supply routes. Scarcity can change what is available. Displacement can separate families from ingredients, markets and the people who know how to prepare a dish.</p>
+          <p>The food changes. Sometimes the recipe adapts. Sometimes a substitute becomes tradition. Sometimes a dish survives only in memory, or in the way an older relative describes it.</p>
+          <p>What begins as a question of supply can become a question of belonging.</p>
+          <p class="end-note">The kitchen is where history learns to taste like something.</p>
+          <div class="next-thread"><span>THE NEXT THREAD</span><button data-target="fashion">From what we eat to what we wear <span>↗</span></button></div>
         </div>
+      </div>
+    </section>
 
-
-        <div class="question">
-          “What can I buy?”
-          <small>becomes a political question.</small>
+    <section class="chapter chapter-tinted reading-section" id="fashion" data-section="fashion">
+      <div class="chapter-marker"><span>THREAD 04</span><span class="marker-line"></span><span>ART &amp; FASHION</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">WHAT WE CHOOSE TO SEE</p>
+          <h2>the wardrobe<br><em>is not innocent</em></h2>
+          <p class="chapter-deck">A historical document with excellent tailoring.</p>
+          <button class="related-link" data-target="war">Follow this thread to war <span>↗</span></button>
         </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- FOOD -->
-
-      <section class="story-section" id="food">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          03 · FOOD
-        </div>
-
-        <div class="split food-layout">
-
-          <figure class="story-image">
-
-            <img
-              src="../images/01_food_is_a_weapon.jpeg"
-              alt="Food is a weapon poster"
-            >
-
+        <div class="chapter-copy">
+          <p class="section-whisper">Follow the thread into fashion.</p>
+          <p>Clothes are often treated as the frivolous cousins of history. Lovely to look at, certainly, but surely less consequential than the things happening outside the fitting room.</p>
+          <p>I am not entirely convinced.</p>
+          <p>A silhouette can tell us something about the materials available to a society, the work people do, the rules they live under, and the identities they wish to present to the world.</p>
+          <figure class="image-break">
+            <img src="../images/seed01/dior-new-look.jpg" alt="Christian Dior's 1947 New Look or a properly credited archival fashion photograph." loading="lazy">
+            <figcaption><span>THE NEW LOOK, 1947</span><span>Credit the photographer, collection or museum.</span></figcaption>
           </figure>
+          <p>Consider wartime Britain. During the Second World War, fabric restrictions and utility clothing encouraged economy in design. Garments had to make practical use of limited resources. Mending became part of the wardrobe's maintenance rather than a charming hobby one might take up on a Sunday.</p>
+          <p>Then came Christian Dior's 1947 <em>New Look</em>: rounded shoulders, a defined waist and full skirts that used considerably more fabric than wartime austerity had encouraged. The collection arrived while rationing was still affecting Britain, making its extravagance all the more striking.</p>
+          <p>The contrast is fascinating. A changing material reality had shaped what could be made; a changing cultural mood helped determine what people wanted to wear next.</p>
+          <p>The relationship is not a neat equation. Fashion does not change for one reason alone. Designers, manufacturing, class, commerce, politics and personal taste all have a hand in it. But the thread is there.</p>
+          <p>Scarcity can influence a silhouette. A silhouette can become an ideal. An ideal can tell us something about what a society has been missing.</p>
+          <p>Now look beyond Europe.</p>
+          <p>Iran's clothing history cannot be reduced to a before-and-after story of revolution. Qajar-era portraits, early twentieth-century photography, changing urban fashions, modernist influences, the politics of dress and the personal choices women make today belong to different moments and different circumstances.</p>
+          <figure class="image-break image-break-small">
+            <img src="../images/seed01/qajar-portrait.jpg" alt="Qajar-era portrait or photograph, with source and date credited." loading="lazy">
+            <figcaption>Qajar-era portraiture offers a visual archive of changing ideas about beauty, status and self-presentation.</figcaption>
+          </figure>
+          <p>The Qajar period, for instance, offers a remarkable visual archive of how beauty and identity were represented. Court portraits, textiles and photographs reveal changing ideas of femininity, masculinity, status and self-presentation. Later periods brought new artistic influences and new debates about modernity, public life and dress.</p>
+          <p>Clothing is never merely what somebody happened to put on that morning. Sometimes it is a personal preference. Sometimes a social expectation. Sometimes a statement. Sometimes a negotiation between what someone wants and what their circumstances permit.</p>
+          <p>And sometimes it is all of these at once.</p>
+          <p>Which raises a question I rather like: when we look at an old photograph, how much of what we see was chosen freely, and how much was shaped by the world in which that person lived?</p>
+          <p class="end-note">A wardrobe, it turns out, can be a historical document with excellent tailoring.</p>
+          <div class="chapter-divider-art" aria-hidden="true"><span>✳</span><span>✳</span><span>✳</span></div>
+          <h3 class="subchapter-title">when history enters the frame</h3>
+          <p>I keep coming back to the idea that art is both a record of the world and an attempt to make sense of it.</p>
+          <p>It is also a rather good place to see how differently people have understood the same world across time.</p>
+          <p>Begin with Persian miniature painting. During the Safavid period, artists created richly detailed scenes in which architecture, gardens, figures and calligraphic traditions could work together to tell a story. The paintings often drew upon literary works, including the <em>Shahnameh</em>, the great Persian epic.</p>
+          <figure class="image-break">
+            <img src="../images/seed01/persian-miniature.jpg" alt="A Safavid Persian miniature manuscript painting; identify the work, artist if known, and collection." loading="lazy">
+            <figcaption>Persian miniature painting · identify the work and collection here.</figcaption>
+          </figure>
+          <p>Look closely at one of these miniatures and notice how much the image asks of you. A garden is not simply a garden. The arrangement of figures, the buildings, the colours and the relationship between image and text all contribute to a larger narrative.</p>
+          <p>Art here is not just an illustration placed beside a story. It is one of the ways the story is told.</p>
+          <p>Move forward into nineteenth-century Iran, and the visual world changes. Qajar portraiture and the spread of photography reveal new encounters between older artistic traditions and new technologies of representation. Later, artists such as Kamal-ol-Molk helped establish a naturalistic, academic style that changed the direction of modern Iranian painting.</p>
+          <p>Then modernism enters the picture, bringing new ways of thinking about form, abstraction and the relationship between art and contemporary life. Artists begin to negotiate what it means to be modern without simply abandoning the traditions that came before.</p>
+          <p>There is no single Iranian art history, any more than there is a single Iranian experience.</p>
+          <p>And this becomes particularly important when we turn to war.</p>
+          <figure class="image-pair">
+            <div><img src="../images/seed01/nevinson-war-art.jpg" alt="Christopher Nevinson's Returning to the Trenches or another identified work responding to war." loading="lazy"><figcaption>CHRISTOPHER NEVINSON</figcaption></div>
+            <div><img src="../images/seed01/kollwitz-war-art.jpg" alt="A work by Käthe Kollwitz, with title, date and collection credited." loading="lazy"><figcaption>KÄTHE KOLLWITZ</figcaption></div>
+          </figure>
+          <p>In Europe, the First World War profoundly altered the visual language of artists who confronted industrialised destruction. Christopher Nevinson's <em>Returning to the Trenches</em> conveys the mechanical, almost relentless movement of soldiers. Käthe Kollwitz's prints and drawings dwell on grief, maternal anguish and the human cost of conflict. Otto Dix's later work, including his <em>Der Krieg</em> portfolio, refuses to make the violence of war beautiful.</p>
+          <p>These artists did not all respond in the same way. Their work belongs to different artistic practices, experiences and perspectives. But together, they demonstrate something powerful: when the world becomes difficult to comprehend, art can become a way of confronting what ordinary language struggles to hold.</p>
+          <p>It can glorify war. It can document it. It can challenge the stories told about it. It can preserve the face of a person who might otherwise disappear into a statistic.</p>
+          <p>And it can make us look again.</p>
+          <p>There is a difference between knowing that people suffered and standing before an image that asks you to consider what that suffering looked like.</p>
+          <p>The image does not give you the whole truth. No image can. But it can change the questions you bring to the history.</p>
+          <p class="end-note">That is one of the things I love about art: it is not always trying to give us an answer. Sometimes it is teaching us how to look.</p>
+          <div class="next-thread"><span>THE NEXT THREAD</span><button data-target="economics">The price of ordinary things <span>↗</span></button></div>
+        </div>
+      </div>
+    </section>
 
+    <section class="chapter reading-section" id="economics" data-section="economics">
+      <div class="chapter-marker"><span>THREAD 05</span><span class="marker-line"></span><span>ECONOMICS</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">WHO GETS WHAT, AND WHY</p>
+          <h2>the price of<br><em>ordinary things</em></h2>
+          <p class="chapter-deck">Economics becomes tangible when it begins interfering with your day.</p>
+          <button class="related-link" data-target="food">Follow this thread to food <span>↗</span></button>
+        </div>
+        <div class="chapter-copy">
+          <p class="section-whisper">Follow the thread into economics.</p>
+          <p>Economics can sound terribly abstract until it begins interfering with your day.</p>
+          <p>A price rises. An ingredient disappears from a shelf. A factory changes what it produces. A family postpones a purchase. A government decides which goods are available, and in what quantities.</p>
+          <p>Suddenly, the economy is not a collection of charts. It is the difference between what somebody planned to buy and what they can afford to bring home.</p>
+          <p>War can redirect labour and industrial production, disrupt trade, damage infrastructure and place pressure on public finances. Those changes travel through supply chains and into household budgets. Their effects are not evenly distributed: some people lose their livelihoods, others find new work, and still others gain from the new conditions.</p>
+          <p>The point is not that every economic change can be traced to a single cause. It is that decisions made far from the household can alter the choices available within it.</p>
+          <p>And this is where the earlier threads meet.</p>
+          <p>The price and availability of fabric influence clothing. The availability of ingredients influences cooking. The movement of people changes labour markets, communities and demand. The financial circumstances of a household shape the opportunities available to its members.</p>
+          <p>Even art and fashion exist within material realities. Artists need materials, time and somewhere to work. Designers need textiles, skilled labour, manufacturers and customers. Cultural production is creative, but it does not take place outside the world that sustains it.</p>
+          <p>This is what makes economics interesting to me when it is approached through everyday life.</p>
+          <p>Not simply who has what, but how the arrangement came to be. Who makes the decisions. Who benefits. Who absorbs the cost. And whose ordinary life changes as a result.</p>
+          <blockquote class="pull-quote">The question <em>what can I buy?</em> can be a very personal one.</blockquote>
+          <p>It can also be a question about the entire system surrounding you.</p>
+          <div class="next-thread"><span>THE NEXT THREAD</span><button data-target="people">People, who were never footnotes <span>↗</span></button></div>
+        </div>
+      </div>
+    </section>
 
-          <div>
+    <section class="chapter chapter-tinted reading-section" id="people" data-section="people">
+      <div class="chapter-marker"><span>THREAD 06</span><span class="marker-line"></span><span>CULTURES &amp; PEOPLE</span></div>
+      <div class="chapter-grid">
+        <div class="chapter-heading">
+          <p class="eyebrow">THE ONES CONNECTING IT ALL</p>
+          <h2>people, who were<br><em>never footnotes</em></h2>
+          <p class="chapter-deck">History is experienced one life at a time.</p>
+          <button class="related-link" data-target="history">Return to history <span>↗</span></button>
+        </div>
+        <div class="chapter-copy">
+          <p class="section-whisper">Follow the thread back to people.</p>
+          <p>There is a particular kind of distance that history can create.</p>
+          <p>We learn about a revolution, a war, a migration or an economic crisis, and the event becomes so large that it threatens to swallow the lives within it.</p>
+          <p class="line-alone">But the people who lived through history were not living through a chapter title.</p>
+          <p>They were getting dressed. Making breakfast. Falling in love. Going to work. Arguing with their families. Waiting for somebody to come home.</p>
+          <p>They were making plans with the information they had, which was almost certainly less than the information we have now.</p>
+          <p>This is what draws me to stories like <em>The Stationery Shop</em>. The political history matters, but the novel also asks us to consider what it means for an ordinary life to be caught up in events beyond its control.</p>
+          <p>The stationery shop itself becomes more than a setting. It is a place where people meet, exchange ideas, discover books and imagine a future. Its objects are small, but their significance grows with the lives attached to them.</p>
+          <p class="line-alone">Paper. Ink. Letters. The possibility of sending a message and expecting an answer.</p>
+          <p>These are ordinary things until the circumstances surrounding them change.</p>
+          <p>And perhaps this is why personal objects can carry so much weight in histories of migration and displacement. A photograph, a recipe, a piece of jewellery, a familiar book or a handwritten letter can become a bridge between the life somebody had and the life they are trying to build.</p>
+          <p>The object survives. The person changes. The meaning changes with them.</p>
+          <figure class="image-break">
+            <img src="../images/seed01/letters-and-objects.jpg" alt="Letters, photographs, books or objects that carry personal memory. Replace with a personal or credited image." loading="lazy">
+            <figcaption>Small things, carrying more than they appear to.</figcaption>
+          </figure>
+          <p>I think about how much of a family's history is held in things that would seem unremarkable to anyone outside it. The dish somebody insists on making a particular way. The story that gets told at every gathering. The place-name that appears in conversation even when nobody in the room has ever been there.</p>
+          <p>There is a whole history of belonging in these details.</p>
+          <p>And there is a responsibility in paying attention to them. To remember that a person's life cannot be reduced to the circumstances that interrupted it.</p>
+          <p>They had a life before the event. They have a life beyond it, too.</p>
+        </div>
+      </div>
+    </section>
 
-            <h2>
-              The war enters<br>
-              the kitchen.
-            </h2>
-
-            <p class="body-copy">
-              What happens when supply changes
-              what people eat?
-            </p>
-
-            <div class="mini-chain">
-              availability → cooking → habit → culture
-            </div>
-
+    <section class="convergence reading-section" id="convergence" data-section="convergence">
+      <div class="convergence-inner">
+        <p class="eyebrow">PULL BACK, LOOK AGAIN</p>
+        <h2>the web begins<br><em>to show itself</em></h2>
+        <div class="convergence-copy">
+          <p>By now, the original question has become a rather different one.</p>
+          <p>We began with war. We followed it into economics, then into food, fashion, art, media and the lives of people. But none of these threads has remained where we left it.</p>
+          <p>Food brought us to migration and memory. Fashion brought us to scarcity, labour and identity. Art brought us to the stories societies tell about themselves, and the stories artists choose to challenge. Economics brought us back to the household. Literature brought us close enough to see that history is experienced one life at a time.</p>
+          <p>And the web continues beyond these connections.</p>
+          <p>Iranian history and Sindhi history are distinct, but both invite us to consider the relationship between place, displacement and cultural inheritance. A Persian miniature and a wartime poster belong to very different visual traditions, yet both remind us that images are shaped by the worlds in which they are made. A recipe and a handwritten letter seem to have little in common until we ask what happens when the person who knows the recipe, or the person who wrote the letter, can no longer be reached.</p>
+          <p>The connections are not always obvious. Some are direct; others are comparisons that help us ask better questions. Not every thread leads to the same conclusion, and not every story can be made to fit one tidy pattern.</p>
+          <p class="line-alone">That is precisely the point.</p>
+          <p>The world is not a collection of subjects waiting to be filed into separate drawers. It is a set of relationships, constantly shifting, sometimes contradictory, often more interesting than the categories we use to describe it.</p>
+          <p>Perhaps the task is not to find a connection between absolutely everything.</p>
+          <p class="end-note">Perhaps it is to become curious enough to notice the connections that are already there.</p>
+        </div>
+        <div class="return-web">
+          <p class="eyebrow">THE THREADS, AGAIN</p>
+          <div class="mini-web">
+            <svg viewBox="0 0 600 360" aria-hidden="true"><path d="M300 36 L120 125 L120 250 L300 320 L480 250 L480 125 Z M300 36 L300 320 M120 125 L480 250 M480 125 L120 250 M120 125 L480 125 M120 250 L480 250"/></svg>
+            <button data-target="history" class="mini-node mini-history">history</button>
+            <button data-target="fashion" class="mini-node mini-fashion">art, fashion</button>
+            <button data-target="food" class="mini-node mini-food">food</button>
+            <button data-target="war" class="mini-node mini-war">war</button>
+            <button data-target="economics" class="mini-node mini-economics">economics</button>
+            <button data-target="people" class="mini-node mini-people">cultures, people</button>
+            <span class="mini-centre">nothing really<br>exists alone.</span>
           </div>
-
         </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- FASHION -->
-
-      <section class="story-section" id="fashion">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          04 · FASHION
-        </div>
-
-        <h2>
-          The war enters<br>
-          the wardrobe.
-        </h2>
-
-
-        <div class="fashion-line">
-
-          <figure>
-            <img src="../images/01_corset_1740s.jpeg">
-            <figcaption>1740s</figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/02_stays_18th_century.jpeg">
-            <figcaption>18th century</figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/05_corset_1810s.jpeg">
-            <figcaption>1810s</figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/12_wwii_utility_dress.jpeg">
-            <figcaption>1940s · utility</figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/13_dior_new_look_1947.jpeg">
-            <figcaption>1947 · New Look</figcaption>
-          </figure>
-
-        </div>
-
-
-        <div class="fashion-chain">
-          scarcity → utility → aesthetic fatigue → abundance
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- ART -->
-
-      <section class="story-section" id="art">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          05 · ART
-        </div>
-
-        <div class="art-intro">
-
-          <h2>
-            Eventually, the war<br>
-            enters the imagination.
-          </h2>
-
-          <p>
-            The event happened once.<br>
-            The interpretation continued<br>
-            for decades.
-          </p>
-
-        </div>
-
-
-        <div class="art-grid">
-
-          <figure>
-            <img src="../images/09_wwi_nevinson.jpeg">
-            <figcaption>
-              Christopher Nevinson · Returning to the Trenches
-            </figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/10_wwi_kollwitz_mothers.jpeg">
-            <figcaption>
-              Käthe Kollwitz · Mothers
-            </figcaption>
-          </figure>
-
-          <figure>
-            <img src="../images/11_otto_dix_the_war.jpeg">
-            <figcaption>
-              Otto Dix · The War
-            </figcaption>
-          </figure>
-
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- PROPAGANDA -->
-
-      <section class="story-section" id="propaganda">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          06 · PROPAGANDA
-        </div>
-
-        <div class="propaganda-heading">
-
-          <h2>
-            What happens when<br>
-            art is asked to persuade?
-          </h2>
-
-          <p>
-            The same tools that can make us feel something
-            can make us believe something.
-          </p>
-
-        </div>
-
-
-        <div class="poster-grid">
-
-          <img src="../images/01_wwi_recruitment.jpeg">
-
-          <img src="../images/05_food_propaganda.jpeg">
-
-          <img src="../images/04_women_wartime_industry.jpeg">
-
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- MEDIA -->
-
-      <section class="story-section compact" id="media">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          07 · MEDIA
-        </div>
-
-        <h2>
-          The medium changes.
-        </h2>
-
-        <p class="body-copy">
-          The human need to make sense of the world doesn't.
-        </p>
-
-
-        <div class="media-line">
-
-          <span><b>1940s</b> poster</span>
-          <span><b>1960s</b> television</span>
-          <span><b>1990s</b> 24-hour news</span>
-          <span><b>2000s</b> internet</span>
-          <span><b>2020s</b> algorithmic feeds</span>
-
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- PEOPLE -->
-
-      <section class="story-section people-section" id="people">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          08 · CULTURES, PEOPLE
-        </div>
-
-        <div class="people-statement">
-
-          <p>
-            History is usually written as events.
-          </p>
-
-          <h2>
-            People experience it<br>
-            as Tuesdays.
-          </h2>
-
-          <span>
-            because people live through it.
-          </span>
-
-        </div>
-
-              </div>
-
-</section>
-
-
-
-      <!-- FINAL WEB -->
-
-      <section class="story-section final-section" id="final-web">
-
-        <div class="scene-stage">
-
-        <div class="section-meta">
-          10 · THE WEB
-        </div>
-
-        <h2>
-          Nothing really happens alone.
-        </h2>
-
-
-        <div class="final-web">
-
-          <span>WAR</span>
-          <span>ECONOMICS</span>
-          <span>FOOD</span>
-          <span>FASHION</span>
-          <span>ART</span>
-          <span>MEDIA</span>
-          <span>CULTURES, PEOPLE</span>
-
-        </div>
-
-
-        <p class="ending-line">
-          everything seems to belong<br>
-          to something else.
-        </p>
-
-              </div>
-
-</section>
-
-
-    </div>
-
+      </div>
+    </section>
+
+    <section class="cues-section reading-section" id="my-cues" data-section="cues">
+      <div class="cues-heading">
+        <p class="eyebrow">A SMALL READING ROOM</p>
+        <h2>my cues</h2>
+        <p>A small record of where this particular web began.</p>
+      </div>
+      <div class="cue-list">
+        <article class="cue-item"><span class="cue-type">WATCHED</span><div><h3><em>Tehran</em></h3><p>A fictional espionage thriller that opened a window onto a city, and prompted questions about the lives and histories that exist beyond a screen.</p><a href="https://www.apple.com/tv-pr/originals/tehran/" target="_blank" rel="noopener noreferrer">Find the series ↗</a></div></article>
+        <article class="cue-item"><span class="cue-type">READ</span><div><h3><em>The Stationery Shop of Tehran</em>, by Marjan Kamali</h3><p>A love story set against political upheaval, and a reminder that historical events are also personal interruptions, remembered for decades.</p><a href="https://marjankamali.com/books/the-stationery-shop/" target="_blank" rel="noopener noreferrer">Visit the author's page ↗</a></div></article>
+        <article class="cue-item"><span class="cue-type">FOLLOWED</span><div><h3>Iran's artistic traditions</h3><p>From Safavid miniatures and Qajar portraiture to modern painting, the relationship between art, identity, technology and the world outside the frame.</p></div></article>
+        <article class="cue-item"><span class="cue-type">RETURNED TO</span><div><h3>Sindhi food and cultural memory</h3><p>The ways recipes, ingredients and familiar meals can carry a sense of home across generations and geography.</p></div></article>
+        <article class="cue-item"><span class="cue-type">LOOKED AT AGAIN</span><div><h3>Fashion and wartime material culture</h3><p>How scarcity, production, changing expectations and the desire for something new can leave their marks on what people wear.</p></div></article>
+      </div>
+      <p class="source-note">These are the breadcrumbs that led me here, not the conclusions of the investigation. Add further sources and image credits as the archive grows.</p>
+    </section>
+
+    <section class="final-thread reading-section" id="last-thread" data-section="last-thread">
+      <p class="eyebrow">ONE LAST THREAD</p>
+      <h2>and then,<br><em>keep looking.</em></h2>
+      <div class="final-copy">
+        <p>I started with a television series and a book.</p>
+        <p>I ended up thinking about a plate of food, a dress, a painting, a family photograph, a stationery shop and the price of things.</p>
+        <p>Somewhere along the way, the subjects stopped behaving like subjects. They began speaking to one another.</p>
+        <p>And perhaps that is what I have been trying to understand all along: how the things we encounter become part of the way we see the world. How a story sends us looking for another story. How a detail, once noticed, changes the meaning of everything around it.</p>
+        <p>I don't think curiosity is always about collecting more information. Sometimes it is about learning to see the information we already have differently.</p>
+        <p>The web is still unfinished. There are more threads to pull, more histories to read, more things I haven't noticed yet.</p>
+        <p>For now, I think I'll leave a few of them loose.</p>
+        <p class="end-note">After all, the interesting part is what happens when you follow one.</p>
+      </div>
+      <div class="end-navigation">
+        <button class="back-to-web" data-target="top">Return to the web ↑</button>
+        <a href="../index.html" class="back-home">Back to archive.gauri ↗</a>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <a class="wordmark" href="../index.html">archive.gauri</a>
+    <span>SEED 01 · THE WEB OF THINGS</span>
+    <a href="#top">BACK TO THE BEGINNING ↑</a>
+  </footer>
 
-  <script src="script.js"></script>
-
+  <button class="floating-map" id="floatingMap" type="button" aria-label="Open thread index">THREADS <span>↗</span></button>
+  <div class="image-lightbox" id="imageLightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image">×</button>
+    <img id="lightboxImage" src="" alt="">
+    <p id="lightboxCaption"></p>
+  </div>
 </body>
-
 </html>
