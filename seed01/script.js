@@ -1,316 +1,155 @@
-/* =========================================================
-   SEED 01 — TRUE SCROLL CHOREOGRAPHY
-   The scroll position is the story timeline.
-========================================================= */
+(() => {
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-const nodes = document.querySelectorAll('.web-node');
+  const drawer = $("#threadDrawer");
+  const scrim = $("#drawerScrim");
+  const indexToggle = $("#indexToggle");
+  const drawerClose = $("#drawerClose");
+  const floatingMap = $("#floatingMap");
+  const progressBar = $("#progressBar");
+  let lastFocus = null;
 
-const threadMap = {
-  art: 'art',
-  history: 'people',
-  food: 'food',
-  war: 'war',
-  economics: 'economics',
-  people: 'people'
-};
+  function openDrawer() {
+    lastFocus = document.activeElement;
+    drawer.hidden = false;
+    scrim.hidden = false;
+    document.body.classList.add("drawer-open");
+    indexToggle.setAttribute("aria-expanded", "true");
+    drawerClose.focus();
+  }
+  function closeDrawer() {
+    drawer.hidden = true;
+    scrim.hidden = true;
+    document.body.classList.remove("drawer-open");
+    indexToggle.setAttribute("aria-expanded", "false");
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  }
 
-/* ---------------------------------------------------------
-   THREAD NAVIGATION
---------------------------------------------------------- */
+  indexToggle?.addEventListener("click", () => drawer.hidden ? openDrawer() : closeDrawer());
+  floatingMap?.addEventListener("click", openDrawer);
+  drawerClose?.addEventListener("click", closeDrawer);
+  scrim?.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      if (!drawer.hidden) closeDrawer();
+      closeLightbox();
+    }
+  });
 
-nodes.forEach(node => {
-  node.addEventListener('click', () => {
-    const target = document.getElementById(threadMap[node.dataset.thread]);
+  function goToTarget(targetId) {
+    if (!targetId) return;
+    const target = document.getElementById(targetId);
     if (!target) return;
+    if (!drawer.hidden) closeDrawer();
+    target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    if (targetId !== "top") history.replaceState(null, "", `#${targetId}`);
+  }
 
-    document.body.classList.add('thread-pulling');
-
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
-
-    setTimeout(() => {
-      document.body.classList.remove('thread-pulling');
-    }, 900);
-  });
-
-  node.addEventListener('mouseenter', () => {
-    nodes.forEach(other => {
-      if (other !== node) other.classList.add('node-dim');
+  $$("[data-target]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      goToTarget(button.dataset.target);
     });
-    node.classList.add('node-focus');
   });
-
-  node.addEventListener('mouseleave', () => {
-    nodes.forEach(other => other.classList.remove('node-dim'));
-    node.classList.remove('node-focus');
-  });
-});
-
-/* ---------------------------------------------------------
-   SCROLL SCENES
---------------------------------------------------------- */
-
-const sections = [...document.querySelectorAll('.story-section')];
-
-const phaseConfig = {
-  war: [
-    ['.section-meta', 1],
-    ['.story-image.large', 2],
-    ['h2', 3],
-    ['.section-heading p', 4],
-    ['.chain', 5]
-  ],
-  economics: [
-    ['.section-meta', 1],
-    ['.story-image', 2],
-    ['h2', 3],
-    ['.body-copy', 4],
-    ['.question', 5]
-  ],
-  food: [
-    ['.section-meta', 1],
-    ['.story-image', 2],
-    ['h2', 3],
-    ['.section-heading p', 4],
-    ['.mini-chain', 5]
-  ],
-  fashion: [
-    ['.section-meta', 1],
-    ['h2', 2],
-    ['.fashion-line', 3],
-    ['.fashion-chain', 4]
-  ],
-  art: [
-    ['.section-meta', 1],
-    ['.art-intro h2', 2],
-    ['.art-intro p', 3],
-    ['.art-grid', 4]
-  ],
-  propaganda: [
-    ['.section-meta', 1],
-    ['.propaganda-heading h2', 2],
-    ['.propaganda-heading p', 3],
-    ['.poster-grid', 4]
-  ],
-  media: [
-    ['.section-meta', 1],
-    ['h2', 2],
-    ['.body-copy', 3],
-    ['.media-line', 4]
-  ],
-  people: [
-    ['.section-meta', 1],
-    ['.people-statement p', 2],
-    ['.people-statement h2', 3],
-    ['.people-statement span', 4]
-  ],
-  'final-web': [
-    ['.section-meta', 1],
-    ['h2', 2],
-    ['.final-web', 3],
-    ['.ending-line', 4]
-  ]
-};
-
-const phaseThresholds = {
-  /* Phase 1 is the quiet opening frame. Everything else earns its entrance. */
-  1: 0.00,
-  2: 0.24,
-  3: 0.46,
-  4: 0.66,
-  5: 0.82
-};
-
-const sceneState = [];
-
-sections.forEach(section => {
-  const id = section.id;
-  const config = phaseConfig[id] || [];
-
-  config.forEach(([selector, phase]) => {
-    const elements = section.querySelectorAll(selector);
-    elements.forEach(element => {
-      element.dataset.phase = phase;
+  $$("[data-thread-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      goToTarget(link.getAttribute("href").slice(1));
     });
   });
 
-  /* War's chain pieces get their own mini-timeline. */
-  if (id === 'war') {
-    const chain = section.querySelector('.chain');
-    if (chain) {
-      [...chain.children].forEach((piece, index) => {
-        piece.dataset.chainPiece = index;
+  // Progress indicator follows the whole reading experience.
+  function updateProgress() {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    if (progressBar) progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+  }
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  updateProgress();
+
+  // Reveal sections softly as they enter the viewport.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    document.documentElement.classList.add("reveal-ready");
+    const revealTargets = $$(".chapter-heading, .chapter-copy > p, .image-break, .image-pair, .cue-item, .final-copy > p, .connection-card");
+    revealTargets.forEach((el) => el.classList.add("reveal"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
       });
-    }
+    }, { threshold: 0.08, rootMargin: "0px 0px -35px 0px" });
+    revealTargets.forEach((el) => observer.observe(el));
   }
 
-  sceneState.push({ section, elements: [...section.querySelectorAll('[data-phase]')] });
-});
-
-function clamp(value, min = 0, max = 1) {
-  return Math.min(max, Math.max(min, value));
-}
-
-function updateScenes() {
-  const viewportH = window.innerHeight;
-  const scrollY = window.scrollY;
-
-  sceneState.forEach(({ section, elements }) => {
-    const rect = section.getBoundingClientRect();
-    const sectionTop = scrollY + rect.top;
-    const travel = Math.max(1, section.offsetHeight - viewportH);
-    const progress = clamp((scrollY - sectionTop) / travel);
-
-    section.style.setProperty('--scene-progress', progress.toFixed(4));
-
-    let activePhase = 0;
-
-    Object.entries(phaseThresholds).forEach(([phase, threshold]) => {
-      if (progress >= threshold) activePhase = Math.max(activePhase, Number(phase));
-    });
-
-    section.dataset.activePhase = activePhase;
-
-    elements.forEach(element => {
-      const phase = Number(element.dataset.phase);
-      const active = progress >= phaseThresholds[phase];
-      element.classList.toggle('phase-active', active);
-
-      /* subtle depth movement while the object is on screen */
-      if (active) {
-        const drift = Math.sin((progress - phaseThresholds[phase]) * Math.PI) * -10;
-        element.style.setProperty('--scene-drift', `${drift.toFixed(2)}px`);
-      }
-    });
-
-    /* War timeline: each idea arrives separately. */
-    if (section.id === 'war') {
-      const chain = section.querySelector('.chain');
-      if (chain) {
-        const chainStart = phaseThresholds[5];
-        const chainProgress = clamp((progress - chainStart) / (1 - chainStart));
-        chain.classList.toggle('chain-active', progress >= chainStart);
-
-        const pieces = [...chain.children];
-        pieces.forEach((piece, index) => {
-          const pieceThreshold = (index + 1) / pieces.length;
-          piece.classList.toggle('chain-piece-active', chainProgress >= pieceThreshold);
+  // Mark the currently visible thread in the drawer.
+  const sections = $$("[data-section]");
+  if ("IntersectionObserver" in window) {
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        $$(".drawer-links a").forEach((link) => {
+          const active = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("is-active", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
         });
-      }
-    }
-  });
-
-  updateActiveThread();
-}
-
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      updateScenes();
-      ticking = false;
-    });
-    ticking = true;
+      });
+    }, { rootMargin: "-25% 0px -60% 0px" });
+    sections.forEach((section) => activeObserver.observe(section));
   }
-}, { passive: true });
 
-window.addEventListener('resize', updateScenes);
-window.addEventListener('load', updateScenes);
-updateScenes();
+  // Optional image lightbox: click any successfully loaded article image to enlarge.
+  const lightbox = $("#imageLightbox");
+  const lightboxImage = $("#lightboxImage");
+  const lightboxCaption = $("#lightboxCaption");
+  const lightboxClose = $("#lightboxClose");
+  let previousImageFocus = null;
 
-/* ---------------------------------------------------------
-   ACTIVE THREAD IN THE OPENING WEB
---------------------------------------------------------- */
-
-const threadNodes = {
-  war: 'node-war',
-  economics: 'node-economics',
-  food: 'node-food',
-  fashion: 'node-art',
-  art: 'node-art',
-  propaganda: 'node-art',
-  media: 'node-history',
-  people: 'node-people',
-  'final-web': null
-};
-
-function updateActiveThread() {
-  const viewportCentre = window.innerHeight * 0.5;
-  let current = null;
-
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top <= viewportCentre && rect.bottom >= viewportCentre) current = section.id;
-  });
-
-  nodes.forEach(node => node.classList.remove('active-thread'));
-
-  const nodeId = threadNodes[current];
-  if (nodeId) document.getElementById(nodeId)?.classList.add('active-thread');
-}
-
-/* ---------------------------------------------------------
-   SCROLL PROGRESS
---------------------------------------------------------- */
-
-function updateScrollProgress() {
-  const scrollTop = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = documentHeight > 0 ? scrollTop / documentHeight : 0;
-  document.documentElement.style.setProperty('--scroll-progress', progress);
-}
-
-window.addEventListener('scroll', updateScrollProgress, { passive: true });
-updateScrollProgress();
-
-/* ---------------------------------------------------------
-   LIGHTBOX
---------------------------------------------------------- */
-
-document.querySelectorAll('.story-section img').forEach(img => {
-  img.style.cursor = 'zoom-in';
-
-  img.addEventListener('click', () => {
-    const overlay = document.createElement('div');
-    overlay.className = 'lightbox';
-
-    const image = document.createElement('img');
-    image.src = img.src;
-    image.alt = img.alt;
-
-    const close = document.createElement('button');
-    close.className = 'lightbox-close';
-    close.innerHTML = '×';
-    close.setAttribute('aria-label', 'Close image');
-
-    overlay.append(close, image);
-    document.body.appendChild(overlay);
-
-    requestAnimationFrame(() => overlay.classList.add('open'));
-
-    const remove = () => {
-      overlay.classList.remove('open');
-      setTimeout(() => overlay.remove(), 300);
-      document.removeEventListener('keydown', escape);
+  function closeLightbox() {
+    if (!lightbox || lightbox.hidden) return;
+    lightbox.hidden = true;
+    lightboxImage.src = "";
+    if (previousImageFocus) previousImageFocus.focus();
+  }
+  $$(".image-break img, .image-pair img").forEach((img) => {
+    img.tabIndex = 0;
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", `Enlarge image: ${img.alt}`);
+    img.style.cursor = "zoom-in";
+    const open = () => {
+      if (!img.complete || img.naturalWidth === 0) return;
+      previousImageFocus = img;
+      lightboxImage.src = img.currentSrc || img.src;
+      lightboxImage.alt = img.alt;
+      const caption = img.closest("figure")?.querySelector("figcaption")?.innerText || img.alt;
+      lightboxCaption.textContent = caption;
+      lightbox.hidden = false;
+      lightboxClose.focus();
     };
-
-    function escape(event) {
-      if (event.key === 'Escape') remove();
-    }
-
-    close.addEventListener('click', remove);
-    overlay.addEventListener('click', event => {
-      if (event.target === overlay) remove();
+    img.addEventListener("click", open);
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
     });
-    document.addEventListener('keydown', escape);
   });
-});
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
 
-/* ---------------------------------------------------------
-   REDUCED MOTION
---------------------------------------------------------- */
-
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.classList.add('reduced-motion');
-}
+  // Keep direct links usable on first load.
+  window.addEventListener("load", () => {
+    if (location.hash) {
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target) setTimeout(() => target.scrollIntoView({ behavior: "auto", block: "start" }), 100);
+    }
+  });
+})();
