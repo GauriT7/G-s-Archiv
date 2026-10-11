@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -870,9 +869,9 @@
       },
 
       2: {
-        title: "Seed 2",
-        description: "Your second archive entry goes here."
-      },
+  title: "In the meantime",
+  description: "A collection of thoughts on becoming, being seen, solitude, friendship, and figuring things out along the way."
+},
 
       3: {
         title: "Seed 3",
@@ -974,10 +973,12 @@ function openArchive() {
     }
     
     document.getElementById("open-entry").addEventListener("click", () => {
-      if (selectedSeed === 1) {
-        window.location.href = "./seed01/index.html";
-      }
-    });
+  if (selectedSeed === 1) {
+    window.location.href = "./seed01/index.html";
+  } else if (selectedSeed === 2) {
+    window.location.href = "./seed02/index.html";
+  }
+});
  
 
     /* RETURN TO THE OPENING SCREEN */
