@@ -185,6 +185,22 @@
   outline-offset: 8px;
   border-radius: 50%;
 }
+    @media (hover: hover) and (pointer: fine) {
+  .fruit-button:hover img {
+    animation-play-state: paused;
+    transform: scale(1.055) rotate(-2deg);
+    filter: drop-shadow(0 12px 18px rgba(105, 0, 29, 0.12));
+    transition:
+      transform 350ms ease,
+      filter 350ms ease;
+  }
+}
+
+.fruit-button:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 8px;
+  border-radius: 50%;
+}
 
     @keyframes sway {
       0%, 100% {
@@ -324,11 +340,15 @@
   transform: translate(-50%, 0);
 }
 
-    @media (max-width: 600px) {
-  .seed-tooltip {
-    font-size: 11px;
-    padding: 6px 9px;
+    @media (hover: hover) and (pointer: fine) {
+  .seed:hover img {
+    transform: scale(1.1) rotate(3deg);
+    filter: drop-shadow(0 5px 8px rgba(160, 0, 43, 0.2));
   }
+}
+
+.seed:active img {
+  transform: scale(0.92);
 }
     
 
@@ -660,6 +680,14 @@
         scroll-behavior: auto !important;
       }
     }
+    @media (prefers-reduced-motion: reduce) {
+  .fruit-button img,
+  .seed img,
+  .seed-tooltip {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 
     /* Custom cursor trail */
 .cursor-trail {
