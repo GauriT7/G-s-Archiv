@@ -9,3 +9,36 @@
 @keyframes orbitTurn{to{transform:rotate(360deg)}}@keyframes courtFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes ballBounce{0%,100%{transform:translate(0,0)}50%{transform:translate(13px,-22px)}}@keyframes ballDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-11px,17px)}}@keyframes labelFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}@keyframes starTwinkle{0%,100%{opacity:.45}50%{opacity:1}}@keyframes wordFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-13px) rotate(3deg)}}@keyframes artEnter{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes typeReveal{0%{max-width:0;opacity:0}10%{opacity:1}100%{max-width:100%;opacity:1}}@keyframes wheelSpin{to{transform:rotate(360deg)}}@keyframes breatheRing{0%,100%{transform:scale(.8);opacity:.4}50%{transform:scale(1.15);opacity:1}}@keyframes chipFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}@keyframes drawLine{to{stroke-dashoffset:0}}@keyframes orbitDot{to{transform:rotate(360deg) translateX(28px) rotate(-360deg)}}@keyframes barBounce{to{height:20%}}@keyframes finishTravel{to{left:92%;transform:rotate(900deg)}}
 @media(max-width:800px){.site-header{padding:0 18px}.header-right{gap:13px}.hero{min-height:auto;padding:95px 22px 70px}.hero-kicker{left:22px;top:26px}.hero-grid{grid-template-columns:1fr;min-height:0}.hero-copy{text-align:center;padding:25px 0 0}.hero-copy h1{font-size:clamp(75px,17vw,115px)}.hero-subtitle{margin:0 auto 26px;max-width:340px}.hero-stamp{margin-top:24px}.hero-art{width:min(100%,520px);margin:10px auto 0}.hero-footnote{left:18px;right:18px;bottom:18px;font-size:7px}.word-keep{right:8%;top:28%;font-size:14px}.word-breathe{left:8%;bottom:22%;font-size:14px}.orbit-note{font-size:7px}.opening-section,.essay-section{padding:75px 8vw 70px}.section-inner{display:block}.section-topline{margin-bottom:30px;flex-direction:row;align-items:center;flex-wrap:wrap}.section-inner h2{font-size:clamp(43px,10vw,64px);margin-bottom:30px}.section-copy{font-size:12px;line-height:2.1}.opening-title{font-size:clamp(45px,11vw,65px)}.typewriter-card{margin-bottom:70px;padding:28px 24px}.typed-text{font-size:14px}.section-end{align-items:flex-start;flex-direction:column;gap:8px;margin-top:42px}.skate-strip{gap:8px;flex-wrap:wrap}.skate-strip span{width:100%;margin:10px 0 0}.ritual-board{grid-template-columns:1fr;gap:10px}.ritual-card{min-height:155px}.ritual-card:nth-child(2){transform:none}.meter-words{justify-content:center;gap:10px}.float-chip{font-size:7px;padding:9px 10px}.plus,.equals{font-size:15px}.dash-metrics{grid-template-columns:1fr}.metric{min-height:125px}.body-dashboard,.court-scoreboard,.endurance-meter,.question-card{margin-top:30px}.question-card p{font-size:21px}.closing-scene{min-height:0;padding:80px 8vw 70px}.closing-scene h2{font-size:clamp(60px,13vw,90px)}.closing-copy .final-line{font-size:19px}.finish-line-art{margin-bottom:35px}.site-footer{align-items:flex-start;flex-direction:column;gap:9px}.site-footer>span{order:3}.thread-drawer{padding:22px 24px}.drawer-links a{font-size:19px}.floating-route{right:12px;bottom:12px}.art-caption{font-size:7px}.note-top{right:0}.note-bottom{left:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.typed-text{opacity:1;max-width:100%}.reveal-ready .section-copy p,.reveal-ready .section-inner h2,.reveal-ready .ritual-board,.reveal-ready .endurance-meter,.reveal-ready .court-scoreboard,.reveal-ready .body-dashboard,.reveal-ready .question-card,.reveal-ready .pull-quote{opacity:1;transform:none}}
+
+/* ARCHIVE HOME LINK — SHARED STYLE */
+
+a.back-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  color: var(--burgundy);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+a.back-home:hover {
+  border-color: var(--burgundy);
+  background: rgba(217, 170, 176, 0.12);
+  transform: translateY(-2px);
+}
+
+a.back-home:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 4px;
+}
