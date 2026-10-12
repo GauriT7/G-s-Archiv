@@ -283,6 +283,55 @@
       transform: scale(.9);
     }
 
+    /* SEED TITLE LABELS */
+
+.seed-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 10;
+
+  width: max-content;
+  max-width: min(220px, 65vw);
+  padding: 8px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--cream);
+  color: var(--burgundy);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate(-50%, 5px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 200ms ease;
+}
+
+.seed:hover .seed-tooltip,
+.seed:focus-visible .seed-tooltip,
+.seed[aria-pressed="true"] .seed-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+    @media (max-width: 600px) {
+  .seed-tooltip {
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+}
+    
+
     /* GLOW ON THE SELECTED SEED */
 
     .seed[aria-pressed="true"] img {
@@ -661,6 +710,64 @@
   }
 }
 
+    /* RESPONSIVE ARCHIVE LAYOUT */
+
+@media (max-width: 600px) {
+  .page {
+    width: 100%;
+  }
+
+  .screen {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .fruit-button {
+    width: min(76vw, 420px);
+    max-width: 100%;
+  }
+
+  .opening-hint {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .archive-button {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .detail-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  header {
+    min-height: 76px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .screen {
+    min-height: auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .fruit-button {
+    width: min(42vh, 320px);
+  }
+
+  .cross-stage {
+    width: min(90vw, 580px);
+    min-height: 300px;
+  }
+}
   </style>
 </head>
 
@@ -733,35 +840,39 @@
         <!-- Each seed is now a real, accessible button. -->
 
         <button
-          class="seed seed-1"
-          data-seed="1"
-          aria-label="Explore seed 1"
-        >
-          <img src="./images/seed1.png" alt="" draggable="false">
-        </button>
+  class="seed seed-1"
+  data-seed="1"
+  aria-label="The Web of Things"
+>
+  <img src="./images/seed1.png" alt="" draggable="false">
+  <span class="seed-tooltip">The Web of Things</span>
+</button>
 
         <button
           class="seed seed-2"
           data-seed="2"
-          aria-label="Explore seed 2"
+          aria-label="In the meantime"
         >
           <img src="./images/seed2.png" alt="" draggable="false">
+          <span class="seed-tooltip">In the meantime</span>
         </button>
 
         <button
           class="seed seed-3"
           data-seed="3"
-          aria-label="Explore seed 3"
+          aria-label="The Body, Inc."
         >
           <img src="./images/seed3.png" alt="" draggable="false">
+          <span class="seed-tooltip">The Body, Inc.</span>
         </button>
 
         <button
           class="seed seed-4"
           data-seed="4"
-          aria-label="Explore seed 4"
+          aria-label="The Long Game"
         >
           <img src="./images/seed4.png" alt="" draggable="false">
+          <span class="seed-tooltip">The Long Game</span>
         </button>
 
         <button
