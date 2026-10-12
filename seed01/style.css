@@ -49,9 +49,12 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--burgundy); outl
   display: flex; align-items: center; justify-content: space-between;
 }
 .wordmark {
-  /* Match the bold archive.gauri wordmark used on the main homepage. */
-  font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--burgundy);
-  text-decoration: none; letter-spacing: -.045em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--burgundy);
+  letter-spacing: -0.025em;
+  text-decoration: none;
 }
 .header-right { display: flex; align-items: center; gap: 22px; }
 .edition, .eyebrow, .hero-kicker, .hero-instruction, .hero-footnote,
