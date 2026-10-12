@@ -47,3 +47,36 @@
 @keyframes caret-blink{0%,48%{opacity:1}49%,100%{opacity:0}}
 @media(max-width:760px){.opening-hero{height:auto;min-height:790px;padding:82px 22px 70px}.paper-scene{grid-template-columns:1fr;gap:38px;max-width:470px;margin-top:28px}.paper-sheet{min-height:280px;padding:25px 23px 30px;transform:rotate(-.7deg)}.typed-line{margin-top:54px;font-size:20px}.paper-caption{padding-left:7px}.paper-caption h1{font-size:clamp(50px,13vw,72px)}.opening-hero .hero-footnote{left:18px;right:18px;font-size:7px}.pomegranate-interlude{padding:65px 8vw 35px}.pomegranate-layout{grid-template-columns:1fr;gap:25px}.pomegranate-mark{width:115px}.pomegranate-copy h2{font-size:44px;margin-bottom:22px}.typewritten-note{padding:21px 18px 12px;font-size:12px;line-height:1.85}.interlude-footer{align-items:flex-start;flex-direction:column;gap:8px;margin-top:38px}}
 @media(prefers-reduced-motion:reduce){.typewriter-caret{animation:none;opacity:1}}
+
+/* ARCHIVE HOME LINK — SHARED STYLE */
+
+a.back-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  color: var(--burgundy);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+a.back-home:hover {
+  border-color: var(--burgundy);
+  background: rgba(217, 170, 176, 0.12);
+  transform: translateY(-2px);
+}
+
+a.back-home:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 4px;
+}
