@@ -15,3 +15,36 @@
 @keyframes pipetteMove{0%,100%{transform:translate(0,0) rotate(27deg)}50%{transform:translate(-8px,8px) rotate(22deg)}}@keyframes flaskRock{0%,100%{rotate:0deg}50%{rotate:1.5deg}}@keyframes bubbleRise{0%{transform:translateY(12px) scale(.65);opacity:0}35%{opacity:1}100%{transform:translateY(-27px) scale(1.05);opacity:0}}@keyframes dropFall{0%,12%,100%{transform:translate(350px,210px);opacity:0}20%{opacity:1}42%{transform:translate(320px,300px);opacity:0}}@keyframes moleculeFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-12px)}}@keyframes liquidShift{from{transform:translateY(3px)}to{transform:translateY(-4px)}}@keyframes typeIn{0%{opacity:1;max-width:0}100%{opacity:1;max-width:100%}}
 @media(max-width:760px){.site-header{padding:0 18px}.header-right{gap:12px}.lab-hero{height:auto;min-height:880px;padding:100px 22px 70px}.hero-grid{grid-template-columns:1fr;gap:0}.hero-copy{padding:25px 2vw 0;text-align:center}.hero-copy h1{font-size:clamp(65px,15vw,100px)}.hero-subtitle{margin:0 auto;max-width:320px}.hero-stamp{margin-top:22px}.lab-illustration{width:min(100%,480px);margin-top:15px}.hero-kicker{top:85px}.hero-footnote{left:18px;right:18px;bottom:18px;font-size:7px}.opening-section,.essay-section{padding:75px 8vw 70px}.section-inner{display:block}.section-topline{margin-bottom:32px}.section-inner h2{position:static;font-size:clamp(40px,9vw,58px);margin-bottom:30px}.section-copy{font-size:13px}.opening-title{font-size:clamp(45px,11vw,65px)}.pull-quote{margin-left:0;margin-right:0}.section-end{align-items:flex-start;flex-direction:column;gap:8px;margin-top:45px}.typewriter-card{margin-bottom:70px;padding:25px 23px}.specimen-strip{gap:6px}.specimen{min-height:135px}.specimen b{font-size:7px}.specimen small{font-size:6px}.science-card,.specimen-strip,.safety-slip{margin-top:25px}.closing-scene{min-height:620px;padding:80px 8vw}.site-footer{align-items:flex-start;flex-direction:column}.site-footer>span{order:3}.thread-drawer{padding:22px 24px}.drawer-links a{font-size:19px}.floating-map{right:12px;bottom:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.typed-text{opacity:1;max-width:100%}.reveal-ready .section-copy p,.reveal-ready .section-inner h2,.reveal-ready .closing-vial{opacity:1;transform:none}}
+
+/* ARCHIVE HOME LINK — SHARED STYLE */
+
+a.back-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  color: var(--burgundy);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+a.back-home:hover {
+  border-color: var(--burgundy);
+  background: rgba(217, 170, 176, 0.12);
+  transform: translateY(-2px);
+}
+
+a.back-home:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 4px;
+}
