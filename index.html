@@ -465,32 +465,38 @@
     /* BUTTONS */
 
     .archive-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 24px;
-      border: 1px solid #dfd4c7;
-      border-radius: 40px;
-      background: transparent;
-      color: #806f72;
-      font-size: 17px;
-      cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 24px;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  background: transparent;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
+}
 
-      transition:
-        color 200ms ease,
-        border-color 200ms ease,
-        background 200ms ease;
-    }
+.archive-button:hover {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+  background: rgba(160, 0, 43, 0.035);
+}
 
-    .archive-button:hover {
-      color: var(--burgundy);
-      border-color: var(--burgundy);
-    }
+.archive-button:active {
+  transform: scale(0.98);
+}
 
-    .archive-button:focus-visible {
-      outline: 2px solid var(--burgundy);
-      outline-offset: 4px;
-    }
+.archive-button:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 4px;
+}
 
     .close-button {
       margin-top: 26px;
