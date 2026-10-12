@@ -448,3 +448,36 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--burgundy); outl
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal-ready .reveal { opacity: 1; transform: none; }
 }
+
+/* ARCHIVE HOME LINK — SHARED STYLE */
+
+a.back-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  color: var(--burgundy);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+a.back-home:hover {
+  border-color: var(--burgundy);
+  background: rgba(217, 170, 176, 0.12);
+  transform: translateY(-2px);
+}
+
+a.back-home:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 4px;
+}
