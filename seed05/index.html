@@ -1,22 +1,100 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f4e9">
-  <title>A World in Pigment — archive.gauri</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f5ec">
+<title>A World in Pigment — archive.gauri</title>
+<meta name="description" content="A visual field guide to art history, the origins of colour, and the people who changed how we see.">
+<link rel="stylesheet" href="style.css"><script defer src="script.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="archive-mark" href="../../index.html">archive.gauri</a>
-    <p class="issue">SEED 05 · A WORLD IN PIGMENT</p>
-    <a class="back-link" href="../../index.html">← THE ARCHIVE</a>
-  </header>
-  <main class="blank-canvas" aria-label="Seed 05 blank canvas"></main>
-  <footer class="footer">
-    <span>AN OPEN-ENDED FIELD NOTE</span>
-    <a href="#top" id="backToTop">BACK TO THE TOP ↑</a>
-  </footer>
-</body>
-</html>
+<a class="skip-link" href="#journey">Skip to the story</a>
+<header class="site-header">
+ <a class="wordmark" href="../index.html">archive.gauri</a>
+ <div class="header-right"><span class="edition">SEED 05</span><button class="index-toggle" id="indexToggle" aria-expanded="false" aria-controls="threadDrawer"><span class="index-icon">☷</span><span>FIELD GUIDE</span></button></div>
+</header>
+<aside class="thread-drawer" id="threadDrawer" aria-label="Page contents" hidden>
+ <div class="drawer-top"><span class="eyebrow">FIND YOUR WAY</span><button class="drawer-close" id="drawerClose" aria-label="Close contents">×</button></div>
+ <p class="drawer-intro">A small history of colour, told through the things humans have left behind.</p>
+ <nav class="drawer-links"><a href="#journey"><span>00</span>Scratch the surface</a><a href="#caves"><span>01</span>Before the canvas</a><a href="#pigments"><span>02</span>Where colour comes from</a><a href="#courts"><span>03</span>Colour, power & trade</a><a href="#impressionism"><span>04</span>Let the light in</a><a href="#colour-table"><span>05</span>A little colour cabinet</a><a href="#endnote"><span>06</span>What remains</a></nav>
+ <div class="drawer-note">LOOK CLOSELY. COLOUR HAS A LONG MEMORY.</div>
+</aside><div class="drawer-scrim" id="drawerScrim" hidden></div>
+<main id="journey">
+<section class="scratch-hero" id="top" aria-labelledby="heroTitle">
+ <div class="scratch-instruction"><span class="tiny-star">✳</span><p>MOVE YOUR BRUSH TO REVEAL THE STORY</p><span class="scratch-sub">A little curiosity goes a long way.</span></div>
+ <canvas id="scratchCanvas" aria-label="Move or drag your pointer to brush away the burgundy layer and reveal the title"></canvas>
+ <div class="hero-underlay" aria-hidden="true">
+  <span class="hero-index">A VISUAL FIELD GUIDE · NO. 05</span>
+  <p class="hero-overline">A history written in earth, minerals, insects and light</p>
+  <h1 id="heroTitle">A world<br>in <em>pigment.</em></h1>
+  <p class="hero-deck">Before colour lived in a tube, it lived in the ground, on a shell, inside a flower — and in the hands of someone who wanted to leave a mark.</p>
+  <a class="scroll-cue" href="#caves">ENTER THE STORY <span>↓</span></a>
+  <span class="hero-illustration-note">SCRATCH HERE ↗</span>
+ </div>
+ <div class="scratch-hint" id="scratchHint"><span class="brush-icon">✳</span> scratch to reveal</div>
+ <button class="skip-scratch" id="skipScratch">REVEAL THE PAGE ↗</button>
+ <div class="hero-footnote"><span>AN ARCHIVE OF HOW WE SEE</span><span>SCROLL SLOWLY · LOOK TWICE</span></div>
+</section>
+<div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
+<section class="intro-strip"><span class="intro-number">FIELD NOTES / 01—06</span><p>Colour is never just colour. It is geology, chemistry, trade, belief, status, accident — and occasionally, a very expensive mistake.</p><span class="intro-doodle">✳</span></section>
+<section class="cave-section story-section" id="caves">
+ <div class="section-margin"><span>01 / BEFORE THE CANVAS</span><span>c. 40,000 YEARS AGO ↘</span></div>
+ <div class="cave-world">
+  <div class="cave-art" aria-label="Illustration of a prehistoric cave wall">
+   <div class="cave-rock rock-back"></div><div class="cave-rock rock-front"></div>
+   <div class="cave-painting"><svg viewBox="0 0 500 340" role="img" aria-label="Stylised ochre cave painting of bison and handprints"><g fill="none" stroke="#c66d42" stroke-linecap="round" stroke-linejoin="round"><path d="M85 190 Q60 145 103 122 L145 120 Q168 92 190 115 L216 144 Q252 158 239 192 L208 213 L175 205 L153 230 L125 221 L112 196Z" stroke-width="13"/><path d="M106 124 L92 96 L117 111 M188 116 L202 89 L211 132 M115 193 L104 220 M173 204 L178 230 M211 198 L224 218" stroke-width="9"/><path d="M280 105 Q300 85 325 105 L342 135 L366 141 L376 163 L357 183 L326 178 L309 197 L289 182 L284 150Z" stroke-width="10"/><path d="M327 107 L339 83 M356 142 L378 128 M306 183 L302 205" stroke-width="7"/><path d="M65 68 l-6 -18 m20 20 l8 -19 m-2 24 l18 -10 m-37 26 l-14 -6" stroke-width="6"/></g><g fill="#d99b70" opacity=".8"><circle cx="405" cy="72" r="4"/><circle cx="435" cy="118" r="3"/><circle cx="257" cy="78" r="5"/><circle cx="70" cy="260" r="3"/><circle cx="391" cy="247" r="5"/></g></svg></div>
+   <div class="torch-glow" id="torchGlow"></div><div class="torch-handle"><span></span></div><div class="cave-caption">THE FIRST GALLERY<br><small>darkness · ochre · firelight</small></div>
+  </div>
+  <div class="cave-copy paper-note reveal">
+   <p class="eyebrow">A MARK THAT OUTLIVED ITS MAKER</p><h2>Before there<br>were <em>museums.</em></h2>
+   <p>Imagine entering a cave with only a flickering flame for company. On the walls: animals, handprints, marks made with minerals ground into powder and mixed with fat, water or other binders.</p>
+   <p>Red and yellow ochres came from iron-rich earth. Charcoal made black. The materials were local, imperfect, and astonishingly durable. These weren't paints bought off a shelf; they were pieces of the landscape, transformed by human hands.</p>
+   <blockquote>Our first pigments were not invented. They were found.</blockquote>
+   <span class="paper-foot">FIELD NOTE 01 · EARTH AS PALETTE</span>
+  </div>
+ </div><div class="section-endline"><span>FOLLOW THE LIGHT</span><span class="scribble-arrow">↘</span></div>
+</section>
+<section class="pigment-section story-section" id="pigments">
+ <div class="section-margin"><span>02 / THE MATERIAL WORLD</span><span>OPEN THE COLOUR CABINET ↘</span></div>
+ <div class="section-heading reveal"><p class="eyebrow">A COLOUR IS A RECIPE</p><h2>Where does<br><em>colour</em> come from?</h2><p>Tap a pigment. Each one has a source, a process, and a story that travelled far beyond the palette.</p></div>
+ <div class="pigment-cabinet">
+  <button class="pigment-card active" data-pigment="ochre"><span class="pigment-swatch swatch-ochre"></span><span class="pigment-name">Ochre</span><span class="pigment-origin">Earth · iron oxide</span><span class="pigment-open">OPEN SAMPLE ↗</span></button>
+  <button class="pigment-card" data-pigment="ultramarine"><span class="pigment-swatch swatch-ultramarine"></span><span class="pigment-name">Ultramarine</span><span class="pigment-origin">Lapis lazuli · Afghanistan</span><span class="pigment-open">OPEN SAMPLE ↗</span></button>
+  <button class="pigment-card" data-pigment="vermilion"><span class="pigment-swatch swatch-vermilion"></span><span class="pigment-name">Vermilion</span><span class="pigment-origin">Cinnabar · mercury sulfide</span><span class="pigment-open">OPEN SAMPLE ↗</span></button>
+  <button class="pigment-card" data-pigment="indigo"><span class="pigment-swatch swatch-indigo"></span><span class="pigment-name">Indigo</span><span class="pigment-origin">Indigo plants · fermentation</span><span class="pigment-open">OPEN SAMPLE ↗</span></button>
+  <button class="pigment-card" data-pigment="cochineal"><span class="pigment-swatch swatch-cochineal"></span><span class="pigment-name">Cochineal</span><span class="pigment-origin">Scale insects · carminic acid</span><span class="pigment-open">OPEN SAMPLE ↗</span></button>
+ </div>
+ <article class="pigment-detail paper-note reveal" id="pigmentDetail" aria-live="polite">
+  <div class="pigment-detail-top"><span class="eyebrow" id="pigmentLabel">SAMPLE 01 / FOUND IN THE GROUND</span><span class="pigment-big-swatch swatch-ochre" id="pigmentBigSwatch"></span></div>
+  <h3 id="pigmentTitle">Ochre — the colour of earth</h3><p id="pigmentDescription">Iron-rich clay was collected, dried, ground and sifted into a fine powder. Mix it with water, animal fat or another binder and earth becomes paint. Ochres are among the oldest pigments humans have used.</p>
+  <div class="recipe-steps" id="recipeSteps"><span>01 · COLLECT</span><i>→</i><span>02 · GRIND</span><i>→</i><span>03 · MIX</span><i>→</i><span>04 · MARK</span></div>
+  <p class="pigment-footnote" id="pigmentFootnote">A colour that begins beneath your feet.</p>
+ </article>
+ <p class="safety-note">A note from the archive: some historic pigments, including vermilion and lead-based whites, are toxic. Their stories are fascinating; their dust is not for experimenting with.</p>
+</section>
+<section class="trade-section story-section" id="courts">
+ <div class="section-margin"><span>03 / COLOUR & POWER</span><span>THE WORLD GETS SMALLER ↘</span></div>
+ <div class="trade-layout">
+  <div class="trade-copy reveal"><p class="eyebrow">A PIGMENT COULD COST A FORTUNE</p><h2>When colour<br>became <em>currency.</em></h2><p>Some colours were so difficult to obtain that they became symbols of devotion, wealth and power. Lapis lazuli travelled from mines in what is now Afghanistan; ground into ultramarine, it could be more precious than gold in Renaissance Europe.</p><p>Across trade routes, dyes and pigments moved with textiles, manuscripts, merchants and empires. In South Asia, mineral pigments, plant dyes and gold were used in the layered visual worlds of miniature painting, textiles and illuminated manuscripts.</p><div class="route-stamp">MINE → WORKSHOP → MARKET → MASTERPIECE</div></div>
+  <figure class="trade-image reveal"><img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=85" alt="Intricate, richly coloured traditional artwork" loading="lazy"><figcaption>DETAILS WITHIN DETAILS · A WORLD IN MINIATURE</figcaption></figure>
+ </div>
+ <div class="route-map" aria-label="Illustrative pigment trade route"><div class="route-line"></div><div class="route-stop"><span class="route-dot"></span><b>THE MOUNTAIN</b><small>lapis lazuli mined</small></div><div class="route-stop"><span class="route-dot"></span><b>THE WORKSHOP</b><small>stone ground to powder</small></div><div class="route-stop"><span class="route-dot"></span><b>THE PATRON</b><small>colour commissioned</small></div><div class="route-stop"><span class="route-dot"></span><b>THE PAGE</b><small>colour made eternal</small></div></div>
+</section>
+<section class="impression-section story-section" id="impressionism">
+ <div class="section-margin"><span>04 / IMPRESSIONISM & AFTER</span><span>LOOK AT THE LIGHT ↘</span></div>
+ <div class="impression-layout">
+  <div class="impression-copy reveal"><p class="eyebrow">A DIFFERENT WAY OF SEEING</p><h2>Let the<br><em>light in.</em></h2><p>In nineteenth-century France, Impressionist painters took their work outdoors and paid close attention to changing light, atmosphere and the fleeting feeling of a moment. Instead of smoothing every mark away, they often let separate brushstrokes remain visible.</p><p>Portable paint tubes made it easier to work outside. New synthetic pigments expanded the palette. The result wasn't simply a new look — it was a new way to notice.</p><p class="margin-quote">The brushstroke became part of the story.</p></div>
+  <figure class="impression-art reveal"><div class="paint-rebuild" aria-label="An original animated composition inspired by Impressionist brushwork"><div class="paint-sky"></div><div class="paint-water"></div><div class="paint-bank"></div><div class="paint-strokes" id="paintStrokes"></div><span class="paint-caption">LIGHT IS ALWAYS MOVING</span></div><figcaption>AN ORIGINAL BRUSHSTROKE STUDY · INSPIRED BY THE IMPRESSIONISTS</figcaption></figure>
+ </div>
+ <div class="brush-quote reveal"><span>✳</span><p>Look again. The world changes when you change how you look at it.</p><span>— A NOTE FROM THE ARCHIVE</span></div>
+</section>
+<section class="colour-wheel-section story-section" id="colour-table">
+ <div class="section-margin"><span>05 / A SMALL COLOUR CABINET</span><span>TURN THE WHEEL ↘</span></div>
+ <div class="wheel-layout">
+  <div class="wheel-copy reveal"><p class="eyebrow">THE SCIENCE, THE SYMBOL, THE FEELING</p><h2>Colours carry<br><em>memories.</em></h2><p>Colour is physical — wavelengths of light interpreted by our eyes — but its meaning is learned, inherited, traded and reinvented. Select a colour to follow a few of its many lives.</p><div class="wheel-controls" role="group" aria-label="Choose a colour"><button class="colour-dot chosen" data-colour="red" aria-label="Red"></button><button class="colour-dot" data-colour="blue" aria-label="Blue"></button><button class="colour-dot" data-colour="yellow" aria-label="Yellow"></button><button class="colour-dot" data-colour="green" aria-label="Green"></button><button class="colour-dot" data-colour="purple" aria-label="Purple"></button></div></div>
+  <div class="colour-story paper-note reveal" id="colourStory" aria-live="polite"><div class="colour-splash" id="colourSplash"></div><span class="eyebrow" id="colourEra">RED · EARTH, BLOOD, CEREMONY</span><h3 id="colourTitle">Red has never been quiet.</h3><p id="colourDescription">From iron-rich ochre on cave walls to cochineal-dyed cloth, red has carried many meanings: vitality, danger, devotion, celebration and power. The material changes; the colour keeps finding ways to be noticed.</p><span class="colour-note" id="colourNote">ONE COLOUR. MANY HISTORIES.</span></div>
+ </div>
+</section>
+<section class="closing-scene story-section" id="endnote"><div class="closing-orbit" aria-hidden="true"><span></span><span></span><span></span><span></span><i>look<br>closer</i></div><p class="eyebrow">FIELD NOTE 06 · THE THINGS WE LEAVE BEHIND</p><h2>Colour is a kind<br>of <em>time travel.</em></h2><p>A little earth, a little chemistry, a human hand — and something that lasts longer than we do.</p><div class="end-navigation"><a class="back-home" href="../index.html">RETURN TO THE ARCHIVE ↗</a><button class="back-to-web" id="backToTop">BACK TO THE BEGINNING ↑</button></div></section>
+</main>
+<footer class="site-footer"><span>ARCHIVE GAURI · AN OPEN-ENDED FIELD NOTE</span><a href="../index.html">archive.gauri</a><a href="#top">BACK TO TOP ↑</a></footer>
+</body></html>
