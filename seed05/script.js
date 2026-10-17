@@ -25,7 +25,10 @@ const input=$('#artworkUpload'),grid=$('#artworkGrid');input?.addEventListener('
   const canvas = $('#revealCanvas');
   const section = $('.paint-reveal');
   const skip = $('#revealSkip');
+  const grainLayer = $('.grain');
   if (!canvas || !section) return;
+  // Keep the opening's paint perfectly flat; bring the archive grain back afterward.
+  if (grainLayer) grainLayer.style.opacity = '0';
   const context = canvas.getContext('2d');
   if (!context) { canvas.hidden = true; return; }
 
@@ -121,7 +124,10 @@ const input=$('#artworkUpload'),grid=$('#artworkGrid');input?.addEventListener('
     finished = true;
     canvas.classList.add('reveal-finished');
     if (skip) skip.textContent = 'Surface lifted ✓';
-    window.setTimeout(() => { canvas.hidden = true; }, 950);
+    window.setTimeout(() => {
+      canvas.hidden = true;
+      if (grainLayer) grainLayer.style.opacity = '';
+    }, 950);
   }
 
   function pointFrom(event) {
