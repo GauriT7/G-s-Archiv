@@ -15,15 +15,68 @@ header{height:70px;display:flex;align-items:center;justify-content:space-between
 footer{display:flex;justify-content:space-between;gap:20px;padding:28px clamp(22px,4vw,60px);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#76685b}.top-link{cursor:pointer}
 @media(max-width:650px){header{height:60px}.brand{font-size:21px}.header-note{font-size:8px}.hero{min-height:650px}.hero-copy{left:24px;right:20px;top:43%;transform:translateY(-40%)}.hero h1{font-size:clamp(64px,17vw,105px)}.hero-bottom{font-size:8px}.hero-bottom span:last-child{display:none}.intro-band{grid-template-columns:1fr 25px;gap:8px 16px;padding:26px 23px}.intro-band span{grid-column:1/-1}.intro-band p{font-size:19px}.story-section{padding:66px 23px}.section-inner h2{font-size:clamp(42px,12vw,65px)}.section-inner h3{margin-top:44px}.editorial-image{margin:30px 0 38px}.editorial-image img{max-height:400px}footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* Archive-wide header rhythm */
+.site-header{height:auto;min-height:120px;position:relative;top:auto;width:100%;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px 6%;background:var(--paper);color:var(--ink);border-bottom:1px solid #e1d8cb}
+.site-header .brand{color:#a0002b;font:700 20px Georgia,"Times New Roman",serif;letter-spacing:-.025em}
+.site-header .tagline{margin:0;color:#88777a;font:italic 18px/1.4 Georgia,"Times New Roman",serif;letter-spacing:0}
+.site-header .about-link{position:absolute;right:6%;top:50%;transform:translateY(-50%);color:#88777a;font:italic 14px Georgia,serif;letter-spacing:.05em;text-transform:none}
+.site-header .about-link:hover{color:#a0002b}
+.hero{height:calc(100svh - 120px);min-height:620px;background:#76203a}
+.hero-photo{background:linear-gradient(90deg,#21131380,#21131318 75%),linear-gradient(0deg,#21181380,transparent 70%),url('https://commons.wikimedia.org/wiki/Special:FilePath/Ajanta_Caves,_India.jpg') center/cover no-repeat}
+.scratch-cover{background:#76203a;cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-42 32 32)'%3E%3Crect x='25' y='5' width='14' height='35' rx='5' fill='%23d9b58a' stroke='%23f6e8d1' stroke-width='2'/%3E%3Crect x='22' y='35' width='20' height='7' rx='2' fill='%23b47c53'/%3E%3Cpath d='M22 42 L42 42 L38 58 Q32 63 26 58Z' fill='%232a1b1a' stroke='%23e5d5bf' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E") 12 48, crosshair}
+.scratch-label{mix-blend-mode:normal;text-shadow:none}
+.scratch-label b{color:#f2c5a4}
+.scratch-label span{font-size:clamp(21px,3vw,30px);color:#fff7ec}
+.scratch-label small{color:#f5dfd4}
+.skip-scratch{bottom:62px;background:#76203a;border-color:#f8e8df;color:#fff}
+.hero-bottom{bottom:18px}
+.intro-band{position:relative}
+.story-section{isolation:isolate}
+.section-inner{position:relative}
+.section-inner h2{max-width:900px}
+.editorial-image{position:relative;overflow:hidden;border:1px solid #d7c9b8;padding:8px;background:#fffaf2;transform:rotate(-.4deg);box-shadow:0 12px 30px #4933260b}
+.editorial-image:before{content:"";position:absolute;z-index:1;top:-1px;left:0;right:0;height:12px;background:linear-gradient(135deg,transparent 6px,#fffaf2 0) 0 0/12px 12px repeat-x}
+.editorial-image img{max-height:650px}
+.editorial-image figcaption{background:#fffaf2}
+.story-section:nth-of-type(odd) .editorial-image{transform:rotate(.35deg)}
+/* Story-specific visual chapters */
+#\30 1-the-moving-picture{background:#211a16;color:#f6ede0}
+#\30 1-the-moving-picture .section-kicker{color:#e8b59b}
+#\30 1-the-moving-picture .section-inner h2{color:#fff6ea}
+#\30 1-the-moving-picture .section-inner p{color:#f0e2d4}
+#\30 1-the-moving-picture .editorial-image{border-color:#4b3c31;background:#342a23}
+#\30 1-the-moving-picture .editorial-image figcaption{background:#342a23;color:#e5d1bd}
+#\30 1-the-moving-picture .editorial-image img{filter:saturate(.86) contrast(1.04)}
+#\30 2-colour-has-a-backstory .section-inner h3{position:relative;padding-left:18px}
+#\30 2-colour-has-a-backstory .section-inner h3:before{content:"";position:absolute;left:0;top:.15em;bottom:.15em;width:4px;background:var(--pigment,#a84a2b)}
+#\30 3-stay-a-moment .section-inner h2{max-width:680px}
+#\30 3-stay-a-moment .editorial-image img{max-height:700px;object-fit:cover}
+#\30 4-history-under-your-feet{background:#eee3d3}
+#\30 5-a-recent-memory-mumbai .editorial-image{max-width:800px;margin-left:auto}
+#\30 6-my-little-drawer .section-inner h3{display:inline-block;padding:4px 0;border-bottom:1px dashed #a88b75}
+.section-inner p,.section-inner li{font-size:clamp(14px,1.15vw,16px)}
+.reveal-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+.paint-stroke{position:absolute;left:-8%;width:116%;height:7px;top:48%;background:linear-gradient(90deg,transparent,#d2a47a,#6f8e8c,#c58b66,transparent);opacity:0;transform:rotate(-4deg) scaleX(0);transform-origin:left;filter:blur(1px);transition:transform 1.2s ease,opacity .5s ease}
+.editorial-image.is-visible .paint-stroke{opacity:.72;transform:rotate(-4deg) scaleX(1)}
+.story-section:last-of-type{background:#28211d;color:#f4eee4}
+@media(max-width:600px){.site-header{min-height:110px;padding:18px 18px 22px}.site-header .tagline{font-size:14px;max-width:250px}.site-header .about-link{right:16px;top:18px;transform:none;font-size:12px}.hero{height:calc(100svh - 110px);min-height:590px}.scratch-cover{cursor:crosshair}.story-section{padding:58px 22px}.editorial-image{margin:28px 0 38px}}
+@media(prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none}}
+
 </style></head><body>
 <a class="skip" href="#story">Skip to the story</a>
-<header><a class="brand" href="../index.html">archive.gauri</a><a class="header-note" href="../index.html">← Back to the archive</a></header>
+<header class="site-header">
+<a class="brand" href="../index.html">archive.gauri</a>
+<p class="tagline">collection of things I’ve made, found and thought about</p>
+<a href="../about.html" class="about-link">about</a>
+</header>
 <main>
 <section class="hero" aria-label="A World in Pigment opening">
 <div class="hero-photo"></div>
 <div class="hero-copy"><div class="eyebrow">A visual field guide · Seed 05</div><h1>A world<br>in <em>pigment.</em></h1><p class="hero-deck">A history of art, colour &amp; the stories hiding in plain sight.</p><a class="enter" href="#story">ENTER THE STORY <span>↓</span></a></div>
 <canvas class="scratch-cover" id="scratchCover" aria-label="Scratch to reveal the story"></canvas>
-<div class="scratch-label" id="scratchLabel"><b>AN ARCHIVE OF HOW WE SEE</b><span>Drag your finger or cursor<br>to brush the surface away.</span><small>✳ &nbsp; SCRATCH TO REVEAL</small></div>
+<div class="scratch-label" id="scratchLabel"><b>AN ARCHIVE OF HOW WE SEE</b><span>Move the brush around<br>to reveal the story.</span><small>✳ &nbsp; SCRATCH TO REVEAL</small></div>
 <button class="skip-scratch" id="skipScratch">REVEAL THE PAGE ↗</button>
 <div class="hero-bottom"><span>FIELD NOTES / ART · MATERIAL · MEMORY</span><span>SCROLL SLOWLY · LOOK TWICE</span></div>
 </section>
@@ -52,5 +105,16 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:28px clamp(22
  skip.addEventListener('click',reveal);
  window.addEventListener('resize',()=>{if(!cleared)resize()});
  if(matchMedia('(prefers-reduced-motion: reduce)').matches)reveal();else resize();
+})();
+
+/* Scroll reveals: text and images enter softly; no content is hidden without JS. */
+(function(){
+ const items=document.querySelectorAll('.story-section h2,.story-section h3,.story-section p,.story-section li,.editorial-image');
+ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  items.forEach((el,i)=>{el.classList.add('reveal-on-scroll');el.style.transitionDelay=(Math.min(i%4,3)*65)+'ms'});
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(el=>observer.observe(el));
+ }
+ document.querySelectorAll('.editorial-image').forEach(fig=>{if(fig.closest('#03-stay-a-moment')){const stroke=document.createElement('span');stroke.className='paint-stroke';stroke.setAttribute('aria-hidden','true');fig.appendChild(stroke)}});
 })();
 </script></body></html>
