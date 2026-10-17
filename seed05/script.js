@@ -11,3 +11,22 @@ $('#stillnessButton').addEventListener('click',()=>{const msg=$('#stillnessMessa
 // Personal artwork: preview selected files locally; publication instructions are in the page and README.
 $('#artworkUpload').addEventListener('change',e=>{const files=[...e.target.files].filter(f=>f.type.startsWith('image/'));const grid=$('#artworkGrid');if(!files.length)return;grid.innerHTML='';files.forEach((file,i)=>{const url=URL.createObjectURL(file),fig=document.createElement('figure');fig.className='artwork-item';const img=document.createElement('img');img.src=url;img.alt='Artwork selected for archive preview';const cap=document.createElement('figcaption');cap.textContent='UNTITLED · YEAR TO BE ADDED';fig.append(img,cap);grid.append(fig)});$('#toast').textContent=`${files.length} artwork${files.length===1?'':'s'} added to this preview`;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),2600)});
 // Gentle float drift for the cover ornaments. Native CSS handles reduced-motion preferences.
+
+// Brush-stroke reveal: a painted sweep reveals the opening composition on first scroll,
+// then the same effect introduces images and sections as they enter the viewport.
+const brushItems=[...document.querySelectorAll('.brush-reveal')];
+if('IntersectionObserver' in window){
+ const brushObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting){
+     entry.target.classList.add('revealed');
+     if(entry.target.closest('.hero')) entry.target.closest('.hero').classList.add('brush-active');
+     brushObserver.unobserve(entry.target);
+   }
+ }),{threshold:.16,rootMargin:'0px 0px -5% 0px'});
+ brushItems.forEach((item,index)=>{item.style.transitionDelay=(Math.min(index,4)*90)+'ms';brushObserver.observe(item)});
+}else{brushItems.forEach(item=>item.classList.add('revealed'))}
+const brushCursor=document.querySelector('.brush-cursor');
+if(brushCursor && matchMedia('(hover:hover) and (pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+ document.addEventListener('mousemove',event=>{brushCursor.style.left=event.clientX+'px';brushCursor.style.top=event.clientY+'px';brushCursor.style.opacity='.45'});
+ document.addEventListener('mouseleave',()=>brushCursor.style.opacity='0');
+}
