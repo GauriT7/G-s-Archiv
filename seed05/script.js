@@ -41,7 +41,16 @@ const input=$('#artworkUpload'),grid=$('#artworkGrid');input?.addEventListener('
     context.lineCap = 'round';
     context.fillStyle = '#f1dfc7';
     context.beginPath();
-    context.roundRect(-10, -82, 20, 108, 8);
+    context.moveTo(-2, -82);
+    context.lineTo(2, -82);
+    context.quadraticCurveTo(10, -82, 10, -74);
+    context.lineTo(10, 18);
+    context.quadraticCurveTo(10, 26, 2, 26);
+    context.lineTo(-2, 26);
+    context.quadraticCurveTo(-10, 26, -10, 18);
+    context.lineTo(-10, -74);
+    context.quadraticCurveTo(-10, -82, -2, -82);
+    context.closePath();
     context.fill();
     context.fillStyle = '#c6a77a';
     context.fillRect(-12, 12, 24, 12);
