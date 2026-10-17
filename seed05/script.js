@@ -18,3 +18,219 @@ black:{name:'BLACK',small:'CHARCOAL · SOOT · BONE BLACK',title:'Black: the col
 $$('.swatch').forEach(btn=>btn.addEventListener('click',()=>{const p=pigments[btn.dataset.pigment];if(!p)return;$$('.swatch').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-selected',b===btn?'true':'false')});const display=$('#pigmentDisplay');display.style.background=p.color;display.style.color=p.text;$('#pigmentBig').textContent=p.name;$('#pigmentSmall').textContent=p.small;$('#pigmentEyebrow').textContent=p.eyebrow;$('#pigmentTitle').textContent=p.title;$('#pigmentBody').textContent=p.body;$('#pigmentDetail').textContent=p.detail;$('#pigmentQuote').textContent=p.quote;$('#pigmentBig').style.animation='none';void $('#pigmentBig').offsetWidth;$('#pigmentBig').style.animation='wordrise .6s both'}));
 const quiet=$('#stillnessButton'),message=$('#stillnessMessage');let quietTimer=null;quiet?.addEventListener('click',()=>{if(quietTimer){clearTimeout(quietTimer);quietTimer=null}let left=20;quiet.disabled=true;quiet.textContent='Stay here a little longer…';message.textContent='For twenty seconds, notice only the edges, the colours, and the space between them.';quietTimer=setInterval(()=>{left--;if(left<=0){clearInterval(quietTimer);quietTimer=null;quiet.disabled=false;quiet.textContent='Again, if you like ↗';message.textContent='That was it. Nothing to solve. You can go back to looking.'}},1000)});
 const input=$('#artworkUpload'),grid=$('#artworkGrid');input?.addEventListener('change',()=>{[...input.files].forEach(file=>{if(!file.type.startsWith('image/'))return;const url=URL.createObjectURL(file),fig=document.createElement('figure'),img=document.createElement('img'),cap=document.createElement('figcaption');fig.className='artwork-item';img.src=url;img.alt=file.name;cap.textContent=file.name.replace(/\.[^.]+$/,'')+' · add year when publishing';fig.append(img,cap);grid.prepend(fig)});if(input.files.length)input.value=''});
+
+
+/* Scratch away the first layer like a real pigment sample card. */
+(() => {
+  const canvas = $('#revealCanvas');
+  const section = $('.paint-reveal');
+  const skip = $('#revealSkip');
+  const grainLayer = $('.grain');
+  if (!canvas || !section) return;
+  // Keep the opening's paint perfectly flat; bring the archive grain back afterward.
+  if (grainLayer) grainLayer.style.opacity = '0';
+  const context = canvas.getContext('2d');
+  if (!context) { canvas.hidden = true; return; }
+
+  let width = 0, height = 0, lastPoint = null, drawing = false;
+  let travelled = 0, finished = false;
+  const brushSize = () => Math.max(76, Math.min(124, width * 0.085));
+
+  function drawBrush(cx, cy, scale) {
+    context.save();
+    context.translate(cx, cy);
+    context.rotate(-0.62);
+    context.scale(scale, scale);
+    context.lineCap = 'round';
+    context.fillStyle = '#f1dfc7';
+    context.beginPath();
+    context.moveTo(-2, -82);
+    context.lineTo(2, -82);
+    context.quadraticCurveTo(10, -82, 10, -74);
+    context.lineTo(10, 18);
+    context.quadraticCurveTo(10, 26, 2, 26);
+    context.lineTo(-2, 26);
+    context.quadraticCurveTo(-10, 26, -10, 18);
+    context.lineTo(-10, -74);
+    context.quadraticCurveTo(-10, -82, -2, -82);
+    context.closePath();
+    context.fill();
+    context.fillStyle = '#c6a77a';
+    context.fillRect(-12, 12, 24, 12);
+    context.fillStyle = '#d6bfa0';
+    context.beginPath();
+    context.moveTo(-12, 24);
+    context.quadraticCurveTo(-17, 47, -5, 61);
+    context.quadraticCurveTo(0, 66, 5, 61);
+    context.quadraticCurveTo(17, 47, 12, 24);
+    context.closePath();
+    context.fill();
+    context.restore();
+  }
+
+  function paintSurface() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = section.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    context.globalCompositeOperation = 'source-over';
+    context.fillStyle = '#76272f';
+    context.fillRect(0, 0, width, height);
+
+    context.fillStyle = '#f3ecdf';
+    context.textAlign = 'left';
+    context.font = '9px "DM Mono", monospace';
+    context.letterSpacing = '1.5px';
+    context.fillText('ARCHIVE GAURI', 30, 32);
+    context.textAlign = 'right';
+    context.fillText('SEED 05  /  ART · HISTORY · COLOUR', width - 30, 32);
+
+    context.strokeStyle = 'rgba(243,236,223,.35)';
+    context.lineWidth = 1;
+    context.beginPath();
+    context.moveTo(30, 47);
+    context.lineTo(width - 30, 47);
+    context.stroke();
+
+    const mobile = width < 600;
+    const cx = width / 2;
+    const cy = height / 2;
+    drawBrush(cx, cy - (mobile ? 98 : 110), mobile ? .68 : .88);
+    context.textAlign = 'center';
+    context.fillStyle = '#f3ecdf';
+    context.font = (mobile ? '500 19px' : '500 29px') + ' "DM Sans", Arial, sans-serif';
+    context.letterSpacing = mobile ? '0px' : '.3px';
+    context.fillText('MOVE AROUND TO', cx, cy + (mobile ? 3 : 10));
+    context.fillText('REVEAL THE CONTENT', cx, cy + (mobile ? 31 : 49));
+    context.fillStyle = '#dfc1ad';
+    context.font = '9px "DM Mono", monospace';
+    context.letterSpacing = '1.4px';
+    context.fillText('RUB AWAY THE SURFACE · BEGIN ANYWHERE', cx, cy + (mobile ? 73 : 95));
+
+    context.textAlign = 'left';
+    context.fillStyle = '#f3ecdf';
+    context.font = '8px "DM Mono", monospace';
+    context.letterSpacing = '1px';
+    context.fillText('A LITTLE FIELD GUIDE TO LOOKING', 30, height - 29);
+    context.textAlign = 'right';
+    context.fillText('MOVE · DISCOVER · LOOK AGAIN', width - 30, height - 29);
+  }
+
+  function finishReveal() {
+    if (finished) return;
+    finished = true;
+    canvas.classList.add('reveal-finished');
+    if (skip) skip.textContent = 'Surface lifted ✓';
+    window.setTimeout(() => {
+      canvas.hidden = true;
+      if (grainLayer) grainLayer.style.opacity = '';
+    }, 950);
+  }
+
+  function pointFrom(event) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  }
+
+  function erase(point) {
+    if (finished) return;
+    context.save();
+    context.globalCompositeOperation = 'destination-out';
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.lineWidth = brushSize();
+    context.beginPath();
+    if (lastPoint) {
+      context.moveTo(lastPoint.x, lastPoint.y);
+      context.lineTo(point.x, point.y);
+      travelled += Math.hypot(point.x - lastPoint.x, point.y - lastPoint.y);
+    } else {
+      context.moveTo(point.x, point.y);
+      context.lineTo(point.x + .01, point.y + .01);
+    }
+    context.stroke();
+    context.beginPath();
+    context.arc(point.x, point.y, brushSize() / 2, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
+    lastPoint = point;
+    if (travelled > width * 1.15) finishReveal();
+  }
+
+  canvas.addEventListener('pointerdown', event => {
+    if (finished) return;
+    drawing = true;
+    lastPoint = null;
+    canvas.setPointerCapture?.(event.pointerId);
+    erase(pointFrom(event));
+    if (event.pointerType === 'touch') event.preventDefault();
+  });
+  canvas.addEventListener('pointermove', event => {
+    if (finished) return;
+    if (event.pointerType === 'mouse' || drawing) erase(pointFrom(event));
+  });
+  const stopDrawing = event => {
+    drawing = false;
+    if (event?.pointerType === 'touch') lastPoint = null;
+  };
+  canvas.addEventListener('pointerup', stopDrawing);
+  canvas.addEventListener('pointercancel', stopDrawing);
+  canvas.addEventListener('pointerleave', event => {
+    if (event.pointerType === 'mouse') lastPoint = null;
+    drawing = false;
+  });
+  skip?.addEventListener('click', finishReveal);
+
+  paintSurface();
+  window.addEventListener('resize', () => {
+    if (!finished) paintSurface();
+  });
+})();
+
+/* A clicked colour travels from its source, through preparation, into an artwork. */
+(() => {
+  const stages = {
+    red: ['Iron-rich earth', 'Ground into powder', 'Pigment + binder'],
+    blue: ['Lapis lazuli · Afghanistan', 'Crushed and refined', 'Natural ultramarine'],
+    indigo: ['Indigo-bearing plant', 'Fermented and oxidised', 'Blue textile dye'],
+    yellow: ['Earth, plants or metals', 'Extracted or processed', 'One of many yellows'],
+    green: ['Copper or arsenic compounds', 'Chemically prepared', 'Historic green pigment'],
+    white: ['Lead compounds or chalk', 'Ground and mixed with binder', 'Opaque white paint'],
+    black: ['Charcoal, soot or bone', 'Burnt or otherwise processed', 'Carbon-rich black']
+  };
+  const grainColours = {
+    red: '#f1c7a8', blue: '#c6d4eb', indigo: '#d4d9f0', yellow: '#fff0ad',
+    green: '#d4e1c8', white: '#fffaf0', black: '#b8aaa6'
+  };
+  const display = $('#pigmentDisplay');
+  if (!display) return;
+  $$('.swatch').forEach(button => button.addEventListener('click', () => {
+    const key = button.dataset.pigment;
+    const steps = stages[key];
+    if (!steps) return;
+    $('#processSource').textContent = steps[0];
+    $('#processPrepare').textContent = steps[1];
+    $('#processResult').textContent = steps[2];
+    display.style.setProperty('--grain-color', grainColours[key] || '#f3ecdf');
+    display.classList.remove('pigment-changing');
+    void display.offsetWidth;
+    display.classList.add('pigment-changing');
+    window.setTimeout(() => display.classList.remove('pigment-changing'), 900);
+  }));
+})();
+
+/* Entering the cave warms the wall; the torchlight follows the pointer. */
+(() => {
+  $$('.cave-scene').forEach(scene => {
+    scene.addEventListener('pointermove', event => {
+      const rect = scene.getBoundingClientRect();
+      const x = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
+      const y = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
+      scene.style.setProperty('--torch-x', x + '%');
+      scene.style.setProperty('--torch-y', y + '%');
+    });
+  });
+})();

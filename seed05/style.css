@@ -3,3 +3,74 @@
 @media(max-width:900px){.hero-stage{min-height:620px}.hero-art-one{left:0;top:9%}.hero-art-two{right:0;top:16%}.hero-art-three{left:8%;bottom:2%}.hero-art{width:185px}.hero-art img{height:190px}.hero h1{font-size:clamp(5rem,15vw,9rem)}.paper-section,.timeline-section,.pigment-section,.bombay-section,.gallery-visit,.my-art,.sources{padding:80px 7vw}.intro-grid,.section-heading{grid-template-columns:1fr;gap:25px}.intro h2,.section-heading h2{font-size:3.5rem}.intro-stamp{float:none;margin-bottom:25px}.period-layout,.period-layout.reverse{grid-template-columns:1fr;gap:25px}.period-layout.reverse .period-image,.period-layout.reverse .period-copy{grid-column:1;grid-row:auto}.period-image,.period-layout.reverse .period-image{transform:none}.period-image img{height:360px}.period-meta,.period:nth-child(odd) .period-meta{width:100%;margin:0 0 14px}.track-spine{left:8px}.period:before{left:3px}.period{padding-left:28px;padding-bottom:75px}.timeline-intro,.timeline-after{flex-direction:column;gap:15px}.pigment-stage{grid-template-columns:1fr}.pigment-display{min-height:330px}.pigment-big{font-size:6rem}.pigment-intro{grid-template-columns:1fr;gap:10px}.rothko-interlude{padding:80px 7vw;grid-template-columns:1fr;gap:35px}.rothko-art{height:380px}.bombay-grid{grid-template-columns:repeat(2,1fr)}.visit-grid{grid-template-columns:1fr;gap:28px}.visit-image{position:static}.visit-image img{max-height:none}.artwork-grid{grid-template-columns:repeat(2,1fr)}.art-placeholder{min-height:260px}.source-links{grid-template-columns:1fr}.swatch-picker{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:520px){.topbar{padding:0 5vw}.issue{display:none}.hero{padding:20px 5vw}.hero-stage{min-height:670px}.hero h1{font-size:clamp(4.3rem,19vw,6.8rem)}.hero-sub{max-width:260px}.hero-art{width:132px;padding:5px 5px 20px}.hero-art img{height:145px}.hero-art-one{top:8%;left:-1%}.hero-art-two{right:-1%;top:18%}.hero-art-three{left:2%;bottom:1%}.hero-art>span{font-size:6px;left:7px}.hero-side-note{font-size:7px}.note-b{right:0;bottom:20%}.hero-bottom{font-size:7px}.hero-bottom span:nth-child(2){display:none}.paper-section,.timeline-section,.pigment-section,.bombay-section,.gallery-visit,.my-art,.sources{padding:65px 6vw}.intro h2,.section-heading h2{font-size:3rem}.prose p{font-size:14px}.period-image img{height:290px}.period-copy h3{font-size:2.2rem}.period-copy p{font-size:13px}.pigment-display{min-height:270px}.pigment-big{font-size:5rem}.pigment-story{padding:26px}.swatch-picker{grid-template-columns:repeat(4,1fr)}.swatch i{height:36px}.colour-essays{grid-template-columns:1fr}.colour-essay{min-height:0;padding:25px}.rothko-art{height:290px}.bombay-grid{grid-template-columns:1fr}.bombay-note{min-height:0}.gallery-visit h2{font-size:3rem}.artwork-grid{grid-template-columns:1fr 1fr;gap:8px}.art-placeholder{min-height:210px;padding:10px}.art-placeholder span{font-size:12px}.footer{padding:20px 6vw;gap:15px;flex-wrap:wrap}.footer span{display:none}.closing{padding:85px 7vw}.closing h2{font-size:2.8rem}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.cursor-pigment{display:none}}
+
+
+/* --- Immersive archive additions: a scratch-painted threshold --- */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.paint-reveal{height:calc(100svh - 62px);min-height:590px;max-height:920px;position:relative;isolation:isolate;overflow:hidden;background:var(--paper);display:grid;place-items:center}
+.reveal-underlay{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:55px 7vw 80px;background:var(--paper)}
+.reveal-underlay .eyebrow{margin:0 0 25px;color:var(--red)}
+.reveal-underlay h1{font:clamp(3.7rem,9.2vw,8.6rem)/.92 var(--serif);letter-spacing:-.075em;font-weight:400;margin:0;max-width:1000px}
+.reveal-underlay h1 em{color:var(--red);font-weight:400}
+.reveal-underlay>p:not(.eyebrow){font:italic clamp(1rem,1.8vw,1.35rem)/1.7 var(--serif);max-width:510px;margin:27px auto;color:var(--muted)}
+.reveal-continue{font:9px var(--mono);letter-spacing:.11em;color:var(--red);margin-top:28px}
+.reveal-underlay:before,.reveal-underlay:after{content:"";position:absolute;width:clamp(90px,13vw,175px);height:clamp(120px,17vw,220px);background:#e8dece;box-shadow:0 18px 44px #3c2d2019;z-index:-0}
+.reveal-underlay:before{left:7%;top:14%;rotate:-8deg}
+.reveal-underlay:after{right:7%;bottom:12%;rotate:7deg;background:#d8cabb}
+.underlay-image{position:absolute;z-index:1;width:clamp(85px,12vw,155px);background:#f3ecdf;padding:6px 6px 18px;box-shadow:0 15px 40px #34271825}
+.underlay-image img{display:block;width:100%;height:clamp(100px,14vw,180px);object-fit:cover;filter:saturate(.78)}
+.underlay-image figcaption{font:7px var(--mono);color:var(--muted);padding-top:5px;text-align:left}
+.underlay-cave{left:7.3%;top:14.4%;rotate:-8deg}
+.underlay-monet{right:7.2%;bottom:12.4%;rotate:7deg}
+#revealCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;display:block;touch-action:pan-y;cursor:crosshair;transition:opacity .9s ease}
+#revealCanvas.reveal-finished{opacity:0;pointer-events:none}
+.reveal-skip{position:absolute;z-index:4;right:clamp(18px,5vw,70px);bottom:22px;border:1px solid #f2d9cb80;background:#70242b;color:#f7efe3;padding:11px 15px;font:9px var(--mono);letter-spacing:.02em;cursor:pointer;transition:background .25s,transform .25s}
+.reveal-skip:hover{background:#4d1c22;transform:translateY(-2px)}
+.reveal-skip:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
+
+/* Cave walls wake up slowly; the warm pool of light follows the visitor. */
+.cave-scene{background:#211c19!important;isolation:isolate;overflow:hidden}
+.cave-scene img{position:relative;z-index:1;filter:brightness(.36) saturate(.65) sepia(.15);transition:filter 1.8s ease}
+.cave-period.in-view .cave-scene img{filter:brightness(.72) saturate(.9) sepia(.12)}
+.cave-scene:after{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse 38% 36% at var(--torch-x,72%) var(--torch-y,44%),rgba(255,197,105,.48) 0,rgba(255,171,80,.2) 28%,rgba(220,113,51,.07) 47%,transparent 72%);mix-blend-mode:screen;transition:opacity 1.4s ease}
+.cave-period.in-view .cave-scene:after{opacity:1}
+.cave-torch{position:absolute;z-index:5;right:12%;top:12%;width:24px;height:105px;rotate:24deg;pointer-events:none;filter:drop-shadow(0 0 9px #f4a64a75)}
+.cave-torch:before{content:"";position:absolute;left:7px;top:28px;width:10px;height:77px;border-radius:4px;background:linear-gradient(90deg,#553a2a,#b27b48 45%,#5b3829);box-shadow:inset 2px 0 #e7bd8160}
+.cave-torch span{position:absolute;left:0;top:0;width:24px;height:36px;border-radius:55% 45% 60% 40%;background:radial-gradient(ellipse at 50% 69%,#fff2a6 0 16%,#ffbd4e 36%,#e55d2b 65%,transparent 73%);animation:torch-flicker .7s ease-in-out infinite alternate;transform-origin:50% 90%}
+.cave-scene .image-caption{z-index:6}
+@keyframes torch-flicker{from{transform:rotate(-5deg) scale(.88);opacity:.76}to{transform:rotate(5deg) scale(1.08);opacity:1}}
+
+/* Impression, Sunrise: the famous image assembles beneath animated paint marks. */
+.impression-process{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(170px,.65fr);gap:clamp(16px,3vw,40px);align-items:center;margin:0 0 32px;padding:22px;background:#e8dece;transform:rotate(-.45deg)}
+.impression-frame{margin:0;position:relative;overflow:hidden;background:#b0b0a0;box-shadow:0 16px 40px #3427181a}
+.impression-frame img{display:block;width:100%;height:clamp(220px,36vw,430px);object-fit:cover;filter:saturate(.6) blur(4px);clip-path:inset(100% 0 0 0);transform:scale(1.07);transition:clip-path 1.5s cubic-bezier(.2,.8,.2,1),filter 1.5s ease,transform 1.8s ease}
+.impression-process.in-view .impression-frame img{clip-path:inset(0);filter:saturate(1) blur(0);transform:scale(1)}
+.painted-strokes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen}
+.painted-strokes path{fill:none;stroke:#f3e0a0;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;opacity:.86}
+.impression-process.in-view .painted-strokes path{animation:paint-stroke 1.6s cubic-bezier(.22,1,.36,1) forwards}
+.impression-process.in-view .painted-strokes path:nth-child(2n){animation-delay:.15s;stroke:#e7ad67;stroke-width:5}
+.impression-process.in-view .painted-strokes path:nth-child(3n){animation-delay:.3s;stroke:#7c9ca0;stroke-width:9}
+.impression-caption{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(transparent,#191a1a9c);color:#fff7e8;font:8px var(--mono);letter-spacing:.09em}
+.impression-note>span{font:9px var(--mono);letter-spacing:.09em;color:var(--red)}
+.impression-note p{font:clamp(1.6rem,3vw,2.65rem)/1.12 var(--serif);margin:14px 0;color:var(--ink)}
+@keyframes paint-stroke{to{stroke-dashoffset:0}}
+
+/* Pigment isn't only a swatch: follow material into the studio. */
+.pigment-process{position:absolute;z-index:3;left:26px;top:28px;right:24px;max-width:315px;padding:14px 16px 12px;border:1px solid #ffffff55;background:#18151220;backdrop-filter:blur(5px);display:grid;gap:4px}
+.process-step{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.process-step small{font:7px var(--mono);letter-spacing:.1em;opacity:.76;white-space:nowrap}
+.process-step b{font:italic 13px/1.35 var(--serif);font-weight:400;text-align:right}
+.process-arrow{font:12px var(--mono);opacity:.56;line-height:1;text-align:right;padding-right:4px}
+.pigment-cloud:before{content:"";position:absolute;inset:-4%;border-radius:48% 52% 42% 58%;background:radial-gradient(circle at 20% 28%,var(--grain-color,#f4ded0) 0 1px,transparent 2px),radial-gradient(circle at 72% 36%,var(--grain-color,#f4ded0) 0 1.4px,transparent 2.5px),radial-gradient(circle at 43% 78%,var(--grain-color,#f4ded0) 0 1px,transparent 2px),radial-gradient(circle at 83% 65%,var(--grain-color,#f4ded0) 0 1px,transparent 2px);background-size:19px 23px,29px 31px,23px 17px,31px 27px;opacity:.5;animation:cloud 8s ease-in-out infinite alternate}
+.pigment-display.pigment-changing .pigment-cloud{animation:cloud 1s ease-in-out infinite alternate}
+.pigment-display.pigment-changing .pigment-big{animation:wordrise .55s both}
+.pigment-display.pigment-changing .pigment-process{animation:appear .45s both}
+
+@media(max-width:900px){.paint-reveal{height:calc(100svh - 62px);min-height:570px}.impression-process{grid-template-columns:1fr}.impression-note p{max-width:480px}.pigment-process{left:20px;top:20px}}
+@media(max-width:520px){.paint-reveal{min-height:610px;height:calc(100svh - 62px)}.reveal-underlay{padding:45px 6vw 80px}.reveal-underlay h1{font-size:clamp(3.4rem,14vw,5.3rem)}.reveal-underlay:before{left:2%;top:12%;width:80px;height:115px}.reveal-underlay:after{right:2%;bottom:9%;width:80px;height:115px}.underlay-cave{left:2.4%;top:12.4%}.underlay-monet{right:2.4%;bottom:9.4%}.underlay-image{width:78px;padding:4px 4px 14px}.underlay-image img{height:93px}.underlay-image figcaption{font-size:6px}.reveal-skip{left:50%;right:auto;transform:translateX(-50%);bottom:16px;width:max-content;max-width:92%;font-size:8px}.reveal-skip:hover{transform:translateX(-50%) translateY(-2px)}.impression-process{padding:10px;margin-bottom:25px}.impression-frame img{height:260px}.impression-note{padding:5px 5px 9px}.pigment-process{left:15px;right:15px;top:15px;padding:10px 12px}.process-step b{font-size:11px}.process-step small{font-size:6px}.pigment-big{bottom:15%;font-size:4.9rem}.pigment-small{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.cave-torch span{animation:none}.cave-scene img,.cave-scene:after,.impression-frame img{transition:none}.painted-strokes path{animation:none!important;stroke-dashoffset:0}.pigment-cloud:before{animation:none}}
+
+/* Paper edges are intentionally imperfect, like clipped archive scraps. */
+.underlay-image{clip-path:polygon(0 1%,8% 0,17% 1.2%,25% 0,36% 1.1%,47% 0,58% 1.3%,69% 0,80% 1%,91% 0,100% 1.5%,99% 12%,100% 24%,98.8% 37%,100% 50%,99% 62%,100% 77%,98.8% 88%,100% 99%,88% 100%,77% 98.8%,65% 100%,53% 98.8%,40% 100%,28% 98.7%,16% 100%,0 98.5%,1.2% 85%,0 72%,1.1% 57%,0 44%,1.3% 30%,0 17%)}
+.impression-process{clip-path:polygon(0 0,10% .7%,19% 0,31% 1%,42% 0,54% .8%,67% 0,79% .6%,90% 0,100% .5%,99.6% 25%,100% 47%,99% 70%,100% 100%,87% 99%,75% 100%,61% 99%,48% 100%,34% 99%,20% 100%,8% 99%,0 100%,.7% 75%,0 53%,.8% 29%)}
+#revealCanvas{touch-action:none}
