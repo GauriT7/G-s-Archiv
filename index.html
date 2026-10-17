@@ -257,6 +257,11 @@
     .seed {
       position: absolute;
       z-index: 3;
+      transform: none !important;
+      left: var(--seed-x, 0%);
+      top: var(--seed-y, 0%);
+      right: auto;
+      bottom: auto;
       width: clamp(66px, 10vw, 105px);
       height: clamp(66px, 10vw, 105px);
 
@@ -285,7 +290,8 @@
       /* The BUTTON receives the click, not the image. */
       pointer-events: none;
 
-      transition: 
+      transform: rotate(var(--seed-rotation, 0deg));
+      transition:
         transform 300ms ease,
         filter 300ms ease;
     }
@@ -371,41 +377,13 @@
 
     /* BALANCED SEED PLACEMENT */
 
-    .seed-1 {
-      top: 7%;
-      left: 13%;
-      transform: rotate(-18deg);
-    }
-
-    .seed-2 {
-      top: 7%;
-      right: 13%;
-      transform: rotate(18deg);
-    }
-
-    .seed-3 {
-      top: 39%;
-      left: 0;
-      transform: rotate(-35deg);
-    }
-
-    .seed-4 {
-      top: 39%;
-      right: 0;
-      transform: rotate(35deg);
-    }
-
-    .seed-5 {
-      bottom: 7%;
-      left: 13%;
-      transform: rotate(18deg);
-    }
-
-    .seed-6 {
-      bottom: 7%;
-      right: 13%;
-      transform: rotate(-18deg);
-    }
+    /* Seed positions are randomised each time the archive opens. */
+    .seed-1 img { --seed-rotation: -18deg; }
+    .seed-2 img { --seed-rotation: 18deg; }
+    .seed-3 img { --seed-rotation: -35deg; }
+    .seed-4 img { --seed-rotation: 35deg; }
+    .seed-5 img { --seed-rotation: 18deg; }
+    .seed-6 img { --seed-rotation: -18deg; }
 
     /* SCREEN TRANSITIONS */
 
@@ -460,6 +438,12 @@
     .screen.entering .seed-4 { animation-delay: 260ms; }
     .screen.entering .seed-5 { animation-delay: 320ms; }
     .screen.entering .seed-6 { animation-delay: 380ms; }
+    .screen.entering .seed-7 { animation-delay: 120ms; }
+    .screen.entering .seed-8 { animation-delay: 180ms; }
+    .screen.entering .seed-9 { animation-delay: 240ms; }
+    .screen.entering .seed-10 { animation-delay: 300ms; }
+    .screen.entering .seed-11 { animation-delay: 360ms; }
+    .screen.entering .seed-12 { animation-delay: 420ms; }
 
     @keyframes seed-arrive {
       from {
@@ -622,34 +606,15 @@
         height: clamp(48px, 15vw, 75px);
       }
 
-      .seed-1 {
-        top: 4%;
-        left: 5%;
+      .seed {
+        width: clamp(44px, 12vw, 66px);
+        height: clamp(44px, 12vw, 66px);
       }
 
-      .seed-2 {
-        top: 4%;
-        right: 5%;
-      }
-
-      .seed-3 {
-        top: 40%;
-        left: 0;
-      }
-
-      .seed-4 {
-        top: 40%;
-        right: 0;
-      }
-
-      .seed-5 {
-        bottom: 4%;
-        left: 5%;
-      }
-
-      .seed-6 {
-        bottom: 4%;
-        right: 5%;
+      .seed-tooltip {
+        max-width: min(170px, 58vw);
+        padding: 7px 10px;
+        font-size: 12px;
       }
 
       .seed-detail {
@@ -912,12 +877,9 @@
           <span class="seed-tooltip">A World in Pigment</span>
         </button>
 
-        <button
-          class="seed seed-6"
-          data-seed="6"
-          aria-label="Explore seed 6"
-        >
+        <button class="seed seed-6" data-seed="6" aria-label="A little more to discover">
           <img src="./images/seed6.png" alt="" draggable="false">
+          <span class="seed-tooltip">A little more to discover</span>
         </button>
 
       </div>
@@ -999,6 +961,48 @@
     const backButton = document.getElementById("back-to-seeds");
     const closeDetailButton = document.getElementById("close-detail");
 
+
+    const stage = document.querySelector(".cross-stage");
+    const extraSeedTitles = [
+      "Little observations", "Things worth keeping", "A work in progress",
+      "Notes from elsewhere", "Curiosities & connections", "More pieces of me"
+    ];
+
+    extraSeedTitles.forEach((title, index) => {
+      const number = index + 7;
+      const button = document.createElement("button");
+      button.className = "seed seed-" + number;
+      button.dataset.seed = String(number);
+      button.setAttribute("aria-label", title);
+      const image = document.createElement("img");
+      image.src = "./images/seed" + (((number - 1) % 6) + 1) + ".png";
+      image.alt = "";
+      image.draggable = false;
+      const tooltip = document.createElement("span");
+      tooltip.className = "seed-tooltip";
+      tooltip.textContent = title;
+      button.append(image, tooltip);
+      stage.appendChild(button);
+    });
+
+    const seedButtons = document.querySelectorAll(".seed");
+
+    function randomiseSeedPositions() {
+      const positions = [
+        [14, 5], [42, 3], [72, 6], [2, 27], [82, 27], [1, 54],
+        [84, 54], [12, 78], [42, 82], [72, 78], [24, 14], [65, 14]
+      ];
+      for (let i = positions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [positions[i], positions[j]] = [positions[j], positions[i]];
+      }
+      seedButtons.forEach((button, index) => {
+        button.style.setProperty("--seed-x", positions[index][0] + "%");
+        button.style.setProperty("--seed-y", positions[index][1] + "%");
+        button.style.setProperty("--seed-rotation", Math.round(Math.random() * 54 - 27) + "deg");
+      });
+    }
+
     let isTransitioning = false;
     let selectedSeed = null;
     let transitionTimer = null;
@@ -1039,9 +1043,15 @@
       },
 
       6: {
-        title: "Seed 6",
-        description: "Your sixth archive entry goes here."
-      }
+        title: "A little more to discover",
+        description: "A small pocket of the archive, waiting to take shape."
+      },
+      7: { title: "Little observations", description: "Small details, passing thoughts, and things that catch my eye." },
+      8: { title: "Things worth keeping", description: "Ideas, moments, and references I want to return to." },
+      9: { title: "A work in progress", description: "Experiments, unfinished thoughts, and the pleasure of figuring things out." },
+      10: { title: "Notes from elsewhere", description: "A place for the unexpected connections that travel across subjects." },
+      11: { title: "Curiosities & connections", description: "A few more threads in the web of things I keep wondering about." },
+      12: { title: "More pieces of me", description: "The archive is always growing; this space is for what comes next." }
     };
 
     /* OPEN THE POMEGRANATE */
@@ -1053,6 +1063,7 @@ function openArchive() {
   isTransitioning = true;
 
   openButton.classList.add("bursting");
+  randomiseSeedPositions();
 
   transitionTimer = window.setTimeout(() => {
     openingScreen.hidden = true;
