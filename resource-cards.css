@@ -97,6 +97,20 @@
   color: var(--burgundy, #713d46);
   font-size: .92em;
 }
+.resource-inline-icon-wrap {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -3px;
+  margin-right: 3px;
+}
+.resource-inline-icon-wrap .resource-monogram {
+  font: 600 7px/1 var(--sans, sans-serif);
+  letter-spacing: 0;
+  color: #70454c;
+}
 .resource-inline .resource-inline-icon {
   width: 14px;
   height: 14px;
