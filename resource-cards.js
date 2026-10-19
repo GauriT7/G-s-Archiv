@@ -69,7 +69,15 @@
     a.prepend(icon);
   };
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".source-links a, .bombay-note a, .visit-copy a.visit-link, .cue-item a, .gallery-visit a, .resource-list a").forEach(makeCard);
-    document.querySelectorAll(".section-copy a.source-link, .chapter-copy a.source-link").forEach(makeInline);
+    document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((a) => {
+      if (!external(a) || a.closest("header, footer, nav, .thread-drawer, .contents-panel, .cue-book-cover, .cue-book-copy")) return;
+      if (a.closest(".source-links, .bombay-note, .visit-copy, .cue-item, .resource-list")) {
+        makeCard(a);
+      } else if (a.closest("p, .section-copy, .chapter-copy")) {
+        makeInline(a);
+      } else {
+        makeCard(a);
+      }
+    });
   });
 })();
