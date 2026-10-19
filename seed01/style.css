@@ -290,6 +290,44 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--burgundy); outl
 .cue-item h3 { margin: 0 0 9px; color: var(--burgundy); font: 400 22px/1.5 var(--display); }
 .cue-item p { max-width: 650px; margin: 0 0 10px; font-size: 13px; line-height: 1.9; }
 .cue-item a { color: var(--burgundy); text-decoration-color: var(--rose); text-underline-offset: 4px; font-size: 11px; }
+
+/* VISUAL BOOK CUES */
+.cue-book-layout {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 30px;
+}
+.cue-book-cover {
+  display: block;
+  width: 132px;
+  perspective: 850px;
+  text-decoration: none !important;
+}
+.cue-book-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: #e9dfd0;
+  border-radius: 2px 5px 5px 2px;
+  box-shadow: 7px 9px 16px rgba(57, 39, 43, .17), 2px 0 0 rgba(255,255,255,.55) inset;
+  transform: rotateY(-9deg) rotateZ(-1deg);
+  transform-origin: left center;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.cue-book-cover:hover img,
+.cue-book-cover:focus-visible img {
+  transform: rotateY(0deg) rotateZ(0deg) translateY(-4px);
+  box-shadow: 10px 14px 22px rgba(57, 39, 43, .2);
+}
+.cue-book-copy h3 { margin-top: 0; }
+.cue-book-cover:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 5px; }
+@media (max-width: 600px) {
+  .cue-book-layout { grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: start; }
+  .cue-book-cover { width: 88px; }
+  .cue-book-cover img { transform: rotateY(-5deg); }
+}
 .source-note { max-width: 900px; margin: 50px auto 0; color: var(--muted); text-transform: none; letter-spacing: .02em; font-size: 10px; }
 .final-thread { padding: 130px 7vw 120px; border-top: 1px solid var(--line); }
 .final-thread > .eyebrow, .final-thread > h2 { max-width: 800px; margin-left: auto; margin-right: auto; }
