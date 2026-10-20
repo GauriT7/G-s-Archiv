@@ -57,7 +57,7 @@
     copy.append(title, domain, arrow);
     a.textContent = "";
     a.append(thumb, copy);
-    a.setAttribute("aria-label", label + " — opens " + getDomain(a.href));
+    a.setAttribute("aria-label", label + " | opens " + getDomain(a.href));
   };
   const makeInline = (a) => {
     if (!external(a) || a.dataset.resourceEnhanced || a.closest(".cue-book-cover, .cue-book-copy")) return;
