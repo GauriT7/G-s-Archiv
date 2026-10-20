@@ -1,4 +1,4 @@
-/* ARCHIVE RESOURCE CARDS — visual previews for external references */
+/* ARCHIVE RESOURCE CARDS: visual previews for external references */
 .resource-card {
   display: grid !important;
   grid-template-columns: 78px minmax(0, 1fr);
