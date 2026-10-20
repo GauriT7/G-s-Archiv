@@ -246,4 +246,4 @@ function updateLab(){if(!hue||!light||!grain||!specimen)return;const h=+hue.valu
 
 /* Connect timeline themes to the visible filter controls */
 $$('.era-filter').forEach(btn=>btn.addEventListener('click',()=>{const chosen=btn.dataset.filter;$$('.era-filter').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-pressed',String(b===btn))});$$('.period').forEach(card=>{const themes=(card.dataset.themes||'').split(' ');card.classList.toggle('filtered-out',chosen!=='all'&&!themes.includes(chosen))})}));
-$$('.colour-note').forEach(btn=>{btn.setAttribute('aria-expanded','false');btn.addEventListener('click',()=>{btn.classList.toggle('open');btn.setAttribute('aria-expanded',String(btn.classList.contains('open')))})});
+
