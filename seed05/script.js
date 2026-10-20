@@ -234,3 +234,12 @@ const input=$('#artworkUpload'),grid=$('#artworkGrid');input?.addEventListener('
     });
   });
 })();
+
+
+// SEED 05 — tactile atlas interactions
+$$('.postcard').forEach(card=>{const flip=()=>card.classList.toggle('flipped');card.addEventListener('click',flip);card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();flip()}})});
+$$('.era-filter').forEach(btn=>btn.addEventListener('click',()=>{const chosen=btn.dataset.filter;$$('.era-filter').forEach(b=>b.classList.toggle('active',b===btn));$$('.period').forEach(card=>{const show=chosen==='all'||(card.dataset.themes||'').split(' ').includes(chosen);card.classList.toggle('filtered-out',!show)})}));
+$$('.colour-note').forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('open')));
+const hue=$('#labHue'),light=$('#labLight'),grain=$('#labGrain'),specimen=$('#labSpecimen'),hueValue=$('#hueValue'),lightValue=$('#lightValue'),grainValue=$('#grainValue'),labName=$('#labName'),labDescription=$('#labDescription');
+function updateLab(){if(!hue||!light||!grain||!specimen)return;const h=+hue.value,l=+light.value,g=+grain.value;specimen.style.setProperty('--lab-h',h);specimen.style.setProperty('--lab-l',l+'%');specimen.style.setProperty('--lab-g',g+'%');hueValue.textContent=h+'°';lightValue.textContent=l+'%';grainValue.textContent=g+'%';const names=[['red',0,18],['orange',18,48],['yellow',48,70],['green',70,165],['teal',165,195],['blue',195,250],['violet',250,290],['magenta',290,330],['red',330,360]];const name=(names.find(n=>h>=n[1]&&h<n[2])||names[0])[0];labName.textContent='A '+name+' not yet named.';labDescription.textContent='This digital specimen shifts in seconds. Historical pigment took matter, labour, technique and trade. Lightness changes its voice; texture makes it feel more like powder, stain or surface. The screen can imitate a colour, but it cannot reproduce the history of the material.'}
+[hue,light,grain].forEach(el=>el?.addEventListener('input',updateLab));updateLab();
