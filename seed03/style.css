@@ -43,7 +43,7 @@
 @media(max-width:760px){.site-header{padding:0 18px}.header-right{gap:12px}.lab-hero{height:auto;min-height:880px;padding:100px 22px 70px}.hero-grid{grid-template-columns:1fr;gap:0}.hero-copy{padding:25px 2vw 0;text-align:center}.hero-copy h1{font-size:clamp(65px,15vw,100px)}.hero-subtitle{margin:0 auto;max-width:320px}.hero-stamp{margin-top:22px}.lab-illustration{width:min(100%,480px);margin-top:15px}.hero-kicker{top:85px}.hero-footnote{left:18px;right:18px;bottom:18px;font-size:7px}.opening-section,.essay-section{padding:75px 8vw 70px}.section-inner{display:block}.section-topline{margin-bottom:32px}.section-inner h2{position:static;font-size:clamp(40px,9vw,58px);margin-bottom:30px}.section-copy{font-size:13px}.opening-title{font-size:clamp(45px,11vw,65px)}.pull-quote{margin-left:0;margin-right:0}.section-end{align-items:flex-start;flex-direction:column;gap:8px;margin-top:45px}.typewriter-card{margin-bottom:70px;padding:25px 23px}.specimen-strip{gap:6px}.specimen{min-height:135px}.specimen b{font-size:7px}.specimen small{font-size:6px}.science-card,.specimen-strip,.safety-slip{margin-top:25px}.closing-scene{min-height:620px;padding:80px 8vw}.site-footer{align-items:flex-start;flex-direction:column}.site-footer>span{order:3}.thread-drawer{padding:22px 24px}.drawer-links a{font-size:19px}.floating-map{right:12px;bottom:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.typed-text{opacity:1;max-width:100%}.reveal-ready .section-copy p,.reveal-ready .section-inner h2,.reveal-ready .closing-vial{opacity:1;transform:none}}
 
-/* ARCHIVE HOME LINK — SHARED STYLE */
+/* ARCHIVE HOME LINK: SHARED STYLE */
 
 a.back-home {
   display: inline-flex;
