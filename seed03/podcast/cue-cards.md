@@ -45,6 +45,7 @@
 - Mechanism ≠ demonstrated benefit; biomarker shift ≠ longer life
 - Stanford Medicine (Sep 2026): consumer biological-age tests can disagree; caution, not diagnosis
 - Longevity vs healthspan: years lived with function, agency, independence
+- NIH-funded Sep 2026 study: semaglutide extended lifespan in older female mice — not proof of human longevity benefit
 - Market sells control over uncertainty
 
 **QUESTION:** What outcome was actually measured — and does it matter to a person's life?
@@ -56,6 +57,8 @@
 - WHO's Jan 2026 fact sheet (before the name change): 10–13% prevalence; up to 70% undiagnosed
 - WHO: robust menstruation research remains limited
 - WHO: endometriosis affects ~190 million globally; diagnosis often delayed
+- Oct 2026 Nature Medicine: ~300M lab-test records used to reconstruct systemic shifts around menopause
+- Sep 2026 proteomics study linked menopause signatures with brain-ageing pathways/cognitive outcomes; association, not causation
 - Symptoms normalised/dismissed; need better evidence and access
 - Wearable cycle data ≠ diagnosis
 
@@ -121,6 +124,8 @@
 - **Menstruation:** WHO says robust research is limited; disruptive, unusually painful, heavy, infrequent or unpredictable symptoms deserve assessment.
 - **Endometriosis:** WHO fact sheet dated 15 Oct 2025: estimated 190 million affected globally.
 - **Biological age:** Stanford Medicine, 23 Sep 2026: consumer tests may conflict and should be interpreted cautiously.
+- **Longevity:** Sep 2026 NIH-funded semaglutide result was in older female mice, not human longevity proof.
+- **Menopause:** Nature Medicine, 12 Oct 2026, reconstructed changes using ~300 million lab tests; another paper links blood-protein signatures with later cognitive outcomes. Interesting research, not diagnostic advice.
 - **Peptides:** FDA identifies safety concerns for compounded BPC-157 and injectable GHK-Cu due to limited data/quality risks.
 - **Retatrutide:** investigational as of Oct 2026; not approved for general public use.
 - **Optogenetics:** Nobel Prize in Physiology or Medicine 2026, announced 5 Oct 2026.
