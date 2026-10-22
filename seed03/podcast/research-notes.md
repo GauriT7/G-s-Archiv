@@ -64,6 +64,21 @@
 **Use in episode:** General context that wearable sensing is a developing research area with potential clinical applications. Do not suggest that every commercially available score has demonstrated clinical utility.  
 **Source:** https://www.nih.gov/about-nih/nih-turning-discovery-into-health/transformative-technologies/wearable-sensors
 
+### 10. NIH — GLP-1 treatment late in life extends lifespan in an animal model
+**Date:** 2 September 2026 (NIH Research Matters explainer dated 15 September)  
+**Use in episode:** An NIH-funded study reported that semaglutide extended lifespan and improved selected age-related functions in older female mice. This is preclinical evidence only; do not extrapolate it into a recommendation to use GLP-1 medication for human longevity.  
+**Source:** https://www.nih.gov/news-events/news-releases/glp-1-treatment-late-life-extends-lifespan-animal-model
+
+### 11. Nature Medicine — Population-scale reconstruction of menopause dynamics reveals a physiological cliff at the final menstrual period
+**Date:** 12 October 2026  
+**Use in episode:** Researchers reconstructed trajectories from two large datasets totalling around 300 million laboratory tests. They reported step-like changes near the final menstrual period across endocrine, skeletal, liver, kidney and lipid-related measures. This used reconstruction from large datasets, not decades of within-person longitudinal testing; it is not proof that every change is caused by menopause or that treatment prevents downstream disease.  
+**Source:** https://www.nature.com/articles/s41591-026-04614-0
+
+### 12. Nature Medicine — Blood proteomics of menopause map to brain aging and dementia risk
+**Date:** 22 September 2026  
+**Use in episode:** Study reports menopause-associated blood-protein signatures involving inflammatory, synaptic, metabolic and brain-ageing pathways, with associations in older cohorts with cognitive outcomes and dementia risk. Treat as research associations and potential biomarker/target discovery, not as an individual diagnostic or evidence of causal prevention.  
+**Source:** https://www.nature.com/articles/s41591-026-04648-4
+
 ## Optional deeper reading
 
 - National Academies / NCBI Bookshelf, *Overview of Research Gaps for Selected Conditions in Women’s Health Research at the National Institutes of Health* (20 Aug 2024): https://www.ncbi.nlm.nih.gov/books/NBK606165/
@@ -79,3 +94,4 @@
 - Avoid generalising trial results to everyone or quoting headlines without the population, endpoint and study status.
 - Make clear that wearables may help notice patterns but do not diagnose PMOS/PCOS, endometriosis, or other medical conditions.
 - Treat personal examples as personal experience, not evidence that an intervention works.
+- Keep animal longevity studies explicitly labelled as animal studies. Distinguish menopause-related associations and reconstructed trends from individual prognosis, causal claims, or clinical recommendations.
