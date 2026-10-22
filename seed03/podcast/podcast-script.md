@@ -89,6 +89,8 @@ There's a useful example from the current biological-age testing boom. Tests may
 
 I find that fascinating, because it shows the difference between being able to measure something and fully understanding what the measurement means.
 
+There is a similar tension in some of the more interesting longevity research. In September 2026, an NIH-funded study reported that semaglutide extended lifespan and improved several age-related functions in older female mice. That is a genuinely interesting result — but it is an animal study, not evidence that people should take a GLP-1 drug to live longer. It gives researchers questions to investigate; it does not give the wellness market permission to skip the human evidence.
+
 And then there is the emotional promise underneath it all. The idea that if I buy the right device, fix my sleep score, optimise enough variables, and become disciplined enough, I can keep uncertainty at bay. Ageing begins to look like a problem of personal administration. If you are getting older badly, perhaps you simply failed to manage the dashboard.
 
 That is quite a thing to sell people.
@@ -110,6 +112,10 @@ Take the condition long known as PCOS. In May 2026, an international consensus r
 Or take endometriosis. WHO estimates that about 190 million women and girls of reproductive age are affected worldwide. Diagnosis can be delayed for years, while people are told that severe pain is just part of having a period, or that they need to tolerate it.
 
 WHO also notes that high-quality research on menstruation remains insufficient. Think about how ordinary the menstrual cycle is as a biological process, and how much there is still to learn about the experience, the disorders, the care people need and the social conditions around it.
+
+And here is where women's health and longevity become the same conversation. A Nature Medicine paper published in October 2026 used two very large laboratory-test datasets — together covering around 300 million tests — to reconstruct changes around the final menstrual period. The researchers reported step-like shifts in several systems, including endocrine, skeletal, liver, kidney and lipid-related measures. A separate September paper mapped menopause-associated blood-protein patterns to pathways related to brain ageing and later cognitive outcomes.
+
+I find that fascinating, but I want to be precise about what it means. These are research findings and associations, not a new diagnostic test, and they do not show that menopause inevitably causes dementia or that a specific intervention prevents it. The first study reconstructed trajectories from large datasets rather than following every participant longitudinally for decades. Still, the direction of the question is important: reproductive ageing may tell us something about health well beyond fertility, and we should be studying that properly.
 
 There is something deeply frustrating about that. We're capable of building increasingly sophisticated devices to estimate someone's recovery, and yet a person can struggle to get a clear explanation for persistent pelvic pain or irregular bleeding.
 
