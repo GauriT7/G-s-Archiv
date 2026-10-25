@@ -64,20 +64,6 @@
     opacity 200ms ease;
 }
 
-.credentials-link {
-  position: absolute;
-  left: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--muted);
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: color 200ms ease, opacity 200ms ease;
-}
-.credentials-link:hover { color: var(--burgundy); }
-
 .about-link:hover {
   color: var(--burgundy);
 }
@@ -86,10 +72,6 @@
 
   .about-link {
     right: 18px;
-    font-size: 12px;
-  }
-  .credentials-link {
-    left: 18px;
     font-size: 12px;
   }
 
@@ -572,6 +554,19 @@
       margin-top: 26px;
     }
 
+.credentials-footer-link {
+  display: inline-block;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: .05em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+}
+.credentials-footer-link:hover { color: var(--burgundy); border-color: var(--burgundy); }
+
     /* MOBILE */
 
     @media (max-width: 600px) {
@@ -795,7 +790,6 @@
     collection of things I’ve made, found and thought about
   </p>
 
-  <a href="./gauri-creds/" class="credentials-link">credentials</a>
   <a
     href="./about.html"
     class="about-link"
@@ -957,6 +951,8 @@
       <button class="archive-button close-button" id="close-archive">
         Close archive
       </button>
+
+      <a href="./gauri-creds/" class="credentials-footer-link">credentials ↗</a>
 
     </section>
 
