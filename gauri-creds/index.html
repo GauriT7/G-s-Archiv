@@ -13,7 +13,7 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Time
 a{color:var(--burgundy);text-underline-offset:3px}
 a:hover{color:var(--deep)}
 header{position:relative;padding:54px 22px 30px;text-align:center;border-bottom:1px solid var(--line)}
-.home-wordmark{position:absolute;left:22px;top:18px;color:var(--burgundy);font-size:1rem;font-weight:bold;letter-spacing:-.025em;text-decoration:none}
+.home-wordmark{position:absolute;left:clamp(24px,4vw,64px);top:clamp(22px,3vw,38px);display:inline-flex;align-items:center;gap:12px;color:var(--burgundy);font-size:clamp(1.35rem,2.5vw,1.8rem);font-weight:bold;letter-spacing:-.035em;text-decoration:none;line-height:1.15}.home-arrow{font-size:.9em;font-weight:normal;transition:transform 180ms ease}.home-wordmark:hover .home-arrow{transform:translateX(-4px)}
 .home-wordmark:hover{color:var(--deep)}
 .eyebrow{margin:0 0 10px;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted)}
 h1{margin:0;color:var(--burgundy);font-weight:normal;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.1}
@@ -36,13 +36,13 @@ h2{font-weight:normal;color:var(--burgundy);font-size:1.65rem;margin:0}
 .callout{padding:18px 20px;background:#f1ebdf;border-left:3px solid var(--burgundy);margin:22px 0;border-radius:0 8px 8px 0;font-size:.92rem}
 footer{text-align:center;border-top:1px solid var(--line);padding:25px 20px 40px;color:var(--muted);font-size:.88rem}
 .top{display:block;text-align:right;margin-top:16px;font-size:.85rem}
-@media(max-width:520px){header{padding-top:54px}.home-wordmark{left:16px;top:14px}nav{gap:6px}nav a{font-size:.82rem;padding:6px 9px}main{padding-left:16px;padding-right:16px}.card{padding:15px}}
+@media(max-width:520px){header{padding-top:76px}.home-wordmark{left:18px;top:18px;font-size:1.25rem;gap:9px}nav{gap:6px}nav a{font-size:.82rem;padding:6px 9px}main{padding-left:16px;padding-right:16px}.card{padding:15px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header id="top">
-<a class="home-wordmark" href="https://archivegauri.in/" aria-label="archive.gauri home">archive.gauri</a>
+<a class="home-wordmark" href="https://archivegauri.in/" aria-label="Back to archive.gauri home"><span class="home-arrow" aria-hidden="true">←</span><span>archive.gauri</span></a>
 <h1>Credentials</h1>
 <p class="intro">A selected record of medical innovation, research, clinical exposure, leadership and academic engagement.</p>
 </header>
