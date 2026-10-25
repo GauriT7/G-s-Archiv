@@ -555,17 +555,20 @@
     }
 
 .credentials-seed-link {
+  position: absolute;
+  top: clamp(16px, 2.5vh, 28px);
+  right: clamp(18px, 3vw, 42px);
+  z-index: 20;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
-  margin: 0 auto 12px;
-  padding: 9px 18px;
+  margin: 0;
+  padding: 8px 16px;
   border: 1px solid var(--burgundy);
   border-radius: 30px;
   color: var(--burgundy);
   background: rgba(248, 244, 233, .92);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: .04em;
   text-decoration: none;
   transition: background 200ms ease, color 200ms ease, transform 200ms ease;
@@ -838,7 +841,7 @@
 
     <!-- SCREEN 2: CROSS-SECTION -->
 
-    <section class="screen" id="archive-screen" hidden>
+    <section class="screen" id="archive-screen" hidden style="position: relative;">
 
       <a href="./gauri-creds/" class="credentials-seed-link">Credentials ↗</a>
 
