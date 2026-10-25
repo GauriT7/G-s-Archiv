@@ -554,18 +554,27 @@
       margin-top: 26px;
     }
 
-.credentials-footer-link {
-  display: inline-block;
-  margin: 18px auto 0;
-  color: var(--muted);
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: .05em;
+.credentials-seed-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin: 0 auto 12px;
+  padding: 9px 18px;
+  border: 1px solid var(--burgundy);
+  border-radius: 30px;
+  color: var(--burgundy);
+  background: rgba(248, 244, 233, .92);
+  font-size: 14px;
+  letter-spacing: .04em;
   text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 3px;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease;
 }
-.credentials-footer-link:hover { color: var(--burgundy); border-color: var(--burgundy); }
+.credentials-seed-link:hover {
+  background: var(--burgundy);
+  color: var(--cream);
+  transform: translateY(-1px);
+}
 
     /* MOBILE */
 
@@ -834,6 +843,8 @@
 
     <section class="screen" id="archive-screen" hidden>
 
+      <a href="./gauri-creds/" class="credentials-seed-link">Credentials ↗</a>
+
       <div class="cross-stage">
 
         <div class="cross-section">
@@ -952,7 +963,6 @@
         Close archive
       </button>
 
-      <a href="./gauri-creds/" class="credentials-footer-link">credentials ↗</a>
 
     </section>
 
