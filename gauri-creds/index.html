@@ -1,62 +1,110 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Credentials — Gauri Thakur</title>
-  <style>
-    body {
-      max-width: 760px;
-      margin: 70px auto;
-      padding: 24px;
-      background: #faf9f6;
-      color: #292929;
-      font-family: Georgia, serif;
-      line-height: 1.7;
-    }
-    h1 { color: #514c83; font-size: 2.3rem; }
-    h2 {
-      color: #514c83;
-      border-bottom: 1px solid #d8d4df;
-      padding-bottom: 6px;
-      margin-top: 35px;
-    }
-    a { color: #514c83; }
-    .note { color: #666; font-style: italic; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f4e9">
+<title>Credentials — Gauri Thakur</title>
+<style>
+:root{--cream:#f8f4e9;--burgundy:#a0002b;--deep:#69001d;--ink:#39272b;--muted:#88777a;--line:#e1d8cb;--paper:#fffdf8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
+a{color:var(--burgundy);text-underline-offset:3px}
+a:hover{color:var(--deep)}
+header{padding:54px 22px 30px;text-align:center;border-bottom:1px solid var(--line)}
+.eyebrow{margin:0 0 10px;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted)}
+h1{margin:0;color:var(--burgundy);font-weight:normal;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.1}
+.intro{max-width:640px;margin:16px auto 0;color:var(--muted);font-style:italic}
+nav{position:sticky;top:0;z-index:10;background:rgba(248,244,233,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+nav a{padding:7px 12px;border:1px solid var(--line);border-radius:24px;text-decoration:none;font-size:.9rem;white-space:nowrap}
+nav a:hover,nav a:focus-visible{background:var(--burgundy);border-color:var(--burgundy);color:white}
+main{max-width:960px;margin:0 auto;padding:8px 22px 64px}
+section{padding:32px 0 18px;scroll-margin-top:80px}
+.section-head{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:18px}
+h2{font-weight:normal;color:var(--burgundy);font-size:1.65rem;margin:0}
+.count{color:var(--muted);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.card h3{font-size:1.08rem;line-height:1.35;margin:0 0 7px;font-weight:normal}
+.card p{font-size:.94rem;margin:0 0 12px;color:var(--muted)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.92rem}
+.links a{font-weight:bold}
+.tag{display:inline-block;font-family:Arial,sans-serif;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.callout{padding:18px 20px;background:#f1ebdf;border-left:3px solid var(--burgundy);margin:22px 0;border-radius:0 8px 8px 0;font-size:.92rem}
+footer{text-align:center;border-top:1px solid var(--line);padding:25px 20px 40px;color:var(--muted);font-size:.88rem}
+.top{display:block;text-align:right;margin-top:16px;font-size:.85rem}
+@media(max-width:520px){header{padding-top:38px}nav{gap:6px}nav a{font-size:.82rem;padding:6px 9px}main{padding-left:16px;padding-right:16px}.card{padding:15px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <p class="note">GAURI THAKUR · PROFESSIONAL ARCHIVE</p>
-  <h1>Credentials</h1>
-  <p>
-    A curated record of my academic, research,
-    leadership and professional experiences.
-  </p>
-
-  <h2>Research & Medical Innovation</h2>
-  <ul>
-    <li>Research and publications</li>
-    <li>Medical innovation and hackathons</li>
-  </ul>
-
-  <h2>Awards & Recognition</h2>
-  <ul>
-    <li>Selected awards and achievements</li>
-  </ul>
-
-  <h2>Conferences & Certifications</h2>
-  <ul>
-    <li>Selected conferences and workshops</li>
-  </ul>
-
-  <h2>Leadership & Experience</h2>
-  <ul>
-    <li>Leadership, internships and observerships</li>
-  </ul>
-
-  <p class="note">
-    For further information, please contact me directly.
-  </p>
+<header id="top">
+<p class="eyebrow">Gauri Thakur · Professional archive</p>
+<h1>Credentials</h1>
+<p class="intro">A selected record of medical innovation, research, clinical exposure, leadership and academic engagement.</p>
+</header>
+<nav aria-label="Jump to credential section">
+<a href="#innovation">Innovation & Hackathons</a>
+<a href="#research">Research & Clinical</a>
+<a href="#conferences">Conferences & Orations</a>
+<a href="#leadership">Leadership & Experience</a>
+<a href="#publications">Publications</a>
+</nav>
+<main>
+<div class="callout">This page brings together selected supporting records and related project links. Use the document links to open the available certificate files, and the external links to explore presentations or event information.</div>
+<section id="innovation">
+<div class="section-head"><h2>Innovation & Hackathons</h2><span class="count">Projects · recognition</span></div>
+<div class="grid">
+<article class="card"><span class="tag">1st place</span><h3>GSMC & KEMH — Confluence ’25 Medathon</h3><p>Oral cancer screening device.</p><div class="links"><a href="GSMC%20%26%20KEMH%20-%20confluence%E2%80%9925%20.pdf" target="_blank" rel="noopener">Certificate (PDF)</a></div></article>
+<article class="card"><span class="tag">Finalist</span><h3>IIT Bombay — BETIC Labs</h3><p>MEDIC: stroke monitoring and triage.</p><div class="links"><a href="Finalist-%20IIT%20Bombay%20(BETIC%20labs).jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a></div></article>
+<article class="card"><span class="tag">Finalist</span><h3>Madras Medical College</h3><p>Orion — neurodegeneration assessment.</p><div class="links"><a href="Madras%20medical%20college.jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a></div></article>
+<article class="card"><span class="tag">1st place</span><h3>GSMC & KEMH — Confluence ’25</h3><p>Medathon recognition.</p><div class="links"><a href="Confluence%E2%80%9924-%20GSMC,%20KEMH.pdf" target="_blank" rel="noopener">Related certificate (PDF)</a></div></article>
+<article class="card"><span class="tag">2nd place</span><h3>Shooting Star Foundation — USA</h3><p>Starthacks hackathon · pregnancy care and education platform.</p><div class="links"><a href="Shooting%20star%20foundation,%20USA.jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a></div></article>
+<article class="card"><span class="tag">Participant</span><h3>Google Gemini × Kaggle Impact Challenge</h3><p><em>Agentic PACS for radiology workflows.</em></p><div class="links"><a href="https://youtu.be/xLvC3VD9JtM" target="_blank" rel="noopener">Watch project video ↗</a></div></article>
+<article class="card"><span class="tag">Science communication</span><h3>Breakthrough Junior Challenge</h3><p>Explainer on CRISPR-Cas9 gene editing.</p><div class="links"><a href="https://youtu.be/uFI-zDpe_C0" target="_blank" rel="noopener">Watch video ↗</a></div></article>
+<article class="card"><span class="tag">Health innovation</span><h3>Healthathon — KCDH, IIT Bombay & FOGSI</h3><p>Maternal health track.</p><div class="links"><a href="Healthathon%2C%20KCDH%20IITB%2C%20FOGSI.jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a><a href="https://www.instagram.com/p/DeR45akk9c7/" target="_blank" rel="noopener">Event post ↗</a><a href="https://healthathon.reskilll.com" target="_blank" rel="noopener">Event website ↗</a></div></article>
+<article class="card"><span class="tag">1st place</span><h3>HBTMC, Cooper Hospital</h3><p>Neurodegeneration, dementia assessment and follow-up.</p><div class="links"><a href="HBTMC%2C%20Cooper%20Hospital.pdf" target="_blank" rel="noopener">Certificate (PDF)</a><a href="https://youtu.be/kpXcsvS3Q_8" target="_blank" rel="noopener">Related video ↗</a></div></article>
+</div><a class="top" href="#top">Back to top ↑</a>
+</section>
+<section id="research">
+<div class="section-head"><h2>Research & Clinical Experience</h2><span class="count">Clinical · research</span></div>
+<div class="grid">
+<article class="card"><h3>Clinical elective — Reproductive Endocrinology & Infertility</h3><p>LTMMC, Sion · September 2026.</p><div class="links"><a href="Clinical%20Elective.pdf" target="_blank" rel="noopener">Elective document (PDF)</a></div></article>
+<article class="card"><h3>Clinical observership — Radiology</h3><p>Nanavati Max Hospital, Mumbai · two weeks.</p><div class="links"><a href="Clinical%20Observership.pdf" target="_blank" rel="noopener">Observership document (PDF)</a></div></article>
+<article class="card"><h3>College Journal Club</h3><p>Paper presentation on type 2 diabetes mellitus and chronic kidney disease.</p><div class="links"><a href="https://youtu.be/OXPWuCbcu3Y" target="_blank" rel="noopener">Watch presentation ↗</a></div></article>
+<article class="card"><h3>Tech internship — Tur(o)crates.ai</h3><p>Med-tech internship; AI and agentic workflows for radiology and pathology.</p><div class="links"><a href="Tech-internship.pdf" target="_blank" rel="noopener">Internship document (PDF)</a></div></article>
+<article class="card"><h3>Scientific Congress — Nanavati Max Hospital</h3><p>Scientific congress participation.</p><div class="links"><a href="Scientific%20Congress%20Nanavati%20Max%20hospital.jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a></div></article>
+<article class="card"><h3>GGMC, JJ Hospital — MICE Labs</h3><p>Medical innovation experience.</p><div class="links"><a href="GGMC,%20JJ%20hospital%20(MICE%20labs)%201.pdf" target="_blank" rel="noopener">Certificate (PDF)</a><a href="GGMC,%20JJ%20hospital%20(MICE%20labs)%202.jpeg" target="_blank" rel="noopener">Additional proof (image)</a></div></article>
+</div><a class="top" href="#top">Back to top ↑</a>
+</section>
+<section id="conferences">
+<div class="section-head"><h2>Conferences & Orations</h2><span class="count">Academic engagement</span></div>
+<div class="grid">
+<article class="card"><h3>Ova Ferticon</h3><p>Fertility and women’s healthcare · Thane Obstetrics & Gynaecological Society.</p><div class="links"><a href="Ova%20ferticon.pdf" target="_blank" rel="noopener">Certificate (PDF)</a></div></article>
+<article class="card"><h3>Dr. Nitu Mandke Oration</h3><p>Kokilaben Dhirubhai Ambani Hospital · Past, Present and Future of Emergency Services in India.</p><div class="links"><a href="https://www.linkedin.com/posts/dr-kunal-shah-949757168_last-week-i-had-the-opportunity-to-attend-ugcPost-7294308118698627072-e5kW" target="_blank" rel="noopener">Event post on LinkedIn ↗</a></div></article>
+<article class="card"><h3>Confluence ’24 — GSMC & KEMH</h3><p>AI in healthcare workshop.</p><div class="links"><a href="Confluence%E2%80%9924-%20GSMC,%20KEMH.pdf" target="_blank" rel="noopener">Certificate (PDF)</a></div></article>
+<article class="card"><h3>Scientific Congress — Nanavati Max Hospital</h3><p>Medical scientific congress.</p><div class="links"><a href="Scientific%20Congress%20Nanavati%20Max%20hospital.jpeg" target="_blank" rel="noopener">Certificate / proof (image)</a></div></article>
+</div><a class="top" href="#top">Back to top ↑</a>
+</section>
+<section id="leadership">
+<div class="section-head"><h2>Leadership & Experience</h2><span class="count">Service · organising</span></div>
+<div class="grid">
+<article class="card"><h3>IMA-MSN — College Secretary</h3><p>2024–25 · Leadership and student medical association activities.</p><div class="links"><a href="IMA%20roles.pdf" target="_blank" rel="noopener">Leadership records (PDF)</a></div></article>
+<article class="card"><h3>IMA-MSN — State Research Subcommittee</h3><p>Committee member · 2025–26.</p><div class="links"><a href="IMA%20roles.pdf" target="_blank" rel="noopener">Leadership records (PDF)</a></div></article>
+<article class="card"><h3>Event organisation & student research</h3><p>Induction sessions, rural health camp, interventional radiology workshop, research-cell activities and ICMR STS discussions.</p><div class="links"><a href="IMA%20roles.pdf" target="_blank" rel="noopener">Supporting record (PDF)</a></div></article>
+<article class="card"><h3>PheoPara Foundation — Tata Hospital, Mumbai</h3><p>Volunteer · awareness and patient-support initiatives for pheochromocytoma and paraganglioma.</p></article>
+</div><a class="top" href="#top">Back to top ↑</a>
+</section>
+<section id="publications">
+<div class="section-head"><h2>Publications & Presentations</h2><span class="count">Selected work</span></div>
+<div class="grid">
+<article class="card"><h3>AI and VR for Pre-Hospital Trauma Life Support (PHTLS) in Military Settings</h3><p>Co-authored publication.</p></article>
+<article class="card"><h3>AI-based Documentation System for Military Trauma Centers</h3><p>Co-authored with Lt. Col. Dr. Aman Arora (AFMC / military hospital, Jamnagar).</p></article>
+</div><a class="top" href="#top">Back to top ↑</a>
+</section>
+<div class="callout">Please note: this gallery is intended for selected professional credentials. Avoid uploading identity documents, records with unnecessary personal identifiers, or certificates you do not have permission to share publicly.</div>
+</main>
+<footer>Gauri Thakur · Credentials & professional record</footer>
 </body>
 </html>
