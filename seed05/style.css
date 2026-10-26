@@ -277,3 +277,18 @@
 .khanna-credit{margin-top:38px;text-transform:none;letter-spacing:0}
 .khanna-credit a{color:var(--red);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:720px){.khanna-interlude{padding:65px 6vw}.khanna-gallery{grid-template-columns:1fr 1fr;gap:14px}.khanna-art-wide{grid-column:1/-1}.khanna-art img{height:220px}.khanna-art-wide img{height:310px}.khanna-art:nth-child(2),.khanna-art:nth-child(3){margin-top:0}}
+
+/* Cave becomes a near-black field; only the moving torch reveals the rock art. */
+.cave-scene{background:#080706!important;isolation:isolate;overflow:hidden}
+.cave-scene img{position:relative;z-index:1;filter:brightness(.13) saturate(.8) sepia(.1);transition:filter .25s ease}
+.cave-period.in-view .cave-scene img{filter:brightness(.13) saturate(.8) sepia(.1)}
+.cave-scene:after{z-index:3;opacity:1;background:radial-gradient(ellipse 22% 24% at var(--torch-x,72%) var(--torch-y,44%),rgba(255,221,153,.72) 0,rgba(255,194,102,.4) 18%,rgba(246,143,61,.18) 38%,rgba(0,0,0,0) 72%);mix-blend-mode:screen}
+.cave-scene:before{content:"";position:absolute;inset:0;z-index:2;background:rgba(0,0,0,.86);pointer-events:none;mix-blend-mode:multiply}
+.cave-torch{z-index:5}
+.cave-scene .image-caption{z-index:6}
+@media(prefers-reduced-motion:reduce){.cave-scene img{transition:none}}
+/* Personal gallery notes: let Enchanted lead, with Verdant Symphony as a companion. */
+.visit-artworks{display:flex;flex-direction:column;gap:42px;min-width:0}
+.visit-image-secondary{position:relative;top:auto;margin-left:12%;width:88%}
+.visit-image-secondary img{max-height:none}
+@media(max-width:720px){.visit-artworks{gap:28px}.visit-image-secondary{margin-left:5%;width:95%}}
