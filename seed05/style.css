@@ -227,3 +227,7 @@
 .pigment-display .pigment-big,.pigment-display .pigment-small,.pigment-display .pigment-process{z-index:3}
 .pigment-display .pigment-cloud{z-index:2}
 @media(prefers-reduced-motion:reduce){.pigment-magic:before,.pigment-magic:after{animation:none!important}}
+
+/* Keep the painted threshold aligned beneath the updated masthead. */
+.paint-reveal{height:calc(100svh - 80px)}
+@media(max-width:620px){.paint-reveal{height:calc(100svh - 70px)}}
