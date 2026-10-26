@@ -231,3 +231,6 @@
 /* Keep the painted threshold aligned beneath the updated masthead. */
 .paint-reveal{height:calc(100svh - 80px)}
 @media(max-width:620px){.paint-reveal{height:calc(100svh - 70px)}}
+
+.site-header~main .hero{min-height:calc(100vh - 80px)}
+@media(max-width:620px){.site-header~main .hero{min-height:calc(100svh - 70px)}}
