@@ -5,6 +5,14 @@ function closeMenu(){panel.classList.remove('open');scrim.classList.remove('show
 menu?.addEventListener('click',openMenu);close?.addEventListener('click',closeMenu);scrim?.addEventListener('click',closeMenu);$$('.contents-panel a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduce&&'IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target)}}),{threshold:.12});$$('.reveal,.period').forEach(el=>io.observe(el))}else $$('.reveal,.period').forEach(el=>el.classList.add('in-view'));
+
+// Torch light follows the pointer over the cave; the matchstick and glow share coordinates.
+const cave=$('.cave-scene');
+if(cave){
+ const moveTorch=(e)=>{const r=cave.getBoundingClientRect();const x=Math.max(4,Math.min(96,((e.clientX-r.left)/r.width)*100));const y=Math.max(5,Math.min(95,((e.clientY-r.top)/r.height)*100));cave.style.setProperty('--torch-x',x+'%');cave.style.setProperty('--torch-y',y+'%')};
+ cave.addEventListener('pointermove',moveTorch);
+ cave.addEventListener('pointerleave',()=>{cave.style.setProperty('--torch-x','72%');cave.style.setProperty('--torch-y','44%')});
+}
 const track=$('#trackProgress');function updateTrack(){if(!track)return;const section=$('#timeline'),r=section.getBoundingClientRect(),vh=innerHeight;const total=section.offsetHeight;const passed=Math.min(total,Math.max(0,vh-r.top));track.style.height=(passed/total*100)+'%'}document.addEventListener('scroll',updateTrack,{passive:true});updateTrack();
 const cursor=$('#cursorPigment');if(cursor&&!reduce&&matchMedia('(pointer:fine)').matches){let last=0;document.addEventListener('pointermove',e=>{cursor.style.opacity='.5';cursor.style.left=(e.clientX-6)+'px';cursor.style.top=(e.clientY-6)+'px';if(Date.now()-last>150){cursor.style.transform=`scale(${.7+Math.random()*.8})`;last=Date.now()}});document.addEventListener('pointerleave',()=>cursor.style.opacity='0')}
 const pigments={
