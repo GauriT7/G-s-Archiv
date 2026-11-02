@@ -1169,23 +1169,17 @@ function openArchive() {
     }
     
     document.getElementById("open-entry").addEventListener("click", () => {
-  if (selectedSeed === 1) {
-    window.location.href = "./seed01/index.html";
-  } else if (selectedSeed === 2) {
-    window.location.href = "./seed02/index.html";
-  } else if (selectedSeed === 3) {
-    window.location.href = "./seed03/index.html";
-  } else if (selectedSeed === 4) {
-    window.location.href = "./seed04/index.html";
-  }
-    else if (selectedSeed === 5) {
-    window.location.href = "./seed05/index.html";
-  }
-  } else if (selectedSeed === 6) {
-    window.location.href = "./seed06/index.html";
-  }
+  const routes = {
+    1: "./seed01/index.html",
+    2: "./seed02/index.html",
+    3: "./seed03/index.html",
+    4: "./seed04/index.html",
+    5: "./seed05/index.html",
+    6: "./seed06/index.html"
+  };
+  const destination = routes[selectedSeed];
+  if (destination) window.location.href = destination;
 });
- 
 
     /* RETURN TO THE OPENING SCREEN */
 
