@@ -23,3 +23,36 @@
 
 /* Source links inside the cocoa innovation cards. */
 .engineering-grid article a{display:inline-block;margin:7px 14px 0 0;color:var(--red);font:9px/1.6 var(--mono);letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px}.engineering-grid article a:hover{border-color:var(--red)}
+
+
+/* Seed 06 refinements: restrained notes, clear diagrams, and responsive data cards. */
+.opening-stamp{max-width:760px;margin:0 auto;padding:26px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:28px;border-top:1px solid var(--line)}
+.opening-stamp>span{font:9px/1.6 var(--mono);letter-spacing:.12em;color:var(--red)}
+.opening-stamp p{margin:0;font:clamp(19px,2.5vw,27px)/1.35 var(--serif);text-align:right}
+.opening-stamp em{color:var(--red)}
+.hormone-convergence{padding:6px 0 0}
+.convergence-arrows{display:flex;justify-content:space-around;max-width:650px;margin:0 auto;color:var(--red);font:22px var(--mono)}
+.convergence-arrows span{display:inline-block;animation:signalDrop 1.8s ease-in-out infinite}
+.convergence-arrows span:nth-child(2){animation-delay:.15s}
+.convergence-arrows span:nth-child(3){animation-delay:.3s}
+.convergence-arrows span:nth-child(4){animation-delay:.45s}
+.convergence-core{max-width:690px;margin:0 auto;padding:18px 24px;background:#f3ecdf;border:1px solid var(--line);text-align:center}
+.convergence-core>span{display:block;color:var(--red);font:9px var(--mono);letter-spacing:.1em}
+.convergence-core strong{display:block;margin:7px 0;font:24px var(--serif);font-weight:400}
+.convergence-core p{max-width:560px;margin:0 auto;color:var(--muted);font-size:12px;line-height:1.7}
+.textbook-line{margin:0;padding:12px 0 0;color:var(--red);font:italic 16px/1.5 var(--serif);border-top:1px solid var(--line)}
+.cola-stat{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.cola-stat-item{min-width:0}
+.cola-stat-item strong{display:block}
+.cola-stat-item span{display:block}
+.sense-card.trigeminal .sense-symbol{background:#e9d2c5}
+@keyframes signalDrop{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
+@media(max-width:900px){.cola-stat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+  .opening-stamp{display:block;padding-top:18px}
+  .opening-stamp p{margin-top:8px;text-align:left}
+  .convergence-core{padding:16px}
+  .convergence-core strong{font-size:21px}
+  .cola-stat{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){.convergence-arrows span{animation:none}}
