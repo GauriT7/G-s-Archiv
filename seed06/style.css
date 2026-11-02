@@ -423,6 +423,11 @@ body{background:var(--paper);color:var(--ink);font-size:16px;line-height:1.72}
 .site-footer>span{font-size:9px}
 .floating-route{border-radius:3px;background:#f8f2e8;border-color:#bda88f}
 @keyframes foodPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 8px rgba(157,41,54,.09)}50%{transform:scale(1.15);box-shadow:0 0 0 13px rgba(157,41,54,.03)}}
+/* Keep process arrows in their own narrow columns on wide screens. */
+@media(min-width:901px){
+  .night-steps{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr)}
+  .glucose-steps{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr)}
+}
 /* Medium screens */
 @media(max-width:1100px){
   .paper-section,.bite-section,.trade-section,.lab-section,.sources{padding-left:6vw;padding-right:6vw}
