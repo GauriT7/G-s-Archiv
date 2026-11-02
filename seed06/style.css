@@ -56,3 +56,559 @@
   .cola-stat{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(prefers-reduced-motion:reduce){.convergence-arrows span{animation:none}}
+
+
+/* =========================================================
+   SEED 06 — ART DIRECTION PASS
+   Keep the archive typography; give this essay its own food-led
+   palette, stronger hierarchy, cleaner diagrams and real rhythm.
+   ========================================================= */
+:root{
+  --paper:#f6f0e5;
+  --paper2:#e9ddcb;
+  --ink:#29221d;
+  --muted:#71655b;
+  --red:#9d2936;
+  --blue:#496f83;
+  --yellow:#d5a64a;
+  --green:#526b50;
+  --line:#cbbba5;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',Arial,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-padding-top:82px}
+body{background:var(--paper);color:var(--ink);font-size:16px;line-height:1.72}
+.grain{opacity:.035}
+.site-header{height:68px;padding:0 clamp(22px,5vw,76px);background:rgba(246,240,229,.96);border-bottom:1px solid rgba(93,70,51,.22)}
+.wordmark{font-size:20px;letter-spacing:-.025em}
+.index-toggle{padding:10px 15px;border-color:#bca991;color:var(--ink);transition:background .25s,color .25s,border-color .25s}
+.index-toggle:hover{background:var(--red);border-color:var(--red);color:#fff8ed}
+.index-toggle:hover .index-icon{color:#fff8ed}
+.hero{min-height:calc(100svh - 68px);padding:24px clamp(22px,5vw,76px) 22px;background:radial-gradient(ellipse at 50% 48%,#fffaf0 0,#f6f0e5 58%,#eee4d4 100%)}
+.hero-topline,.hero-bottom{font-size:9px;letter-spacing:.13em}
+.food-web{width:min(1160px,100%);height:min(700px,76vh);min-height:510px}
+.web-lines path{stroke:#9d8d78;stroke-width:1.25;stroke-dasharray:3 9;opacity:.75}
+.web-centre{width:clamp(190px,20vw,250px);height:clamp(190px,20vw,250px);background:radial-gradient(circle at 38% 32%,#fff8ed,#e6d7c4 82%);border:1px solid #c8b49a;box-shadow:0 24px 65px rgba(69,43,25,.14),inset 0 0 0 8px rgba(255,255,255,.28)}
+.web-centre>span{letter-spacing:.18em;font-size:9px}
+.web-centre strong{font-size:clamp(4.5rem,9vw,7.4rem);letter-spacing:-.1em}
+.web-centre small{max-width:150px;font-size:9px;line-height:1.5}
+.web-centre:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--red);right:22%;top:23%;box-shadow:0 0 0 8px rgba(157,41,54,.09);animation:foodPulse 2.8s ease-in-out infinite}
+.web-node{width:clamp(132px,13vw,174px);height:clamp(132px,13vw,174px);border:1px solid #c7b69e;background:#fbf6eb;box-shadow:0 13px 35px rgba(58,42,28,.10);color:var(--ink)}
+.web-node b{font-size:clamp(1.15rem,2vw,1.7rem)}
+.web-node small{font-size:8px;letter-spacing:.08em}
+.web-node:hover{box-shadow:0 18px 42px rgba(58,42,28,.17);border-color:var(--red)}
+.n-brain{background:#f3e2dc}.n-flavour{background:#f4e8cc}.n-land{background:#e2e8d8}.n-trade{background:#dfe8eb}.n-lab{background:#eadfe7}.n-body{background:#e6e4d4}
+.n-lab,.n-body{z-index:5}
+.hero-bottom{border-color:rgba(93,70,51,.27)}
+.reading-progress{top:68px}
+.paper-section,.bite-section,.trade-section,.lab-section,.sources{padding:clamp(76px,9vw,124px) clamp(22px,8vw,132px)}
+.paper-section{background:#eee4d5}
+.section-heading{grid-template-columns:minmax(0,1.05fr) minmax(250px,.95fr);gap:clamp(30px,6vw,100px);align-items:end;margin-bottom:52px}
+.section-heading>div{min-width:0}
+.eyebrow{font-size:9px;letter-spacing:.17em;font-weight:500;margin-bottom:20px}
+.intro h2,.section-heading h2,.sources h2{font-size:clamp(3.2rem,6vw,6.25rem);line-height:.99;letter-spacing:-.065em;text-wrap:balance}
+.section-aside{max-width:400px;font-size:18px;line-height:1.62;color:#66594f}
+.section-end{margin-top:58px;padding-top:17px;font-size:9px;border-color:rgba(93,70,51,.27)}
+.section-end button,.return-top{font-size:10px;letter-spacing:.04em}
+.reveal{transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1)}
+/* Opening note: a small editorial caption after the animated web. */
+.opening-stamp{max-width:1000px;padding:24px 0 12px;border-top-color:rgba(93,70,51,.3)}
+.opening-stamp>span{font-size:9px;letter-spacing:.16em}
+.opening-stamp p{font-size:clamp(21px,2.8vw,30px)}
+/* 01 — appetite: make the map feel like a feature, not a worksheet. */
+.appetite-section{background:#eee4d5}
+.appetite-intro{max-width:1120px;align-items:center;margin-bottom:38px}
+.appetite-intro>p:first-child{max-width:690px;font:clamp(20px,2.1vw,25px)/1.55 var(--serif);margin:0}
+.margin-note{font:9px var(--mono);letter-spacing:.12em;background:#f6f0e5;padding:10px 13px;border-left:2px solid var(--red);transform:rotate(1.5deg)}
+.brain-map{background:#faf5ea;border:1px solid #d0c0a8;padding:clamp(20px,3vw,34px);box-shadow:0 24px 60px rgba(64,43,26,.08)}
+.map-label,.flow-heading{font-size:9px;letter-spacing:.13em}
+.brain-map-layout{grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr);gap:clamp(26px,5vw,68px);padding:30px 0 36px}
+.brain-illustration{padding:10px 15px}
+.brain-outline{fill:#ead7ca;stroke:#977d6d;stroke-width:2.2}
+.brain-fold{stroke:#b18b7b;stroke-width:2.4;opacity:.72}
+.brain-highlight{fill:#b75c61;stroke:#9d2936;opacity:.62}
+.brain-dot{fill:#9d2936}
+.brain-stem{stroke:#977d6d}
+.brain-caption{font-size:8px;letter-spacing:.12em;margin-top:8px}
+.brain-key article{grid-template-columns:44px 1fr;gap:14px;padding:18px 0;border-color:#d8cbb8}
+.key-no{width:31px;height:31px;border:1px solid #c7ad98;border-radius:50%;display:grid;place-items:center;padding:0;font-size:9px}
+.brain-key h3{font-size:22px;line-height:1.2;margin-bottom:5px}
+.brain-key p{font-size:13px;line-height:1.65;color:#6b5e54}
+.hormone-flow{margin-top:28px;padding:clamp(20px,3vw,32px);background:#354b3e;color:#f8f1e6;border:0;position:relative;overflow:hidden}
+.hormone-flow:after{content:"";position:absolute;width:280px;height:280px;border:1px solid rgba(240,220,180,.12);border-radius:50%;right:-100px;top:-150px;box-shadow:0 0 0 28px rgba(240,220,180,.035),0 0 0 58px rgba(240,220,180,.025);pointer-events:none}
+.hormone-flow .flow-heading{color:#e8c98f;border-color:rgba(244,233,211,.25);position:relative;z-index:1}
+.hormone-track{position:relative;z-index:1;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:22px 0 18px}
+.hormone-card{min-width:0;min-height:188px;padding:19px 17px;background:#465f4f;border:1px solid rgba(247,239,222,.18);border-radius:3px;transition:transform .3s,background .3s}
+.hormone-card:hover{transform:translateY(-5px);background:#526c59}
+.hormone-tag{font-size:8px;letter-spacing:.13em;color:#edc98c}
+.hormone-card h3{font-size:27px;margin:12px 0 8px;color:#fff7e9}
+.hormone-card p{font-size:13px;line-height:1.65;color:#e4e1d3;margin:0 0 16px}
+.hormone-card small{font-size:8px;letter-spacing:.1em;color:#edc98c}
+.convergence-arrows{max-width:900px;color:#e7c58a;font-size:20px}
+.convergence-core{max-width:760px;background:#263b30;color:#f8f1e6;border-color:rgba(245,234,214,.23);padding:20px 26px}
+.convergence-core>span{color:#e6c487;font-size:8px;letter-spacing:.15em}
+.convergence-core strong{font-size:25px;color:#fff6e8}
+.convergence-core p{font-size:13px;line-height:1.65;color:#d9dfd2}
+.flow-foot{font-size:12px;color:#d5ddcf;margin-top:14px;position:relative;z-index:1}
+.night-flow{margin-top:34px;padding:25px 0 8px;border-top-color:#d1c1aa}
+.night-title{font-size:9px;letter-spacing:.14em}
+.night-steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;align-items:start}
+.night-steps>div{min-width:0;border-top:2px solid #bd9d79;padding-top:12px}
+.night-steps b{font-size:9px}
+.night-steps strong{font-size:22px}
+.night-steps small{font-size:10px;line-height:1.55}
+.night-steps i{font-size:17px}
+.night-flow>p:last-child{max-width:920px;font-size:13px;line-height:1.7;color:#6f6257}
+/* 02 — sensory science: make the equation and taste family the visual centre. */
+.bite-section{background:#f7f1e7}
+.flavour-equation{display:grid;grid-template-columns:auto 24px repeat(3,minmax(0,1fr));gap:9px;padding:17px 18px;background:#e8ddcc;border:1px solid #d4c2a9;align-items:stretch}
+.flavour-equation>span{align-self:center;font-size:10px;letter-spacing:.14em}
+.flavour-equation>b{align-self:center}
+.flavour-equation>div{min-width:0;background:#f8f2e8;border:1px solid #d9cbb7;padding:15px 16px}
+.flavour-equation strong{font-size:11px;letter-spacing:.11em}
+.flavour-equation small{font-size:11px;line-height:1.45}
+.sense-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sense-card{min-width:0;min-height:226px;padding:22px 20px 20px;border:0;border-top:3px solid var(--sense-accent,var(--red));background:var(--sense-bg,#eee4d5);transition:transform .35s,box-shadow .35s}
+.sense-card:nth-child(1){--sense-accent:#bd7851;--sense-bg:#f0dfcd}
+.sense-card:nth-child(2){--sense-accent:#c59b36;--sense-bg:#f2e9ce}
+.sense-card:nth-child(3){--sense-accent:#63839a;--sense-bg:#e1e8e9}
+.sense-card:nth-child(4){--sense-accent:#60744f;--sense-bg:#e3e8d9}
+.sense-card:nth-child(5){--sense-accent:#9d4d43;--sense-bg:#edddd5}
+.sense-card:nth-child(6){--sense-accent:#92769c;--sense-bg:#e9e0eb}
+.sense-card:nth-child(7){--sense-accent:#b45b4f;--sense-bg:#f0dfd9}
+.sense-card:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(58,43,28,.1)}
+.sense-symbol{width:42px;height:42px;background:rgba(255,255,255,.52);border-color:rgba(80,60,42,.18);color:var(--sense-accent);font-size:19px}
+.sense-card h3{font-size:26px;line-height:1.1;margin-bottom:9px}
+.sense-card p{font-size:13px;line-height:1.65;color:#5c5149;margin-bottom:14px}
+.sense-card>span{font-size:8px;letter-spacing:.13em;color:var(--sense-accent)}
+.sense-card.trigeminal{grid-column:span 1}
+.mouthfeel-panel{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);margin:42px 0;padding:clamp(24px,4vw,44px);background:#35241f;color:#f8f0e4;border-left:5px solid #b45b4f}
+.mouthfeel-panel .eyebrow{color:#e6bd86}
+.mouthfeel-panel h3{font-size:clamp(2.2rem,4vw,3.8rem);color:#fff4e6}
+.mouthfeel-panel p:not(.eyebrow){font-size:14px;line-height:1.8;color:#e0d3c3}
+.sound-wave path{stroke:#e7a18a;stroke-width:2.5}
+.sound-wave span{color:#e9c7a2;font-size:8px;letter-spacing:.12em;margin-top:10px}
+.bliss-point{background:#f0e4c9;border:1px solid #d8c39e;padding:clamp(24px,4vw,42px);margin:36px 0}
+.bliss-copy h3{font-size:clamp(2.2rem,3.5vw,3.5rem)}
+.bliss-copy p:not(.eyebrow){font-size:14px;line-height:1.8;color:#5c5147}
+.curve-grid svg{max-height:230px}
+.research-strip{background:#e5d9c7;border-left:4px solid var(--red);padding:22px 26px;margin:32px 0 62px}
+.research-strip p{font-size:16px;line-height:1.55;color:#3e342d}
+.strip-stamp{border-color:var(--red);font-size:9px;letter-spacing:.1em}
+.case-heading{max-width:780px;margin-bottom:38px}
+.case-heading h3{font-size:clamp(2.8rem,5vw,4.7rem);line-height:1.02}
+.case-heading p:not(.eyebrow){font-size:14px;line-height:1.75;color:#6b5e54}
+.case-card{grid-template-columns:70px minmax(190px,260px) minmax(0,1fr);gap:clamp(18px,3vw,34px);padding:30px 0;border-top-color:#d4c4af}
+.case-no{font-size:9px;letter-spacing:.12em}
+.case-visual{height:170px;background:#e9dece;border:1px solid rgba(80,60,42,.12);box-shadow:inset 0 0 40px rgba(255,255,255,.25)}
+.case-copy h4{font-size:clamp(23px,2.4vw,30px);line-height:1.15}
+.case-copy p{font-size:14px;line-height:1.7;color:#65594f}
+.case-copy small{font-size:8px;letter-spacing:.1em}
+.case-lays .case-visual{background:radial-gradient(circle at 30% 25%,#f7e7bd,#d8b17b 75%)}
+.case-pringles .case-visual{background:linear-gradient(145deg,#e9d5ab,#c69b60)}
+.case-cheetos .case-visual{background:radial-gradient(circle at 65% 40%,#f5bd62,#d78635 75%)}
+.case-kitkat .case-visual{background:linear-gradient(135deg,#e6c59d,#ac714b)}
+.case-lindt .case-visual{background:radial-gradient(circle,#a97862,#43251f 75%)}
+.case-toblerone .case-visual{background:linear-gradient(135deg,#ead7ad,#b58a50)}
+.case-lindt .chocolate-wave div{box-shadow:inset 10px 5px 22px #c48b70,0 12px 25px #21110d55}
+.case-toblerone .triangle-choc span{color:#63412c;text-shadow:3px 4px #d5af72}
+.case-extra{background:#eee4d5;margin-top:8px;padding:24px 20px;border:1px solid #d5c5b0}
+.case-extra .case-no{padding-left:5px}
+.case-extra .case-copy.wide{grid-column:2/4}
+.case-extra .case-copy p{font-size:14px;line-height:1.75}
+/* Coca-Cola: one unmistakable red feature, not another beige panel. */
+.cola-file{margin-top:76px;padding:clamp(24px,4vw,46px);background:#9e2633;border:0;border-radius:4px;color:#fff4e8;box-shadow:0 22px 50px rgba(92,26,29,.13)}
+.cola-top{border-bottom-color:rgba(255,245,230,.28)}
+.cola-top .eyebrow,.cola-top>span{color:#f1c98b}
+.cola-copy h3{font-size:clamp(2.6rem,4.5vw,4.4rem);line-height:1}
+.cola-copy h3 em{color:#f5c98d}
+.cola-copy p{font-size:14px;line-height:1.8;color:#f1e4d8}
+.cola-grid{grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);gap:clamp(24px,4vw,58px);padding:30px 0 20px}
+.cola-art{min-height:430px;background:radial-gradient(circle at 50% 38%,#c35e5a,#84202c 70%);border:1px solid rgba(255,245,230,.2)}
+.cola-bottle{transform-origin:center;filter:drop-shadow(15px 20px 18px rgba(32,7,10,.4))}
+.cola-cap{background:#f5d9a7}
+.cola-neck{background:linear-gradient(90deg,#7d1b26,#bd3942,#761a25)}
+.cola-body{background:linear-gradient(90deg,#671723,#b92f3b 38%,#e26a61 52%,#7e1724);border-color:#e6ad91}
+.cola-copy p strong{color:#fff1c9}
+.cola-stat{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;border-top-color:rgba(255,245,230,.3);padding-top:22px}
+.cola-stat-item{padding:12px 10px 8px;border-left:1px solid rgba(255,245,230,.3)}
+.cola-stat-item:first-child{border-left:0}
+.cola-stat strong{font-size:clamp(28px,3vw,42px);color:#f7cf92}
+.cola-stat span{font-size:9px;color:#f2e0d0;line-height:1.5}
+/* 03 — geography: one clear question, then a small ingredient atlas. */
+.geography-section{background:#e8e1d4}
+.geography-section .section-heading h2 em{color:#6a7958}
+.geography-copy{max-width:940px;font-size:clamp(18px,1.7vw,21px);line-height:1.75;margin:0 auto 38px}
+.ingredient-questions{max-width:1000px;background:#f7f1e7;border:1px solid #d1c1ab;padding:26px 30px;margin-bottom:48px}
+.question-head{font-size:9px;letter-spacing:.12em}
+.ingredient-questions ol{column-gap:40px}
+.ingredient-questions li{font-size:14px;line-height:1.5;padding:14px 0 14px 42px}
+.small-staples{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.small-staples article{min-width:0;min-height:300px;padding:24px 21px;background:#f1e8d9;border-top:3px solid var(--staple-accent,var(--red));transition:transform .3s,box-shadow .3s}
+.small-staples article:nth-child(1){--staple-accent:#a96743}
+.small-staples article:nth-child(2){--staple-accent:#58734f}
+.small-staples article:nth-child(3){--staple-accent:#a58c46}
+.small-staples article:nth-child(4){--staple-accent:#80658e}
+.small-staples article:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(64,46,28,.09)}
+.small-staples article>span{color:var(--staple-accent);font-size:9px}
+.small-staples h3{font-size:25px;line-height:1.12;margin:18px 0 13px}
+.small-staples p{font-size:13px;line-height:1.7;color:#675a50}
+/* 04 — trade: a dark green interlude to reset the eye. */
+.trade-section{background:#354a3d;color:#f5eee1}
+.trade-section .section-heading h2{color:#fff6e9}
+.trade-section .section-heading h2 em{color:#e6c27e}
+.trade-section .section-aside{color:#d7ddcf}
+.trade-section .eyebrow,.trade-section .trade-notes article>span{color:#e5c17c}
+.trade-flow{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr) 42px minmax(0,1fr);gap:0;margin:45px 0}
+.trade-flow>div{min-width:0;min-height:185px;padding:25px 23px;background:#f3eadb;border:0;border-top:3px solid #d5a64a;color:#2d2922;box-shadow:0 14px 30px rgba(11,28,18,.12)}
+.trade-flow>div>span{color:#9d2936}
+.trade-flow strong{font-size:clamp(23px,2.4vw,31px)}
+.trade-flow small{font-size:12px;line-height:1.6;color:#6c6257}
+.trade-arrow{color:#e6c27e;font-size:30px}
+.trade-notes{gap:13px}
+.trade-notes article{background:rgba(247,241,228,.075);border:1px solid rgba(247,241,228,.2);padding:24px 26px}
+.trade-notes article>span{font-size:9px}
+.trade-notes p{font-size:13px;line-height:1.75;color:#e2e4d8}
+/* 05 — cocoa: a warm chocolate field and a clearer production route. */
+.cocoa-section{background:#eee1d0}
+.cocoa-section .section-heading h2 em{color:#915044}
+.cocoa-note{gap:clamp(26px,5vw,70px);margin-bottom:48px}
+.cocoa-note p{font-size:18px;line-height:1.75}
+.cacao-flow{background:#3c2822;border:0;color:#f7eee0;padding:28px}
+.cacao-head{color:#eac58b;border-bottom-color:rgba(246,236,222,.25)}
+.cacao-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 22px;padding:28px 0 6px}
+.cacao-steps>i{display:none}
+.cacao-steps article{min-width:0;padding:16px 12px;background:rgba(255,248,237,.07);border:1px solid rgba(255,248,237,.13);border-radius:3px;transition:transform .3s,background .3s}
+.cacao-steps article:hover{transform:translateY(-4px);background:rgba(255,248,237,.12)}
+.cacao-icon{width:76px;height:76px;margin-bottom:13px;background:#87654c;border:1px solid rgba(255,255,255,.15)}
+.cacao-icon:after{inset:21px;border-color:#eac58b}
+.cacao-icon.pod{background:linear-gradient(135deg,#b77b48,#6e482f)}
+.cacao-icon.ferment{background:linear-gradient(135deg,#d3a16b,#87563f)}
+.cacao-icon.dry{background:linear-gradient(135deg,#e0c28d,#a77743)}
+.cacao-icon.roast{background:linear-gradient(135deg,#a96e43,#59372c)}
+.cacao-icon.grind{background:linear-gradient(135deg,#704436,#351f1a)}
+.cacao-icon.finish{background:linear-gradient(135deg,#6c4034,#321d18)}
+.cacao-icon.bar{background:linear-gradient(135deg,#b84b43,#6c1f26)}
+.cacao-steps b{font-size:8px;color:#eac58b}
+.cacao-steps p{font-size:12px;line-height:1.65;color:#e7dbcb}
+.cocoa-economy{margin:55px 0 34px}
+.cocoa-economy h3{font-size:clamp(2.7rem,4.7vw,4.8rem);line-height:1.0;color:#54352d}
+.cocoa-economy>div:last-child p{font-size:14px;line-height:1.8;color:#5d5147}
+.cocoa-lab-tease{background:#e1e6d9;border-left:4px solid #58724f;padding:25px 30px}
+.cocoa-lab-tease>span{color:#526b50}
+.cocoa-lab-tease p{font-size:clamp(19px,2.3vw,25px);line-height:1.5}
+.cocoa-lab-tease button{font-size:10px;letter-spacing:.1em}
+/* 06 — lab: editorial science, not a wall of identical boxes. */
+.lab-section{background:#f6f0e5}
+.lab-section .section-heading h2 em{color:#955041}
+.lab-opening{max-width:1040px;gap:clamp(24px,5vw,70px);margin:0 auto 56px}
+.lab-opening p{font-size:18px;line-height:1.72}
+.engineering-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.engineering-grid article{min-width:0;min-height:260px;padding:25px 24px;background:#ede3d5;border:0;border-top:3px solid var(--lab-accent,var(--red));box-shadow:0 1px 0 rgba(74,53,34,.05);transition:transform .32s,box-shadow .32s}
+.engineering-grid article:nth-child(1){--lab-accent:#9d2936}
+.engineering-grid article:nth-child(2){--lab-accent:#ba8b38}
+.engineering-grid article:nth-child(3){--lab-accent:#58724f}
+.engineering-grid article:nth-child(4){--lab-accent:#54788b}
+.engineering-grid article:nth-child(5){--lab-accent:#9a725a}
+.engineering-grid article:nth-child(6){--lab-accent:#83678e}
+.engineering-grid article:hover{transform:translateY(-5px);box-shadow:0 17px 32px rgba(64,45,28,.1)}
+.engineering-grid article>span{font-size:8px;color:var(--lab-accent);letter-spacing:.12em}
+.engineering-grid h3{font-size:28px;line-height:1.08;margin:17px 0 12px}
+.engineering-grid p{font-size:13px;line-height:1.72;color:#65594f}
+.chocolate-engineering{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,55px);margin:72px 0 58px;padding:clamp(24px,4vw,46px);background:#39251f;color:#f7efe4;border:0}
+.choco-visual{min-height:340px;background:radial-gradient(circle at 50% 42%,#ead5b6,#c39e7a 82%)}
+.choco-bar{width:min(230px,80%);height:160px;box-shadow:18px 22px 32px rgba(31,17,12,.3)}
+.choco-copy .eyebrow{color:#eac58b}
+.choco-copy h3{font-size:clamp(2.5rem,4vw,4.2rem);line-height:1.03;color:#fff4e5}
+.choco-copy h3 em{color:#e6b58c}
+.choco-copy p:not(.eyebrow){font-size:14px;line-height:1.8;color:#e4d7c8}
+.temper-flow{gap:11px;color:#eac58b;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:15px 0}
+.palatability{padding:42px 0;border-color:#d2c2ac}
+.palatability h3{font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.02}
+.palate-ribbon{background:#e8ddcc;padding:18px 21px;gap:12px}
+.palate-ribbon span{font-size:9px;letter-spacing:.12em}
+.palatability p:not(.eyebrow){font-size:14px;line-height:1.8;color:#5f544b}
+.restaurant-lab{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(26px,5vw,68px);padding:75px 0}
+.restaurant-images{min-height:390px;background:radial-gradient(ellipse at 55% 45%,#e9d6bd,#d4c2ab 72%);overflow:hidden}
+.restaurant-still{width:65%;height:245px;border:7px solid rgba(249,242,228,.82);box-shadow:0 22px 35px rgba(49,33,25,.24);overflow:hidden}
+.restaurant-still:before{content:"";position:absolute;width:72%;aspect-ratio:1;border-radius:50%;left:14%;top:12%;border:9px solid rgba(248,239,221,.84);background:radial-gradient(circle at 48% 48%,#9d6e3f 0 10%,#d9b06e 11% 19%,#6b7752 20% 26%,#f1ddbd 27% 43%,#fff4e5 44% 55%,transparent 56%);box-shadow:0 8px 20px rgba(48,27,18,.2)}
+.still-two:before{background:radial-gradient(circle at 48% 48%,#9e4b38 0 8%,#d7b07c 9% 14%,#687a58 15% 24%,#f0d9b6 25% 41%,#fff0dc 42% 55%,transparent 56%)}
+.restaurant-still span{position:relative;z-index:2;text-shadow:0 2px 5px rgba(20,12,9,.5)}
+.restaurant-copy h3{font-size:clamp(2.5rem,4vw,4rem);line-height:1.04}
+.restaurant-copy p:not(.eyebrow){font-size:14px;line-height:1.8;color:#5f544b}
+.restaurant-links a{font-size:9px;letter-spacing:.08em}
+.label-note{grid-template-columns:minmax(170px,.55fr) minmax(0,1.45fr);gap:clamp(20px,4vw,48px);background:#e8dfd0;border-left:4px solid #61744f;padding:30px}
+.label-graphic{gap:9px;font-size:10px}
+.label-graphic span:nth-child(odd){padding:12px 16px;background:#f7f1e7;border-color:#d1c0a8}
+.label-note h3{font-size:clamp(26px,3vw,34px)}
+.label-note p:not(.eyebrow){font-size:14px;line-height:1.8;color:#5f544b}
+.cultivated-cocoa{background:#e4e9dc;border:0;border-left:5px solid #58724f;padding:clamp(25px,4vw,42px);margin-top:50px}
+.cultivated-top{color:#526b50;border-bottom-color:#bdc7b5}
+.cultivated-cocoa h3{font-size:clamp(2.7rem,5vw,5rem);line-height:1.0;color:#354b3e}
+.cultivated-cocoa h3 em{color:#9d2936}
+.cultivated-cocoa>p{font-size:14px;line-height:1.8;color:#4f594c}
+.cultivated-flow{background:#f7f1e7;color:#526b50;border:1px solid #c7d0bf;justify-content:space-between;padding:19px 22px}
+.cocoa-pathways{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cocoa-pathways article{min-height:0;background:#f0f2e9;border-top:2px solid #6c8061;padding:24px}
+.cocoa-pathways article>span{color:#526b50}
+.cocoa-pathways h3{font-size:27px;margin:12px 0}
+.cocoa-pathways p{font-size:13px;line-height:1.75;color:#586151}
+.cocoa-pathways article a{font-size:9px}
+/* 07 — coffee: a deep forest interlude, with the schoolbook as the keepsake. */
+.coffee-section{background:#344a3d;color:#f4eddf}
+.coffee-section .section-heading h2{color:#fff5e8}
+.coffee-section .section-heading h2 em{color:#e5c58a}
+.coffee-section .section-aside{color:#d8ddcf}
+.coffee-section .eyebrow{color:#e6c68e}
+.coffee-story{max-width:980px;margin:0 auto 48px}
+.coffee-story p{font-size:18px;line-height:1.75;color:#f0e8d9}
+.seven-seeds{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,54px);padding:clamp(20px,3vw,34px);background:#f2e9d9;border:0;color:#2c2922}
+.seed-illustration{min-height:330px;background:linear-gradient(#c5cdbc 0%,#e8dfca 58%,#8b9b7c 59%,#53694d 100%)}
+.seed-hill{background:linear-gradient(160deg,#8c9a72,#435a43)}
+.seed-hill:before{background:#aab18a}
+.seed-row i{background:#73462f;box-shadow:0 4px 9px rgba(46,28,17,.22)}
+.seed-illustration>span{font-size:8px;letter-spacing:.13em}
+.seed-copy h3{font-size:clamp(2.5rem,4vw,4.1rem);line-height:1.02}
+.seed-copy p:not(.eyebrow){font-size:14px;line-height:1.8;color:#62574c}
+.textbook-memory{grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr);gap:clamp(28px,5vw,68px);padding:58px 0 20px}
+.textbook-page{background:#faf5e9;border:1px solid #d6c7af;padding:29px;min-height:300px;gap:20px;box-shadow:0 22px 40px rgba(11,24,15,.2);transform:rotate(-2deg)}
+.textbook-page:after{width:12px;background:#dbe8e7}
+.textbook-page>span{font-size:8px}
+.textbook-page strong{font-size:36px;color:#3d4c3a}
+.textbook-page em{font-size:18px}
+.textbook-line{color:#9d2936;font-size:17px}
+.textbook-page small{font-size:8px}
+.textbook-memory>div:last-child{color:#f4eddf}
+.textbook-memory>div:last-child .eyebrow{color:#e6c68e}
+.textbook-memory>div:last-child p:not(.eyebrow){font-size:14px;line-height:1.8;color:#e4e0d1}
+.coffee-section .section-end{border-color:rgba(246,236,220,.25);color:#d8ddcf}
+.coffee-section .section-end button{color:#e6c68e}
+/* 08 — metabolic health: clearer cards, more legible text. */
+.body-section{background:#e7e9df}
+.body-section .section-heading h2 em{color:#607451}
+.body-opening{max-width:1000px;gap:clamp(24px,5vw,65px);margin-bottom:42px}
+.body-opening p{font-size:18px;line-height:1.72;color:#4f5849}
+.glucose-flow{background:#f8f3e9;border:1px solid #cbd0c1;padding:clamp(20px,3vw,32px)}
+.glucose-flow .flow-heading{color:#526b50;border-color:#cbd0c1}
+.glucose-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.glucose-steps article{min-width:0;min-height:190px;padding:20px;background:#e4e9dd;border-top:3px solid #74866a}
+.glucose-steps b{font-size:9px}
+.glucose-steps h3{font-size:24px;line-height:1.1}
+.glucose-steps p{font-size:13px;line-height:1.7;color:#596253}
+.glucose-steps>i{display:none}
+.metabolic-grid{gap:14px;margin:34px 0}
+.metabolic-grid article{padding:27px;background:#dfe5d8;border-top:3px solid var(--metabolic-accent,#607451)}
+.metabolic-grid article:nth-child(2){--metabolic-accent:#a45a48;background:#eee2d8}
+.metabolic-grid article:nth-child(3){--metabolic-accent:#927090;background:#e9e1e9}
+.metabolic-grid article:nth-child(4){--metabolic-accent:#b38a3c;background:#f0e8d3}
+.metabolic-grid article>span{font-size:8px;letter-spacing:.13em;color:var(--metabolic-accent,#607451)}
+.metabolic-grid h3{font-size:27px;line-height:1.1}
+.metabolic-grid p{font-size:13px;line-height:1.75;color:#5c5d51}
+.processed-food-note,.cycle-note{background:#f7f2e8;border:1px solid #cbd0c1;padding:28px 30px}
+.processed-food-note h3,.cycle-note h3{font-size:30px}
+.processed-food-note p:not(.eyebrow),.cycle-note p:not(.eyebrow){font-size:14px;line-height:1.8;color:#5c5d51}
+/* Closing and resources: quiet finish, but not tiny. */
+.closing{background:#e7ddce;padding:clamp(82px,10vw,140px) clamp(25px,12vw,180px)}
+.closing h2{font-size:clamp(3.8rem,8vw,8rem);line-height:.93}
+.closing-copy{max-width:820px}
+.closing-copy p{font-size:19px;line-height:1.7}
+.sources{background:#f6f0e5}
+.sources h2{font-size:clamp(3rem,5vw,5.2rem)}
+.sources>p:not(.eyebrow){font-size:15px;line-height:1.75}
+.source-links{gap:0 42px}
+.source-links a{font-size:10px;line-height:1.5;padding:15px 0}
+.small-note{font-size:12px;line-height:1.6}
+.site-footer{padding:23px clamp(22px,5vw,76px);background:#f6f0e5;border-color:#d0c0a9}
+.site-footer>span{font-size:9px}
+.floating-route{border-radius:3px;background:#f8f2e8;border-color:#bda88f}
+@keyframes foodPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 8px rgba(157,41,54,.09)}50%{transform:scale(1.15);box-shadow:0 0 0 13px rgba(157,41,54,.03)}}
+/* Medium screens */
+@media(max-width:1100px){
+  .paper-section,.bite-section,.trade-section,.lab-section,.sources{padding-left:6vw;padding-right:6vw}
+  .case-card{grid-template-columns:55px minmax(170px,220px) minmax(0,1fr);gap:20px}
+  .small-staples{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cacao-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .section-heading{grid-template-columns:1fr;gap:16px}
+  .section-aside{max-width:620px}
+  .brain-map-layout{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px}
+  .hormone-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .night-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .night-steps i{display:none}
+  .sense-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cola-grid{grid-template-columns:minmax(190px,.55fr) minmax(0,1.45fr)}
+  .engineering-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .case-card{grid-template-columns:48px minmax(150px,210px) minmax(0,1fr)}
+  .restaurant-lab{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+  .seven-seeds{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+  .textbook-memory{grid-template-columns:minmax(190px,.6fr) minmax(0,1.4fr)}
+  .glucose-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+  body{font-size:15px}
+  .site-header{height:60px;padding:0 18px}
+  .wordmark{font-size:18px}
+  .header-right{gap:10px}
+  .hero{min-height:calc(100svh - 60px);padding:16px 17px 18px}
+  .food-web{height:min(680px,75svh);min-height:490px}
+  .web-centre{width:142px;height:142px}
+  .web-centre strong{font-size:4.25rem}
+  .web-centre small{font-size:7px}
+  .web-node{width:clamp(92px,25vw,116px);height:clamp(92px,25vw,116px)}
+  .web-node b{font-size:1rem}
+  .web-node small{font-size:6px}
+  .n-brain{left:0;top:14%}
+  .n-flavour{right:0;top:14%}
+  .n-land{left:0;bottom:12%}
+  .n-trade{right:0;bottom:12%}
+  .n-lab{top:0}
+  .n-body{bottom:0}
+  .hero-bottom{font-size:7px;letter-spacing:.07em}
+  .hero-bottom span:nth-child(2){display:none}
+  .paper-section,.bite-section,.trade-section,.lab-section,.sources{padding:76px 21px}
+  .section-heading{margin-bottom:34px}
+  .intro h2,.section-heading h2{font-size:clamp(3rem,13vw,4.2rem)}
+  .section-aside{font-size:16px}
+  .opening-stamp{padding:18px 0 8px}
+  .opening-stamp p{font-size:21px}
+  .appetite-intro{display:block;margin-bottom:27px}
+  .appetite-intro>p:first-child{font-size:20px}
+  .margin-note{display:inline-block;margin:9px 0 0}
+  .brain-map{padding:18px 14px}
+  .brain-map-layout{grid-template-columns:1fr;gap:18px;padding:20px 0}
+  .brain-illustration{max-width:380px;margin:auto}
+  .brain-key h3{font-size:20px}
+  .brain-key p{font-size:12px}
+  .hormone-flow{padding:18px 15px}
+  .flow-heading{gap:12px;align-items:start;font-size:8px}
+  .hormone-track{grid-template-columns:1fr 1fr;gap:8px}
+  .hormone-card{min-height:180px;padding:13px 12px}
+  .hormone-card h3{font-size:22px}
+  .hormone-card p{font-size:11px}
+  .convergence-arrows{font-size:17px}
+  .convergence-core{padding:16px 14px}
+  .convergence-core strong{font-size:21px}
+  .convergence-core p{font-size:11px}
+  .night-title{gap:12px;font-size:8px}
+  .night-steps{grid-template-columns:1fr 1fr;gap:16px}
+  .night-steps strong{font-size:19px}
+  .night-steps small{font-size:9px}
+  .flavour-equation{grid-template-columns:auto 18px 1fr 1fr;gap:7px;padding:12px}
+  .flavour-equation>div{padding:11px}
+  .flavour-equation>div:nth-of-type(3){grid-column:3/5}
+  .flavour-equation strong{font-size:9px}
+  .flavour-equation small{font-size:10px}
+  .sense-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .sense-card{min-height:225px;padding:16px 14px}
+  .sense-card h3{font-size:21px}
+  .sense-card p{font-size:11px;line-height:1.65}
+  .sense-card>span{font-size:7px}
+  .mouthfeel-panel,.bliss-point{grid-template-columns:1fr;gap:18px;padding:22px 18px}
+  .mouthfeel-panel h3{font-size:2.5rem}
+  .sound-wave{margin-top:8px}
+  .research-strip{padding:17px;gap:13px}
+  .research-strip p{font-size:13px}
+  .strip-stamp{font-size:8px;padding:7px}
+  .case-heading h3{font-size:2.8rem}
+  .case-card{grid-template-columns:38px minmax(0,1fr);gap:10px 14px;padding:22px 0}
+  .case-no{grid-column:1;grid-row:1/3;font-size:8px;writing-mode:vertical-rl}
+  .case-visual{grid-column:2;grid-row:1;height:145px;width:100%}
+  .case-copy{grid-column:2;grid-row:2}
+  .case-copy h4{font-size:24px}
+  .case-copy p{font-size:13px}
+  .case-extra{padding:18px 14px}
+  .case-extra .case-copy.wide{grid-column:2}
+  .cola-file{margin-top:50px;padding:20px 16px;border-radius:3px}
+  .cola-top{align-items:start}
+  .cola-top .eyebrow{font-size:8px;max-width:200px}
+  .cola-top>span{font-size:7px}
+  .cola-grid{grid-template-columns:1fr;gap:23px}
+  .cola-art{min-height:290px}
+  .cola-bottle{scale:.82}
+  .cola-copy h3{font-size:3rem}
+  .cola-copy p{font-size:13px}
+  .cola-stat{grid-template-columns:1fr 1fr;gap:6px}
+  .cola-stat-item{padding:10px 8px}
+  .cola-stat-item:nth-child(odd){border-left:0}
+  .cola-stat strong{font-size:32px}
+  .cola-stat span{font-size:8px}
+  .geography-copy{font-size:18px}
+  .ingredient-questions{padding:18px 16px}
+  .question-head{display:block}
+  .question-head span{display:block;margin-bottom:4px}
+  .ingredient-questions ol{grid-template-columns:1fr}
+  .ingredient-questions li{font-size:13px}
+  .small-staples{grid-template-columns:1fr 1fr;gap:8px}
+  .small-staples article{min-height:0;padding:18px 15px}
+  .small-staples h3{font-size:21px}
+  .small-staples p{font-size:11px}
+  .trade-flow{grid-template-columns:1fr;gap:8px;margin:28px 0}
+  .trade-flow>div{min-height:0;padding:20px}
+  .trade-arrow{transform:rotate(90deg);font-size:24px}
+  .trade-notes{grid-template-columns:1fr}
+  .cocoa-note,.cocoa-economy{grid-template-columns:1fr;gap:14px}
+  .cocoa-note p{font-size:16px}
+  .cacao-flow{padding:18px 14px}
+  .cacao-head{font-size:8px;gap:10px}
+  .cacao-steps{grid-template-columns:1fr 1fr;gap:9px}
+  .cacao-steps article{padding:12px 9px}
+  .cacao-icon{width:58px;height:58px}
+  .cacao-steps p{font-size:10px}
+  .cocoa-economy h3{font-size:3.1rem}
+  .cocoa-lab-tease{padding:19px}
+  .cocoa-lab-tease p{font-size:19px}
+  .lab-opening,.chocolate-engineering,.restaurant-lab,.label-note,.seven-seeds,.textbook-memory,.body-opening{grid-template-columns:1fr;gap:22px}
+  .lab-opening p{font-size:16px}
+  .engineering-grid{grid-template-columns:1fr;gap:9px}
+  .engineering-grid article{min-height:0;padding:21px 19px}
+  .engineering-grid h3{font-size:25px}
+  .engineering-grid p{font-size:13px}
+  .chocolate-engineering{margin:48px 0;padding:18px}
+  .choco-visual{min-height:235px}
+  .choco-bar{scale:.82}
+  .choco-copy h3{font-size:2.8rem}
+  .palatability h3{font-size:2.6rem}
+  .palate-ribbon{gap:8px;padding:13px}
+  .palate-ribbon span{font-size:8px}
+  .restaurant-lab{padding:48px 0}
+  .restaurant-images{min-height:300px}
+  .restaurant-still{height:195px}
+  .restaurant-copy h3{font-size:2.7rem}
+  .label-note{padding:20px 17px}
+  .label-graphic{flex-direction:row;flex-wrap:wrap;justify-content:flex-start}
+  .label-note p:not(.eyebrow){font-size:13px}
+  .cultivated-cocoa{padding:20px 17px}
+  .cultivated-top{font-size:7px;gap:10px}
+  .cultivated-cocoa h3{font-size:3.2rem}
+  .cocoa-pathways{grid-template-columns:1fr}
+  .cocoa-pathways article{padding:20px}
+  .cultivated-flow{font-size:8px;gap:8px;justify-content:flex-start}
+  .coffee-story p{font-size:16px}
+  .seven-seeds{padding:16px}
+  .seed-illustration{min-height:245px;height:245px}
+  .seed-copy h3{font-size:2.9rem}
+  .seed-copy p:not(.eyebrow){font-size:13px}
+  .textbook-memory{padding:43px 0 8px}
+  .textbook-page{width:min(85%,320px);min-height:270px;margin:0 auto}
+  .textbook-memory>div:last-child p:not(.eyebrow){font-size:13px}
+  .body-opening p{font-size:16px}
+  .glucose-flow{padding:18px 14px}
+  .glucose-steps{grid-template-columns:1fr;gap:8px}
+  .glucose-steps article{min-height:0;padding:17px}
+  .metabolic-grid{grid-template-columns:1fr;gap:9px}
+  .metabolic-grid article{padding:21px}
+  .processed-food-note,.cycle-note{padding:20px 17px}
+  .closing{padding:85px 23px}
+  .closing h2{font-size:clamp(3.7rem,15vw,5rem)}
+  .closing-copy p{font-size:17px;line-height:1.7}
+  .source-links{grid-template-columns:1fr}
+  .sources h2{font-size:3rem}
+  .site-footer{padding:19px 18px;flex-wrap:wrap;gap:10px}
+  .site-footer>span{order:3;width:100%}
+  .floating-route{display:block;right:14px;bottom:14px;padding:10px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .web-centre:after,.convergence-arrows span{animation:none}
+}
